@@ -30,3 +30,25 @@
 *.exe
 *.out
 *.app
+
+
+*.com
+*.class
+*.dll
+*.exe
+*.o
+*.so
+*.core
+*.gch
+*.tmp.*
+*.dbg
+*.DBG
+
+# for tmp.tmp.cpp
+*.tmp.*
+
+# for temp *.doc
+~*
+*~
+*.ini
+*.exe.*
