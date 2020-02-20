@@ -1,3 +1,0 @@
-010   beijing,  xidan
-020   shanghai, lujiazui
-0755  shenzhen, futian
