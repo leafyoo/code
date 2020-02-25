@@ -11,6 +11,11 @@
         "*.tcc": "cpp",
         "random": "cpp",
         "bitset": "cpp",
-        "algorithm": "cpp"
+        "algorithm": "cpp",
+        "utility": "cpp",
+        "cmath": "cpp",
+        "cstdlib": "cpp",
+        "functional": "cpp",
+        "tuple": "cpp"
     }
 }

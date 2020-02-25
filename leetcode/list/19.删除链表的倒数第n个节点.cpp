@@ -13,19 +13,17 @@ public:
         if(!head) return nullptr;
 
         ListNode prehead(0);
-        ListNode *p = &prehead;
-        p->next = head;
-
-        head = &prehead;
+        prehead.next = head;
+        ListNode *p = &prehead, *q = &prehead;          //fish：没必要所有场景下都要节省一个指针q而用head代替，因为这道题里，head后移之后并没有head的含义
 
         for( int i = 0; i < n; ++i)
         {
-            head = head->next;
+            q = q->next;
         }
-        for( ; head->next;  )
+        for( ; q->next;  )
         {
             p = p->next;
-            head = head->next;
+            q = q->next;
         }
         p->next = p->next->next;
 

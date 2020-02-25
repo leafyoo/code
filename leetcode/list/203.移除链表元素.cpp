@@ -12,18 +12,15 @@ public:
     ListNode* removeElements(ListNode* head, int val) {
         ListNode prehead(0);
         prehead.next = head;
-        head = &prehead;
 
-        for( ; head && head->next;  )
+        ListNode *p = &prehead;
+
+        for( ; p && p->next;  )
         {
-            if ( head->next->val == val )
-            {
-                head->next = head->next->next;
-            }
+            if ( p->next->val == val )
+                p->next = p->next->next;
             else
-            {
-                head = head->next;
-            }
+                p = p->next;
         }
         return prehead.next;
     }

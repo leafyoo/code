@@ -10,25 +10,25 @@
 class Solution {
 public:
     ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
-        if(!l1) return l2;//把该有的分拿到，代码简约第一，规范第二
+        if(!l1) return l2;          //把该有的分拿到，代码简约第一，规范第二
         if(!l2) return l1;
-        ListNode head(0); //next构造函数已经有默认值NULL了，这里不必 ListNode(0, NULL)  //如果这里new，那下文还有delete
+        ListNode head(0);           //next构造函数已经有默认值NULL了，这里不必 ListNode(0, NULL)  //如果这里new，那下文还有delete
         ListNode * p = &head;
 
         int up = 0, x = 0, y = 0;
-        for(; l1 || l2; p = p->next)       //为什么这里要 || 而不是 &&呢，因为up进位可能还会和后续的产生up，所以劲大限度在这里处理完up
+        for(; l1 || l2; p = p->next)                //错误：为什么这里要 || 而不是 &&呢，因为up进位可能还会和后续的产生up，所以劲大限度在这里处理完up
         {
             p->next = new ListNode(0);
             x = l1 ? l1->val : 0;
             y = l2 ? l2->val : 0;
 
-            p->next->val = (up + x + y)%10; //注意, 三值相加！，这里不是： up + (x + y)%10！
+            p->next->val = (up + x + y)%10;         //错误：, 三值相加！，这里不是： up + (x + y)%10！
             up = (up + x + y)/10;
             
             l1 = l1 ? l1->next : NULL;
             l2 = l2 ? l2->next : NULL;
         }
-        if ( up )
+        if ( up )                                   //fish注意：不要遗漏最后的up
         {
             p->next = new ListNode(0);
             p->next->val = up;

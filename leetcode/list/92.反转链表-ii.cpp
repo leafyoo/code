@@ -11,8 +11,8 @@ class Solution {
 public:
     ListNode* reverseBetween(ListNode* head, int m, int n) {
         ListNode prehead(0);
+        prehead.next = head;
         ListNode * p = &prehead;
-        p->next = head;
 
         int i = 0;
         for( ; i < m - 1 && p && p->next; ++i)
@@ -27,7 +27,7 @@ public:
 
             head->next = t->next;
             t->next = p->next;
-            p->next = t;    //单次循环里，这里是最终目的，所以先从这步倒退上面的每一行。
+            p->next = t;                //单次循环里，这里是最终目的，所以先从这步倒退上面的每一行。
         }
 
         return prehead.next;

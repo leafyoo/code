@@ -13,7 +13,7 @@ public:
         ListNode prehead(0);
         ListNode *p = &prehead;
         while(1){
-            int min = 0x7fffffff;   //找最小值，所以初始值要搞为最大值
+            int min = 0x7fffffff;               //【欲求最小，赋其最大】找最小值，所以初始值要搞为最大值
             vector<ListNode*>::iterator it = lists.begin(), itMin = lists.end();//注意，是修改vector的元素，不是修改数值。要用迭代器
             for( ;it != lists.end();  ++it)
             {
@@ -29,7 +29,7 @@ public:
 
             p->next = *itMin;
             p = p->next;
-            (*itMin) = (*itMin)->next; //更新vector中存储的list头
+            (*itMin) = (*itMin)->next;          //更新vector中存储的list头
         }
 
         return prehead.next;

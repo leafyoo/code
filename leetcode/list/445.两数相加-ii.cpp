@@ -48,13 +48,12 @@ public:
 
     ListNode* reverse(ListNode* h) 
     {
-        ListNode* p = nullptr;
-        while( h )   //这里的条件，最后再加
+        ListNode* p = nullptr, * t = nullptr;
+        while( h )                      //这里的条件，最后再加
         {
-            ListNode* t = h->next;
-
+            t = h->next;                //s型赋值
             h->next = p;
-            p = h;     //p , h,这几个指针在每一轮的循环里都要移动，当然要在内部发生赋值。
+            p = h;                      //p , h,这几个指针在每一轮的循环里都要移动，当然要在内部发生赋值。
             h = t;
         }
         return p;

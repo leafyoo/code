@@ -11,13 +11,12 @@ class Solution {
 public:
     ListNode* swapPairs(ListNode* head) {
         ListNode prehead(0);
-        ListNode *p = &prehead, *q = head;
+        ListNode *p = &prehead, *q = head, *t = nullptr;
         p->next = head;
 
         for( ; q && q->next;  )
         {
-            ListNode *t = q->next;
-            
+            t = q->next;                        //这里用了哑结点，赋值情况和链表反转的不一样
             q->next = t->next;
             t->next = p->next;
             p->next = t;

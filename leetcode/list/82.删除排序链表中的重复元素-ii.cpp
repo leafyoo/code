@@ -22,7 +22,7 @@ public:
         ListNode * p = &prehead, *q = head;
         p->next = head;
         
-        for( ; p && q && q->next; ) //外循环的继续条件：根据无重复数据的情况来，也可以在主逻辑写完之后再写这里 【首次摸石头过河，针对p】
+        for( ; p && q && q->next; )         //外循环的继续条件：根据无重复数据的情况来，也可以在主逻辑写完之后再写这里 【首次摸石头过河，针对p】
         {
             if (q->val == q->next->val)
             {
