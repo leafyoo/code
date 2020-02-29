@@ -39,6 +39,10 @@ void string_basic_test()
 	s.replace(beg, end, "gaga", "haha");	//用"haha" 替换 "gaga"
 	s.replace(index, len, str);
 	
+	
+    reverse(s.begin(),s.end());
+
+
 
 //	s.sort(beg, end, isLower);	//错误：‘std::string’没有名为‘sort’的成员
 	sort(s.begin(), s.end());
@@ -57,7 +61,7 @@ void string_basic_test()
 	s.find_last_of("abd");	
 	s.find_last_not_of("abd");
 
-	//比较,正数:s > s1, 0:s == s1
+	//比较,  正数:s > s1,    0:s == s1
 	s.compare(s1);
 	s.compare(index, len, s1);//s从下标index开始的len个和s2比较
 
@@ -76,6 +80,81 @@ void string_basic_test()
 	toupper(s[2]);
 	tolower(s[2]);
 
+
+	//https://www.jianshu.com/p/7b0e25d6c2c8
+	string str1  = "hello";
+
+	cout << str1[1] << endl;//获取下标为1的字符，e
+    cout << str1.at(2) << endl;//获取下标为2的字符，l
+
+    cout << str1.data() << endl;//返回指向字符串首字符的指针，C++11前不一定是以空字符终止的，C++11后是空字符终止的
+    cout << str1.c_str() << endl;//返回指向字符串首字符的指针(空字符终止的)
+
+    cout << str1.substr(1,2) << endl;//返回从下标1开始的2个字符，el,参数1默认值为0，参数2默认值为size()-第一个参数值
+    cout << str1.substr() << endl;//hello
+    cout << str1.substr(3) << endl;//lo
+
+    cout << str1.size()<< endl;//5,size()和length()无区别，都返回字符数量
+    cout << str1.length() << endl;//5
+    cout << boolalpha << str1.empty() << endl;//判断字符串是否为空
+
+
+    string str2(" world");
+    auto str3 = str1 + str2;//连接两个string，hello world
+    auto str4 = str1 + " xiao ming";//连接string和字符指针，hello xiao ming
+    str3.assign("12345678");//赋值为12345678
+
+    str3.clear();//清空所有字符
+
+    str3.append("222");//追加字符串
+    str3.insert(1, "abc",3);
+
+    cout << str3<<endl;//2abc22
+
+    str3.replace(1, 3,"defg");
+    cout << str3 << endl;//2defg22
+    str3.erase(1, 4);
+    cout << str3 << endl;//222
+
+
+
+	//转换整型或浮点数为string
+	auto str1 = to_string(123456);
+    auto str2 = to_wstring(3.15);
+
+
+	//转换string为整型
+    //转换字符串为有符号整型
+    int value1 = stoi("-45");
+    long value2 = stol("3.14159");
+    long long value3 = stoll("+31337 with words");
+
+    //转换字符串为无符号整型
+    //unsigned long value4 = stoul("200000000000000000000000000");// std::out_of_range异常
+    //unsigned long long value5 = stoull("words and 2");//std::invalid_argument异常
+
+    cout << value1 << endl;//-45
+    cout << value2 << endl;//3
+    cout << value3 << endl;//31337
+
+	cout << stoi("20", nullptr, 16) << endl;//32
+    cout << stoi("0x20", nullptr, 16) << endl;//32
+    cout << stoi("0X20", nullptr, 0) << endl;//32
+    cout << stoi("20", nullptr, 8) << endl;//16
+    cout << stoi("020", nullptr, 8) << endl;//16
+    cout << stoi("020", nullptr, 0) << endl;//16
+    cout << stoi("20", nullptr, 36) << endl;//72
+    //cout << stoi("20", nullptr, 37) << endl;//异常
+
+    float value1 = stof("3.14");
+    double value2 = stod("0.002");
+    long double value3 = stold("222");
+
+    auto value4 = stod("INFINITY");//无穷大
+    auto value5 = stod("-INF");//负无穷大
+    auto value6 = stod("NAN");//非数（NaN）表达式
+    auto value7 = stod("-NAN");//非数（NaN）表达式
+
 }
 
 
@@ -84,13 +163,44 @@ void vec_basic_test()
 //	vector<string> v("haha"); //错误：从类型‘const char*’到类型‘std::vect
 	//因为vec本身是一个数组，怎么可以定义数组而只给第一个值赋值
 
+	vector<int> a(10) ;                            //声明一个初始大小为10的向量
+	vector<int> a(10, 1) ;                         //声明一个初始大小为10且初始值都为1的向量
+
+	vector<vector<int> > obj(5); //定义二维动态数组大小5行 
+    vector<vector<int> > obj(5, vector<int>(6)); //定义二维动态数组5行6列 
+	vector<vector<int> > dp(m, vector<int>(n, 0));  //二维数组中所有元素均初始化为0
+
+	vector<int> b(a) ;                             //声明并用向量a初始化向量b
+	vector<int> b(a.begin(), a还可以直接使用数组来初始化向量:
+
+	//STL 算法求最值
+	cout<<*min_element(v.begin(),v.end())<<endl;//最小元素
+	cout<<*max_element(v.begin(),v.end())<<endl;//最大元素
+
+	bool cmp(int a,int b)
+	{
+		return a<b;
+	}
+	int num[]={2,3,1,6,4,5};
+	cout<<"最小值是 "<<*min_element(num,num+6)<<endl;
+	cout<<"最大值是 "<<*max_element(num,num+6)<<endl;
+	cout<<"最小值是 "<<*min_element(num,num+6,cmp)<<endl;
+	cout<<"最大值是 "<<*max_element(num,num+6,cmp)<<endl;
+
+	sort(coins.begin(), coins.end(), less<int>() 	);	//升序, 注意，不要漏了 ()
+	sort(coins.begin(), coins.end(), greater<int>()  );	//降序, 注意，不要漏了 ()
+
+	int n[] = {1, 2, 3, 4, 5} ;
+	vector<int> a(n, n+5) ;              //将数组n的前5个元素作为向量a的初值
+	vector<int> a(&n[1], &n[4]) ;        //将n[1] - n[4]范围内的元素作为向量a的初值.begin()+3) ;        //将a向量中从第0个到第2个(共3个)作为向量b的初始值
+
 	vector<string> v(10);
 	vector<string> v1;		//空容器vector
 	vector<string> v2(v1);
 	vector<string> v3(10, "aha");
 	vector<string> v4(10);	//10个成员，每个都是空字符串
 	vector<int> v5(10, 2);
-	
+
 	v.push_back("ok");
 	
 	v.empty();
