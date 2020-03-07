@@ -1,5 +1,10 @@
-﻿#include <iostream>
+﻿/* 
+g++ cpp-container.cpp -std=c++11
+
+ */
+#include <iostream>
 #include <list>
+#include <string>
 using namespace std;
 
 //容器对于构造函数的依赖  C++P P279
@@ -15,7 +20,7 @@ void string_basic_test()
 	string s("haha");
 	char str[] = "hello!!!!";
 	string s1(str+3, 3);	//"lo!"
-	
+
 	string::iterator it = s.begin(); 
 	string::iterator it1 = find(s.begin(), s.end(), ',');
 	
@@ -24,7 +29,7 @@ void string_basic_test()
 	
 	string::iterator beg, end; 
 	s.insert(it, beg, end);
-	2.3*5
+	
 	s.erase(it);
 	int len = 2;
 	s.erase(s.size() - 2, len);
@@ -34,7 +39,8 @@ void string_basic_test()
 	s.substr(index);			//返回从下标index到之后的子串
 	s.substr(index, len);		//返回从下标index到之后的5的字符
 	s.append("def");			//多种参数样式,见p294
-
+	s1.push_back( 'a');
+	
 	s.replace(beg, end, "gaga");			//将前两个范围之间用"gaga"替换
 	s.replace(beg, end, "gaga", "haha");	//用"haha" 替换 "gaga"
 	s.replace(index, len, str);
@@ -71,11 +77,11 @@ void string_basic_test()
 	string s6(10, 'a');
 
 	s[2];
-	isalnum(s[2]);
-	isalpha(s[2]);
+	isalnum(s[2]);	//字母和数字
+	isalpha(s[2]);	
 	isdigit(s[2]);
-	isupper(s[2]);
-	islower(s[2]);
+	isupper(s[2]);	//是否为大写的字母
+	islower(s[2]);	//是否为小写的字母（必须是小写 && 字母才会是true）
 	isspace(s[2]);
 	toupper(s[2]);
 	tolower(s[2]);
@@ -119,23 +125,23 @@ void string_basic_test()
 
 
 	//转换整型或浮点数为string
-	auto str1 = to_string(123456);
-    auto str2 = to_wstring(3.15);
+	auto str126 = std::to_string(123456);
+    auto str127 = std::to_wstring(3.15);
 
 
 	//转换string为整型
     //转换字符串为有符号整型
-    int value1 = stoi("-45");
-    long value2 = stol("3.14159");
-    long long value3 = stoll("+31337 with words");
+    int v1 = stoi("-45");
+    long v2 = stol("3.14159");
+    long long v3 = stoll("+31337 with words");
 
     //转换字符串为无符号整型
     //unsigned long value4 = stoul("200000000000000000000000000");// std::out_of_range异常
     //unsigned long long value5 = stoull("words and 2");//std::invalid_argument异常
 
-    cout << value1 << endl;//-45
-    cout << value2 << endl;//3
-    cout << value3 << endl;//31337
+    cout << v1 << endl;//-45
+    cout << v2 << endl;//3
+    cout << v3 << endl;//31337
 
 	cout << stoi("20", nullptr, 16) << endl;//32
     cout << stoi("0x20", nullptr, 16) << endl;//32
@@ -164,14 +170,13 @@ void vec_basic_test()
 	//因为vec本身是一个数组，怎么可以定义数组而只给第一个值赋值
 
 	vector<int> a(10) ;                            //声明一个初始大小为10的向量
-	vector<int> a(10, 1) ;                         //声明一个初始大小为10且初始值都为1的向量
+	vector<int> v172(10, 1) ;                         //声明一个初始大小为10且初始值都为1的向量
 
 	vector<vector<int> > obj(5); //定义二维动态数组大小5行 
     vector<vector<int> > obj(5, vector<int>(6)); //定义二维动态数组5行6列 
 	vector<vector<int> > dp(m, vector<int>(n, 0));  //二维数组中所有元素均初始化为0
 
 	vector<int> b(a) ;                             //声明并用向量a初始化向量b
-	vector<int> b(a.begin(), a还可以直接使用数组来初始化向量:
 
 	//STL 算法求最值
 	cout<<*min_element(v.begin(),v.end())<<endl;//最小元素
@@ -187,6 +192,11 @@ void vec_basic_test()
 	cout<<"最小值是 "<<*min_element(num,num+6,cmp)<<endl;
 	cout<<"最大值是 "<<*max_element(num,num+6,cmp)<<endl;
 
+	/* 注意区分 less<string>  、  less<int>() 
+	map<string, int, less<string> > mp; 
+	sort(coins.begin(), coins.end(), less<int>() 	);
+	*/
+	vector<int> coins; 
 	sort(coins.begin(), coins.end(), less<int>() 	);	//升序, 注意，不要漏了 ()
 	sort(coins.begin(), coins.end(), greater<int>()  );	//降序, 注意，不要漏了 ()
 
@@ -392,6 +402,7 @@ void set_basic()
 
 
 #include <map>
+#include <unordered_map>
 void map_basic_test()
 {
 	map<string, int> m;
@@ -403,6 +414,8 @@ void map_basic_test()
 				{'[', ']'},
 				{'(', ')'},
 			};//知识点:map初始化方法
+
+	unordered_map<char, char> mp{ {')', '('}, {'}', '{'}, {']', '['} };     
 }
 /*
 0 	//int，所以被初始化为0
@@ -413,27 +426,25 @@ void map_basic_test()
 //嵌套map
 void map_in_map()
 {
-      map<int,map<int,string> >multiMap; //对于这样的map嵌套定义，有两种插入方法：
+      map<int,map<int,string> >mpInmp; //对于这样的map嵌套定义，有两种插入方法：
       map<int, string> temp;  //定义一个map<int, string>变量，对其定义后在插入multiMap
 
       temp.insert(make_pair(90,"hi"));
       temp.insert(pair<int,string>(100,"maxi")); //pair<int,string>()和make_pair()有相同作用
 
-      multiMap.insert(make_pair(10, temp));   //将临时变量插入到multiMap中
+      mpInmp.insert(make_pair(10, temp));   //将临时变量插入到multiMap中
 
-      multiMap[10][80]="xiaoyu"; //可以直接赋值
-      mulitMap[5][30]="xiaop";
+      mpInmp[10][80]="xiaoyu"; //可以直接赋值
+      mpInmp[5][30]="xiaop";
 
 
       map<int,map<int,string> >::iterator multitr;  // 以下是如何遍历本multiMap
       map<int,string>::iterator intertr;
-      for(multitr=multiMap.begin();multitr!=multiMap.end();multitr++)
+      for(multitr=mpInmp.begin();multitr!=mpInmp.end();multitr++)
       {
            for(intertr= multitr ->second.begin(); intertr != multitr ->second.end(); intertr ++)
             std::cout<< multitr ->first<<" "<<intertr->first<<" ("<< intertr -> second <<")"<<endl;
       }
-
-      return 0;
    
 }
 
@@ -452,7 +463,7 @@ void map_test()
 	m.insert(make_pair(55, "ee"));
 	m.insert(map<int, string>::value_type(66, "ff"));
 
-	map<int, string> word_count;
+	map<string, int> word_count;
 	pair<map<string, int>::iterator, bool> ret 
 		= word_count.insert(make_pair("book", 3));
 	if(!ret->second)
@@ -537,20 +548,47 @@ void map_show_total_num_test()
 	
 }
 
-
 #include <stack>
 void stack_basic()
 {
 	stack<int> stk;
 	stack<string, vector<string>> sv;
+
+	/* 
+	empty() 堆栈为空则返回真
 	
+	pop() 移除栈顶元素
+
+	push() 在栈顶增加元素
+
+	size() 返回栈中元素数目
+
+	top() 返回栈顶元素
+ 	*/
 			stk.push(44);
 			stk.push(55);
 	cout << stk.empty();
 	cout << stk.size();
 	cout << stk.top();
-			stk.pop();
+			stk.pop();			//删除栈顶元素，但不返回值
 	
+
+    stack<int> first;                    //构造一个用于存放int类型的空栈(默认底层容器为deque)，size=0。这是最简单也是最常用的方式 ٩(๑❛ᴗ❛๑)۶如果感觉别的方式太复杂，会用这一种就行
+    
+    deque<int> mydeque (3,100);          //构造一个包含3个int元素的双端队列
+    stack<int> second (mydeque);         //用自己的双端队列构造一个栈（size=3），栈内的元素是上面的3个
+
+    stack<int,vector<int> > third;          //指明用vector实现一个栈（存放int），空栈size=0
+    
+    vector<int> myvector (2,200);        //构造一个存放2个元素的vector
+    stack<int,vector<int> > fourth (myvector);   //用自己的vector构造一个栈，size=2，栈内的元素是上面的2个
+
+    //输出四个栈的大小
+    cout << "size of first: " << first.size() << endl;
+    cout << "size of second: " << second.size() << endl;
+    cout << "size of third: " << third.size() << endl;
+    cout << "size of fourth: " << fourth.size() << endl;
+
 }
 //0255
 
@@ -564,7 +602,7 @@ void queue_basic()
 			q.push(13);
 	cout<<	q.empty();
 	cout<<	q.size();
-			q.pop();
+			q.pop();		//删除队列头部元素，但不返回值
 	cout<<	q.front();
 	cout<<	q.back();//获取尾元素
 }

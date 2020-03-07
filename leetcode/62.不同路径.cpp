@@ -3,18 +3,12 @@ class Solution {
 public:
     int uniquePaths(int m, int n) {
         if(m < 2 || n < 2) return 1;
-        vector<vector<int> > dp(n, vector<int>(m));
+        vector<vector<int> > dp(n, vector<int>(m, 1));      //这里指定初值1，则下文可以避免循环处理边
 
-        dp[0][0] = 1;
-        for( int i = 0; i < n; ++i)
-        {
-            dp[i][0] = 1;
-        }
-
-        for( int i = 0; i < m; ++i)
-        {
-            dp[0][i] = 1;
-        }
+        // for( int i = 0; i < n; ++i)
+        //     dp[i][0] = 1;
+        // for( int i = 0; i < m; ++i)
+        //     dp[0][i] = 1;
 
         for( int i = 1; i < n; ++i)
         {
