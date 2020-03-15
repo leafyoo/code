@@ -17,21 +17,21 @@ public:
         vector<int> res;
         stack<TreeNode*> st;                      //错误：这里写成了 stack<int> 
 
-        TreeNode* t = root;
-        while(t || !st.empty())
+        TreeNode* p = root;
+        while(p || !st.empty())
         {
             //“左”
-            while( t )                          //错误：这里写成判断 t->left 导致死循环。 注意：一直要贪婪，走到叶子节点才行，那当然 while( t )   
+            while( p )                          //错误：这里写成判断 p->left 导致死循环。 注意：一直要贪婪，走到叶子节点才行，那当然 while( p )   
             {
-                st.push( t);
-                t = t->left;   
+                st.push( p);
+                p = p->left;   
             }
 
             //“根”
             res.push_back( st.top()->val );     // 录入“根”，之后，左和根相当于遍历完了，可以pop掉了，先切入右分支
            
            //“右”
-            t = st.top()->right;              
+            p = st.top()->right;                //不一定要在循环开头赋值
             
             st.pop();
         }
@@ -56,14 +56,14 @@ public:
         return res;
     }
 
-    void tra(TreeNode* t, vector<int> &res)
+    void tra(TreeNode* p, vector<int> &res)
     {
-        if(!t)
+        if(!p)
             return;
-        tra( t->left, res );
-        if(t)
-            res.push_back(t->val);
-        tra( t->right, res );
+        tra( p->left, res );
+        if(p)
+            res.push_back(p->val);
+        tra( p->right, res );
     }
 };
 // @lc code=end

@@ -5,15 +5,15 @@ public:
         int n = heights.size();
         if(n < 1) return 0;
 
-        vector<int> left(n, -1);        //给左边界都初始化为最小 -1
-        for( int i = 1, j ; i < n; ++i)
+        vector<int> left(n, -1);            //含义：柱子i的左边界。给左边界都初始化为最小 -1
+        for( int i = 1, j ; i < n; ++i)     //寻找每一个柱子i的左边界
         {
             for( j = i-1; j >=0 && heights[j] >= heights[i]; )      //错误：这里少了j = i-1，而是放在了上一级循环i里，导致j每一轮得不到更新
-                j = left[j];
+                j = left[j];                //j更高，那i的左边界必然是比j更左边的柱子了
             left[i] = j;
         }
 
-        vector<int> right(n, n);        //给右边界都初始化为最大 +1
+        vector<int> right(n, n);            //含义：柱子i的右边界。给右边界都初始化为最大 +1
         for( int i = n-2, j ; i >= 0; --i)
         {
             for( j = i+1; j < n && heights[j] >= heights[i]; )
@@ -21,7 +21,7 @@ public:
             right[i] = j;
         }
 
-        int res = 0;                    //循环，取最大面积
+        int res = 0;                        //循环，取最大面积：左边界到右边界的距离 X 高
         for( int i = 0; i < n; ++i)     
             res = max(res, heights[i] * (right[i] - left[i] - 1));      
 
@@ -29,6 +29,10 @@ public:
     }
 
 };
+/* 
+fish：
+时间复杂度：O(NlogN) ？
+ */
 
 class Solution_force {
 public:
