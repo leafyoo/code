@@ -1,5 +1,7 @@
 // @lc code=start
-class Solution {
+
+//小根堆
+class Solution_priority_queue {
 public:
     int minMeetingRooms(vector<vector<int>>& intervals) {
         int n = intervals.size(), res = 1;
@@ -26,6 +28,51 @@ public:
         return res;
     }
 };
+/* 
+https://leetcode-cn.com/problems/meeting-rooms-ii/solution/hui-yi-shi-ii-by-leetcode/
+ */
+
+
+//上下车问题解法：
+class Solution {
+public:
+    int minMeetingRooms(vector<vector<int>>& intervals) {
+        int n = intervals.size(), res = 1;
+        if(n < 1) return 0;
+
+        vector<int> beg, end;               //将起点、终点时刻单独拎出来，弄成两个数组
+        for( int i = 0; i < n; ++i)
+        {
+            beg.push_back( intervals[i][0] );
+            end.push_back( intervals[i][1] );
+        }
+
+        sort(beg.begin(), beg.end());
+        sort(end.begin(), end.end());
+
+        for( int bi = 0, ei = 0, tmpRes = 0; bi < n && ei < n;  )
+        {
+            if(beg[bi] < end[ei])
+            {
+                ++tmpRes;
+                ++bi;
+            }
+            else
+            {
+                --tmpRes;
+                ++ei;                       //错误：这里写成了 --ei，错了
+            }
+
+            res = max(res, tmpRes);
+        }
+
+        return res;
+    }
+};
+/* 
+https://leetcode-cn.com/problems/meeting-rooms-ii/solution/253-hui-yi-shi-ii-c-shang-xia-che-wen-ti-by-gao-yu/
+ */
+
 // @lc code=end
 
 /* fish：

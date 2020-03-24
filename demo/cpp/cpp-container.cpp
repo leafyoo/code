@@ -171,6 +171,11 @@ void vec_basic_test()
 
 	vector<int> a(10) ;                            //声明一个初始大小为10的向量
 	vector<int> v172(10, 1) ;                         //声明一个初始大小为10且初始值都为1的向量
+	vector<string> table;
+	table = vector<string> { "", 
+		"", "abc","def",
+		"ghi","jkl","mno",
+		"pqrs","tuv","wxyz"};                   //知识点：初始化vector
 
 	vector<vector<int> > obj(5); //定义二维动态数组大小5行 
     vector<vector<int> > obj(5, vector<int>(6)); //定义二维动态数组5行6列 
@@ -452,7 +457,8 @@ void map_in_map()
 void map_test()
 {
 	map<int , string> m;
-	
+	map<char, string> mp = { {'2',"abc" },{'3',"def"},{'4',"ghi"},{'5',"jkl"},{'6',"mno"},{'7',"pqrs"},{'8',"tuv"},{'9',"wxyz"} };//映射map哈希表
+
 	m.insert(make_pair(11, "aa"));
 	m.insert(make_pair(22, "bb"));
 	m.insert(make_pair(33, "cc"));
