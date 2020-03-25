@@ -1,11 +1,42 @@
 // @lc code=start
 class Solution {
 public:
-    int findDuplicate(vector<int>& nums) {
-        
+    int findDuplicate(vector<int> &nums) {
+        int n = nums.size();
+        int begVal = 1, endVal = n - 1;           //错误：begVal = 1  //注意：这里begVal 和 endVal是value，不是index
+        while( begVal < endVal )
+        {
+            int cnt = 0, midVal = (begVal+endVal)/2;
+            for( int i = 0; i < nums.size(); ++i)       //每次都是遍历整个数组
+            {
+                if(nums[i] <= midVal)        //错误：这里是 <=
+                    ++cnt;
+            }
+            if(cnt > midVal)
+                endVal = midVal;              // 重复元素位于区间 [left, mid]
+            else
+                begVal = midVal + 1;          // [mid + 1, right]
+        }
+
+        return begVal;
     }
 };
+//fish：这个题不同于传统的二分法，传统的二分法处理index，而这里处理的是value的范围
+
 // @lc code=end
+/* 
+fish:
+解法2：sort，之后遍历。
+
+抽屉原理
+https://leetcode-cn.com/problems/find-the-duplicate-number/solution/er-fen-fa-si-lu-ji-dai-ma-python-by-liweiwei1419/
+
+例子：
+index:  0 1 2 3 4
+value: [1,3,4,3,3]
+
+ */
+
 
 /*
  * @lc app=leetcode.cn id=287 lang=cpp

@@ -1,3 +1,30 @@
+// @lc code=start
+class Solution {
+public:
+    vector<int> searchRange(vector<int>& nums, int target) {
+        vector<int> res(2, -1);
+        if(nums.empty()) return res;
+
+
+    }
+    int left_bound(vector<int>& nums, int target)
+    {
+        int b = 0, e = nums.size() -1;
+        while( b < e )
+        {
+            int m = (b+e)/2;
+            if(nums[m] == target)
+                e = m-1;
+            else if(nums[m] < target)
+                b = m+1;
+            else
+                e = m-1;
+        }
+    }
+
+};
+// @lc code=end
+
 /*
  * @lc app=leetcode.cn id=34 lang=cpp
  *
@@ -30,13 +57,3 @@
  * 输出: [-1,-1]
  * 
  */
-
-// @lc code=start
-class Solution {
-public:
-    vector<int> searchRange(vector<int>& nums, int target) {
-
-    }
-};
-// @lc code=end
-
