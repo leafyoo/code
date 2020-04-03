@@ -1,3 +1,49 @@
+// @lc code=start
+class Solution {
+public:
+    inline int getHigh(int i)
+    {
+        while( i >= 10 )
+            i = i/10;
+        return i;
+    }
+
+    int romanToInt(string s) {
+        if(s.empty()) return 0;
+        int n = s.size();
+        long long res = 0;
+
+        unordered_map<char, int> mp = {
+            {'I', 1},
+            {'V', 5},
+            {'X', 10},
+            {'L', 50},
+            {'C', 100},
+            {'D', 500},
+            {'M', 1000}
+        };
+
+        for( int i = 0; i < n; )
+        {
+            if(i+1 < n 
+            && getHigh(mp[ s[i] ]) == 1
+            && (mp[ s[i] ] * 5 == mp[ s[i+1] ] || mp[ s[i] ] * 10 == mp[ s[i+1] ]) )
+            {
+                res += mp[ s[i+1] ] - mp[ s[i] ];
+                i += 2;
+            }
+            else
+            {
+                res += mp[ s[i] ];
+                i += 1;
+            }
+        }
+
+        return (int) res;
+    }
+};
+// @lc code=end
+
 /*
  * @lc app=leetcode.cn id=13 lang=cpp
  *
@@ -67,13 +113,4 @@
  * 解释: M = 1000, CM = 900, XC = 90, IV = 4.
  * 
  */
-
-// @lc code=start
-class Solution {
-public:
-    int romanToInt(string s) {
-        
-    }
-};
-// @lc code=end
 
