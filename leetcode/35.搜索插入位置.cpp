@@ -1,4 +1,3 @@
-
 // @lc code=start
 class Solution {
 public:
@@ -10,7 +9,8 @@ public:
             if(target == nums[m]) 
                 return m;
             
-            if(target < nums[m]) e = m-1;
+            if(target < nums[m]) 
+                e = m-1;
             else
                 b = m+1;
         }

@@ -11,14 +11,14 @@ public:
             if(target == nums[m])return m;
 
             if ( nums[b] <= nums[m] )                                //错误：这里要有 = ，因为可能是  3333012这种，  口诀：【能等则等】
-            {
+            {//左半边有序
                 if( nums[b] <= target && target < nums[m]) 
                     e = m - 1;
                 else
                     b = m + 1;
             }
             else
-            {
+            {//右半边有序
                 if( nums[m] < target && target <= nums[e])
                     b = m + 1;
                 else

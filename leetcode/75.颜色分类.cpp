@@ -1,6 +1,18 @@
 // @lc code=start
 class Solution {
 public:
+    void sortColors(vector<int>& nums) 
+    {
+        multiset<int> ms(nums.begin(), nums.end());
+        nums.assign(ms.begin(), ms.end());
+    }
+};
+
+
+
+
+class Solution_vector {
+public:
     void sortColors(vector<int>& nums) {
         int n = nums.size();
 

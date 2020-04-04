@@ -1,6 +1,32 @@
 // @lc code=start
 
+//贪心算法
 class Solution {
+public:
+    bool canJump(vector<int>& nums) 
+    {
+        int maxPos = 0;
+        for (int curPos = 0; curPos < nums.size(); curPos++)      //探索一下可跳范围里，最大能力
+        {
+            if (curPos > maxPos)            //能跳到的最远的点已经不能覆盖当前点了，结束
+                return false;
+
+            maxPos = max(maxPos, curPos + nums[curPos]);        //把能跳到最远的点 不断更新。
+        }
+        
+        return true;
+    }
+
+};
+/* 
+时间复杂度：O(n) ，只需要访问 nums 数组一遍，共 n  个位置，n 是 nums 数组的长度。
+空间复杂度：O(1) ，不需要额外的空间开销。
+
+https://leetcode-cn.com/problems/jump-game-ii/solution/xiang-xi-tong-su-de-si-lu-fen-xi-duo-jie-fa-by-10/
+ */
+
+
+class Solution_dp {
 public:
     bool canJump(vector<int>& nums) 
     {
@@ -28,40 +54,16 @@ public:
 
 };
 /* 
-时间复杂度：O(n^2)O(n 
-2
- )，数组中的每个元素，假设为 i，需要搜索右边相邻的 nums[i] 个元素查找是否有 GOOD 的坐标。 nums[i] 最多为 n，n 是 nums 数组的大小。
-空间复杂度：O(n)O(n)，记忆表的存储开销。
+时间复杂度：O(n^2)，数组中的每个元素，假设为 i，需要搜索右边相邻的 nums[i] 个元素查找是否有 GOOD 的坐标。 nums[i] 最多为 n，n 是 nums 数组的大小。
+空间复杂度：O(n)，记忆表的存储开销。
 
 作者：LeetCode
 链接：https://leetcode-cn.com/problems/jump-game/solution/tiao-yue-you-xi-by-leetcode/
  */
-
-
-
-//贪心算法
-class Solution_greedy {
-public:
-    bool canJump(vector<int>& nums) 
-    {
-        int maxIndex = 0;
-        for (int curIndex = 0; curIndex < nums.size(); curIndex++)      //探索一下可跳范围里，最大能力
-        {
-            if (curIndex > maxIndex)            //能跳到的最远的点已经不能覆盖当前点了，结束
-                return false;
-
-            maxIndex = max(maxIndex, curIndex + nums[curIndex]);        //把能跳到最远的点 不断更新。
-        }
-        
-        return true;
-    }
-
-};
 /* 
-时间复杂度：O(n)O(n)，只需要访问 nums 数组一遍，共 nn 个位置，nn 是 nums 数组的长度。
-空间复杂度：O(1)O(1)，不需要额外的空间开销。
+Time Limit Exceeded
+74/75 cases passed (N/A)
 
-https://leetcode-cn.com/problems/jump-game-ii/solution/xiang-xi-tong-su-de-si-lu-fen-xi-duo-jie-fa-by-10/
  */
 
 

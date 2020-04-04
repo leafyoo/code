@@ -33,7 +33,10 @@ public:
 };
 // @lc code=end
 
-/* fish：时间复杂度： O(n * lgn)
+/* fish：
+用map，即使得区间按照起点排序
+
+时间复杂度： O(n * lgn)
 1、插入一个节点到红黑树的时间为：O(lgn)
 则创建一颗红黑树的时间复杂度：n * O(lgn) =  O(n * lgn)
 

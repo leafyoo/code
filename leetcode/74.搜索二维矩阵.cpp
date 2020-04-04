@@ -4,17 +4,18 @@ public:
     bool searchMatrix(vector<vector<int>>& matrix, int target) {
         if(matrix.empty() || matrix[0].empty()) return false;
         int nr = matrix.size(), nc = matrix[0].size();
+        
         int b = 0, e = nr * nc - 1;
 
         while( b <= e )     //错误：这里少了 = 
         {
             int m = (b+e)/2;
-            int i = m / nc;
-            int j = m % nc;
+            int r = m / nc;
+            int c = m % nc;
 
-            if( matrix[i][j] == target)
+            if( matrix[r][c] == target)
                 return true;
-            else if( matrix[i][j] > target)
+            else if( matrix[r][c] > target)
                 e = m - 1;
             else
                 b = m + 1;

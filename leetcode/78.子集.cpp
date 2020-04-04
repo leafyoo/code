@@ -14,16 +14,20 @@ public:
     void subs(vector<int>& nums, int pos) {
         res.push_back(oneRes);
         
-        for( int i = pos; i < nums.size(); ++i)
+        //在一个平层上依次深入  //每一次for循环都会从改层深入下去
+        for( int i = pos; i < nums.size(); ++i)     //最后一个元素时，不会再进一步递归了，所以不会有重复的集合
         {
             oneRes.push_back( nums[i]);
-            subs(nums, i+1);                    //错误：这里是i+1，而不是 pos+1
+            subs(nums, i+1);                    //错误：这里是i+1，而不是 pos+1  //注意
             oneRes.pop_back( );     // backtrack
         }
     }
 };
 /* 
 https://leetcode.com/problems/subsets/discuss/27278
+
+图片：
+https://leetcode-cn.com/problems/subsets/solution/hui-su-si-xiang-tuan-mie-pai-lie-zu-he-zi-ji-wen-t/
 
  */
 

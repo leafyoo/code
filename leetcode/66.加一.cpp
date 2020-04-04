@@ -5,13 +5,16 @@ public:
         vector<int> res;
 
         int up = 0, val = 0, add = 1;
-        for( int i = digits.size() -1; i >= 0; --i,add = 0)
+        for( int i = digits.size() -1; i >= 0; --i)
         {
             res.push_back( (digits[i] + up + add) % 10 );
             up = (digits[i] + up + add) / 10;
+            add = 0;
         }    
+
         if(up)
             res.push_back( up);
+
         reverse(res.begin(), res.end());
         
         return res;

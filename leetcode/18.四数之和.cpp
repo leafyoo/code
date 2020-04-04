@@ -15,27 +15,27 @@ public:
             {
                 while( j >i+1 && j <= n-3 && nums[j] == nums[j-1]) ++j;  //去重2：保第2/4个元素不重复    
 
-                int k = j+1, l = n-1;        
-                while( k < l )
+                int b = j+1, e = n-1;        
+                while( b < e )
                 {
-                    int sum = nums[i] + nums[j] + nums[k] + nums[l];    //这里赋值给sum，使得下文可读性更高
+                    int sum = nums[i] + nums[j] + nums[b] + nums[e];    //这里赋值给sum，使得下文可读性更高
                     if(sum < target)    
                     {
-                        ++k;
-                        while(k < l && nums[k] == nums[k-1]) ++k;       //去重3：保第3/4个元素不重复
+                        ++b;
+                        while(b < e && nums[b] == nums[b-1]) ++b;       //去重3：保第3/4个元素不重复
                     }
                     else if(sum > target)    
                     {
-                        --l;
-                        while(k < l && nums[l] == nums[l+1]) --l;       //去重4：保第4/4个元素不重复
+                        --e;
+                        while(b < e && nums[e] == nums[e+1]) --e;       //去重4：保第4/4个元素不重复
                     }
                     else if(sum == target)    
                     {
-                        res.push_back( {nums[i], nums[j], nums[k], nums[l]} );      //知识点：四个元素的vector的构造方法
-                        ++k;
-                        while(k < l && nums[k] == nums[k-1]) ++k;
-                        --l;
-                        while(k < l && nums[l] == nums[l+1]) --l;
+                        res.push_back( {nums[i], nums[j], nums[b], nums[e]} );      //知识点：四个元素的vector的构造方法
+                        ++b;
+                        while(b < e && nums[b] == nums[b-1]) ++b;
+                        --e;
+                        while(b < e && nums[e] == nums[e+1]) --e;
                     }
                 }
             }
@@ -68,7 +68,7 @@ https://leetcode-cn.com/problems/4sum/solution/shuang-zhi-zhen-jie-fa-can-zhao-s
  * Total Submissions: 167.1K
  * Testcase Example:  '[1,0,-1,0,-2,2]\n0'
  *
- * 给定一个包含 n 个整数的数组 nums 和一个目标值 target，判断 nums 中是否存在四个元素 a，b，c 和 d ，使得 a + b + c
+ * 给定一个包含 n 个整数的数组 nums 和一个目标值 target，判断 nums 中是否存在四个元素 a，b，c 和 d ，使得 a + b + 4
  * + d 的值与 target 相等？找出所有满足条件且不重复的四元组。
  * 
  * 注意：

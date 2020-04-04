@@ -1,25 +1,32 @@
-
-// @lc code=start
+// @lc code=beg
 
 class Solution {
 public:
     vector<vector<int>> combinationSum(vector<int> &candidates, int target) {
-        std::sort(candidates.begin(), candidates.end());
         this->candidates = candidates;
+
+        std::sort(this->candidates.begin(), this->candidates.end());    //为了结果集里的去重
+        
         DFS(0, target);
 
         return res;
     }
 
-    void DFS(int start, int target) {
-        if (target == 0) {
+    void DFS(int beg, int target) 
+    {
+        if (target == 0) 
+        {
             res.push_back(path);
             return;
         }
-        for (int i = start;
-             i < candidates.size() && target - candidates[i] >= 0; i++) {
+
+        for (int i = beg; i < candidates.size(); i++) 
+        {       
+            if(candidates[i] > target )//在数组sort后有序的前提下，剪枝  target - candidates[i] >= 0 
+                break;
+            
             path.push_back(candidates[i]);
-            DFS(i, target - candidates[i]);
+            DFS(i, target - candidates[i]);     //在搜索起点 beg 之前的数因为以前的分支搜索过了，所以一定会产生重复。
             path.pop_back();
         }
     }
@@ -49,12 +56,12 @@ public:
         return res;
     }
 
-    void DFS(int start, int target, vector<int> &candidates, vector<int> &path, vector<vector<int>> &res) {
+    void DFS(int beg, int target, vector<int> &candidates, vector<int> &path, vector<vector<int>> &res) {
         if (target == 0) {
             res.push_back(path);
             return;
         }
-        for (int i = start;
+        for (int i = beg;
              i < candidates.size() && target - candidates[i] >= 0; i++) {
             path.push_back(candidates[i]);
             DFS(i, target - candidates[i], candidates, path, res);

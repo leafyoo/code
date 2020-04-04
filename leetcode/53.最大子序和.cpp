@@ -4,13 +4,13 @@ class Solution {
 public:
     int maxSubArray(vector<int>& nums) 
     {
-        int sum = 0, maxSum = -1 - 0x7fffffff;          // INT_MIN 这个宏在 limits.h 里
+        int sum = 0, maxSum = INT_MIN;          // INT_MIN 这个宏在 limits.h 里，或者-1 - 0x7fffffff
         for( int i = 0; i < nums.size(); ++i)
         {
             if ( sum <= 0 )sum = 0;
 
             sum += nums[i];
-            maxSum = ( sum > maxSum || i == 0)? sum : maxSum; 
+            maxSum = max(sum ,maxSum); 
         }
 
         return maxSum;

@@ -10,25 +10,23 @@ public:
         for( j = i - 2; j >= 0; --j)
         {
             if(nums[j] < nums[j+1])
-            {
                 break;
-            }
         }
 
-        if(j < 0) 
-            reverse(nums.begin(), nums.end());          //其实本质是要让右边的变成升序排列，但是恰好是降序，故只需reverse就好
+        if(j < 0)   //已经扫描到开头了还没找到降序的点
+            reverse(nums.begin(), nums.end());          //其实本质是要让整体变成升序排列，但是恰好是降序，故只需reverse就好
         else
         {
             int k = 0;
-            for( k = i - 1; k > j ; --k)
+            for( k = nums.size() - 1; k > j ; --k)  // 总区间：[0 ... j ... k ... n-1] 在[j, n-1] 之间寻找k
             {
                 if ( nums[k] > nums[j] )
-                {
                     break;
-                }    
             }    
 
             swap(nums[j], nums[k]);
+
+            //高位在上面交换后已经变大了，要让低位部分尽量小
             reverse(nums.begin() + j+1 , nums.end());   //也可以：sort(nums.begin() + j+1 , nums.end());
         
         }

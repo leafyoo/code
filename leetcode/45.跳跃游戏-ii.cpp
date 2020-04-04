@@ -2,13 +2,13 @@
 class Solution {
 public:
     int jump(vector<int>& nums) {
-        int n = nums.size(), res = 0, maxIndex = 0, end=0;
+        int n = nums.size(), res = 0, maxPos = 0, lastmaxPos=0;
         for( int i = 0; i < n-1; ++i)               //错误：这里是n-1
         {
-            maxIndex = max(maxIndex, i+nums[i]);    //找能跳的最远的点
-            if(i == end)                            //遇到边界，就更新边界，并且步数加一
+            maxPos = max(maxPos, i+nums[i]);    //找能跳的最远的点
+            if(i == lastmaxPos)                            //遇到边界，就更新边界，并且步数加一
             {
-                end = maxIndex;
+                lastmaxPos = maxPos;
                 ++res;
             }
         }

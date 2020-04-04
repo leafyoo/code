@@ -8,9 +8,10 @@ public:
     vector<vector<int>> combinationSum2(vector<int>& candidates, int target) {
         if(candidates.empty())return {};
 
-        this->candidates = candidates;              //！！！！重要：这里声明局部变量的好处是：下面sort之后，只是改变本地的vector，而外部传入的vector不会被改变。
+        this->candidates = candidates;   //！！！！重要：这里声明局部变量的好处是：下面sort之后，只是改变本地的vector，而外部传入的vector不会被改变。
         
         sort(this->candidates.begin(), this->candidates.end());     //错误：这里少了this->， 导致排序的只是candidates。
+        
         DFS(0, target);
 
         return res;
@@ -23,8 +24,12 @@ public:
             res.push_back( path);
             return ;
         }    
-        for( int i = beg; i < candidates.size() && candidates[i] <= target; ++i)
+        
+        for( int i = beg; i < candidates.size() ; ++i)
         {
+            if(candidates[i] > target )//在数组sort后有序的前提下，剪枝  target - candidates[i] >= 0 
+                break;
+
             if( i > beg && candidates[i] == candidates[i-1] )
                 continue;                                    /*剪枝：连续相同数字会造成重复的组合数组*/
 
