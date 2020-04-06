@@ -5,7 +5,7 @@ public:
         if(triangle.empty() || triangle[0].empty()) return 0;
 
         int row = triangle.size();
-        vector<vector<int> > dp(row, vector<int>(row)); //错误：这里用了dp(row, vector<int>(col)); 其中col = triangle[0].size();，每一行大小是不同的！
+        vector<vector<int> > dp(row, vector<int>(row, 0)); //错误：这里用了dp(row, vector<int>(col)); 其中col = triangle[0].size();，每一行大小是不同的！
 
         dp[0][0] = triangle[0][0];
         for( int i = 1; i < row; ++i)

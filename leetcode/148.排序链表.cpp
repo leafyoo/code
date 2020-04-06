@@ -12,13 +12,13 @@ public:
     ListNode* sortList(ListNode* head) {
         if(!head || !head->next) return head;
         
+        //把链表切分成前后两半
         ListNode *slow = head,* fast = head->next; //这里第二个指针一定要有星号，* fast
         for( ; fast && fast->next;  )
         {
             slow = slow ->next;
             fast = fast ->next ->next;
         }
-
         fast = slow->next;
         slow->next = nullptr;
         
@@ -44,9 +44,7 @@ public:
             }                 
         }
         if ( a || b )
-        {
             p->next = (a ? a : b);
-        }
 
         return prehead.next;
     }

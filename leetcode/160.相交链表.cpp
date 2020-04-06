@@ -13,21 +13,24 @@ public:
     ListNode *getIntersectionNode(ListNode *headA, ListNode *headB) {
         int lenA = 0, lenB = 0;
 
-        for(ListNode * p = headA; p; ++lenA) p = p->next;    //这两处用一样的变量名p，方便拷贝
-        for(ListNode * p = headB; p; ++lenB) p = p->next;
+        for(ListNode * p = headA; p; p = p->next) ++lenA;    //这两处用一样的变量名p，方便拷贝
+        for(ListNode * p = headB; p; p = p->next) ++lenB;
         
         if ( lenA > lenB )
         {
-            for( int i = 0; i < lenA - lenB; ++i) headA = headA->next;
+            for( int i = 0; i < lenA - lenB; ++i) 
+                headA = headA->next;
         }
         else if( lenA < lenB )
         {
-            for( int i = 0; i < lenB - lenA; ++i) headB = headB->next;
+            for( int i = 0; i < lenB - lenA; ++i) 
+                headB = headB->next;
         }
 
         for( ; headB && headA; headA = headA->next, headB = headB->next )
         {
-            if ( headB == headA ) return headA;
+            if ( headB == headA ) 
+                return headA;
         }
 
         return nullptr;

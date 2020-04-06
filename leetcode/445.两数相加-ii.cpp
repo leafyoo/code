@@ -38,9 +38,8 @@ public:
 
         if ( up )
         {
-            p->next = new ListNode(0);
+            p->next = new ListNode(up);
             p = p->next;
-            p->val = up;
         }
 
         return reverse(prehead.next);

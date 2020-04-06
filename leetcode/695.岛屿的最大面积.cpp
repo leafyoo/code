@@ -6,6 +6,8 @@ public:
         int res = 0;
 
         int nr = grid.size(), nc = grid[0].size();
+        vector<vector<int>> dir = {{0, 1},{0, -1},{1, 0},{-1, 0}};
+
         for( int i = 0; i < nr; ++i)
         {
             for( int j = 0; j < nc; ++j)
@@ -15,35 +17,25 @@ public:
                     int tmpRes = 0;
                     queue< pair<int, int> > q;
                     q.push( {i, j} );
-                    grid[i][j] = 0;     
+                    grid[i][j] = 0;                     //每一次入队，都有消除当前节点
                     
                     while( !q.empty() )
                     {
-                        int r = (q.front()).first, c = (q.front()).second;
+                        int oldr = (q.front()).first, oldc = (q.front()).second ;                       
                         q.pop();
-                        ++tmpRes;                                   //在这里累加面积就好了： 队列入队的数量就是岛屿面积
+                        ++tmpRes;                        //在这里累加面积就好了： 队列入队的数量就是岛屿面积
 
-                        if(r-1 >= 0 && grid[r-1][c] == 1)
+                        for( int i = 0; i < 4; ++i)     //上下左右
                         {
-                            q.push( {r-1, c} );                     //错误：这里写成了 grid[r-1][c]
-                            grid[r-1][c] = 0;
-                        }
-                        if(r+1 < nr && grid[r+1][c] == 1)         //错误：这里写成了 <=
-                        {
-                            q.push( {r+1, c} );
-                            grid[r+1][c] = 0;
-                        }
-                        if(c-1 >= 0 && grid[r][c-1] == 1)
-                        {
-                            q.push( {r, c-1} );
-                            grid[r][c-1] = 0;
-                        }
-                        if(c+1 < nc && grid[r][c+1] == 1)
-                        {
-                            q.push( {r, c+1} );
-                            grid[r][c+1] = 0;
+                            int r = oldr + dir[i][0], c = oldc + dir[i][1];
+                            if(r >= 0 && r < nr && c >= 0 && c < nc && grid[r][c] == 1)
+                            {
+                                q.push( {r, c} );                    
+                                grid[r][c] = 0;
+                            }
                         }
                     }
+
                     res = max(res, tmpRes);
                 }
             }
@@ -52,7 +44,13 @@ public:
         return res;
     }
 };
+
 // @lc code=end
+/* 
+fish：这里的bfs，其实是围绕一个点，向四面八方展开的广度遍历，而不是单纯向下或向哪里
+
+ */
+
 
 /*
  * @lc app=leetcode.cn id=695 lang=cpp

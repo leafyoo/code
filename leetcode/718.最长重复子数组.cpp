@@ -7,13 +7,14 @@ public:
 
         int res = 0;
         vector<vector<int> > dp (na+1, vector<int>(nb+1, 0));
+
         for( int i = 1; i <= na; ++i)
         {
             for( int j = 1; j <= nb; ++j)
             {
-                if(A[i-1] == B[j-1])
+                if(A[i-1] == B[j-1])        //当前值相等，数组的下标比dp下标小1
                 {
-                    dp[i][j] = dp[i-1][j-1] + 1;
+                    dp[i][j] = dp[i-1][j-1] + 1;    //dp[i-1][j-1] ： 左上方那个点的匹配情况
                     res = max(res, dp[i][j]);
                 }
             }
@@ -25,7 +26,12 @@ public:
 // @lc code=end
 /* 
 fish：不要一味追求别致，稳当最重要，这道题按照下面的解法，陷入了大坑。按照动态规划容易很多。
-
+ * A: [1,2,3,2,1]
+ * B:     [3,2,1,4,7]
+ * 
+ * 
+ 矩阵图：
+ https://leetcode-cn.com/problems/maximum-length-of-repeated-subarray/solution/dong-tai-gui-hua-by-hai-gen/
  */
 
 

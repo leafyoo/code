@@ -11,17 +11,15 @@ class Solution {
 public:
     void reorderList(ListNode* head) {
         int len = 0;
-        for(ListNode *p = head; p; ++len)p = p->next;
+        for(ListNode *p = head; p; p = p->next) ++len;
         if(len < 3)return;
 
         ListNode * mid = head;
         for( int i = 0; i < len/2; ++i)
-        {
             mid = mid->next;
-        }
-        //翻转后一半链表
+
         ListNode *q = mid->next;
-        for( ; mid->next && q->next;  )
+        while( q->next )            //翻转后一半链表
         {
             ListNode *t = q->next;
 
@@ -30,7 +28,7 @@ public:
             mid->next = t;
         }
 
-        for( ; mid && mid ->next;  )
+        while( mid && mid ->next )  //把后半段逐个往前迁移
         {
             ListNode *t = mid->next;
 

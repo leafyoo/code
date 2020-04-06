@@ -7,7 +7,9 @@ public:
         while( b < e )
         {
             int m = (b+e)/2;
-            if(nums[m] > nums[e])
+
+            //注意：这里比较的是m、e
+            if(nums[m] > nums[e])      //只能和e比较才能确定最小值的范围 
                 b = m+1;
             else
                 e = m; 
@@ -19,6 +21,9 @@ public:
 // @lc code=end
 
 /* 
+如果只比较左值与中值，不能确定最小值的位置范围。
+所以我们需要通过比较中值与右值来确定最小值的位置范围，进而确定边界收缩的方向。
+
 左右不对称的原因是：
 这是循环前升序排列的数，左边的数小，右边的数大，而且我们要找的是最小值，肯定是偏向左找，所以左右不对称了。
 https://leetcode-cn.com/problems/find-minimum-in-rotated-sorted-array/solution/er-fen-cha-zhao-wei-shi-yao-zuo-you-bu-dui-cheng-z/

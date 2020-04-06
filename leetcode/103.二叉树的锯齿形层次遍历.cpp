@@ -15,21 +15,24 @@ public:
         if(!root) return vector<vector<int>>();
         
         vector<vector<int>> res;
+
         queue<TreeNode*> q;
         q.push(root);
+        
         bool rev = false;            //逆向，从右到左
         while( !q.empty() )
         {
             int cnt = q.size();
+
             vector<int> v;
-            for( int i = 0; i < cnt; ++i)
+            for( int i = 0; i < cnt; ++i)   //取完当前层的节点
             {
                 TreeNode* p = q.front();
                 q.pop();
-                v.push_back(p->val);
+                v.push_back(p->val);        //取当前层的值
 
                 if(p->left) 
-                    q.push(p->left);
+                    q.push(p->left);        //预存下一层节点
                 if(p->right) 
                     q.push(p->right);
             }
@@ -37,6 +40,7 @@ public:
             if(rev)
                 reverse(v.begin(), v.end());
             rev = !rev;
+            
             res.push_back( v );
         }
 

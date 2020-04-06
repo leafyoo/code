@@ -21,7 +21,7 @@ public:
         while(p || !st.empty())
         {
             //“左”
-            while( p )                          //错误：这里写成判断 p->left 导致死循环。 注意：一直要贪婪，走到叶子节点才行，那当然 while( p )   
+            while( p )       //错误：这里写成判断 p->left 导致死循环。 注意：一直要贪婪，走到叶子节点才行，那当然 while( p )   
             {
                 st.push( p);
                 p = p->left;   

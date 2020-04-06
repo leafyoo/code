@@ -9,11 +9,6 @@
  * };
  */
 
-/*
-fishyoo:
-一个节点形成环：包含在 这个情况里：if(!head || !head->next) return false;  //因为
-两个节点形成环：包含在 这个情况里：for( ; s && f && f->next; s = s->next, f = f->next->next )
-*/
 class Solution {
 public:
     bool hasCycle(ListNode *head) 
@@ -33,6 +28,13 @@ public:
     }
 };
 // @lc code=end
+
+/*
+fish：
+两个节点形成环：包含在 这个情况里：for( ; s && f && f->next; s = s->next, f = f->next->next )
+为什么快慢会相遇，因为慢的每次只移动一步，必然在s、f行进时会相遇。
+
+*/
 
 /*
  * @lc app=leetcode.cn id=141 lang=cpp

@@ -18,12 +18,13 @@ public:
         {
             while( p )
             {
-                res.push_back( p->val );
+                res.push_back( p->val );        //1： 根
+
                 st.push( p );
-                p = p->left;
+                p = p->left;                    //2：左
             }
 
-            p = st.top()->right;
+            p = st.top()->right;                //3：右
             st.pop();
         }
         

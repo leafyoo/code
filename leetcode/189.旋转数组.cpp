@@ -1,5 +1,30 @@
-
 // @lc code=start
+class Solution {
+public:
+    void rotate(vector<int>& nums, int k) {
+        if(nums.size() < 2) return;
+        k = k % nums.size();
+
+        reverse(nums.begin(), nums.end());              //先整体反转，再局部反转
+        
+        reverse(nums.begin(), nums.begin() + k);
+        reverse(nums.begin() + k,nums.end());
+    }
+};
+// @lc code=end
+
+/*
+reverse函数：
+void reverse(int[] nums, int start, int end) {
+        while (start < end) {
+            int temp = nums[start];
+            nums[start] = nums[end];
+            nums[end] = temp;
+            start++;
+            end--;
+        }
+
+超时： 
 class Solution {
 public:
     void rotate(vector<int>& nums, int k) {
@@ -16,7 +41,8 @@ public:
         }
     }
 };
-// @lc code=end
+
+ */
 
 /*
  * @lc app=leetcode.cn id=189 lang=cpp

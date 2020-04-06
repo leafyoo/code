@@ -29,16 +29,16 @@ public:
         return res;
     }
 
-    void splitPath(string & path, vector<string> &vec)
+    //切分路径为vector： home   ..   usr  local  这样，把 '/'扔掉
+    void splitPath(string & path, vector<string> &vec)      
     {
         int n = path.size();
-        for(int i = 0; i < n; )                     //错误：这里++i 导致逻辑混乱，还是尽量自己控制
+        for(int i = 1; i < n; )                     //错误：这里++i 导致逻辑混乱，还是尽量自己控制
         {
             int end = i;                                    //解释：i指向 非'/'字符
             while(end < n && path[end] != '/') ++ end;      //解释：这里走完之后end指向 '/'
-
             vec.push_back(path.substr(i, end-i));
-            i = end+1;                                      //解释：i指向 '/'之后的下一个非'/'字符
+            i = end+1;                                      //解释：end指向"/"，i指向非'/'字符
         }
     }
 };

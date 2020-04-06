@@ -4,7 +4,7 @@ public:
     int missingNumber(vector<int>& nums) {
         int n = nums.size();
         
-        int res = n;        //注意：这里先初始化为n了，因为实际的数字少一个
+        int res = n;        //注意：这里先初始化为n了，因为实际的0~n 中缺失一个数字，找到最后都不缺那就是n了
         for( int i = 0; i < n; ++i)
         {
             res = res ^ (nums[i]) ^ i;

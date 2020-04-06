@@ -31,13 +31,25 @@ public:
         int leftNodeNum = iNextRoot - ibeg ;        //因为要除去iNextRoot之外，所以不用+1
         int rightNodeNum = iend - iNextRoot;
 
+        //用三个点来demo就好了
         root->left = create(pr, in,  pbeg+1,                    pbeg + leftNodeNum,     ibeg,        iNextRoot-1);
-        root->right = create(pr, in, (pend - rightNodeNum) +1,  pend,                   iNextRoot+1, iend);         //(pend - rightNodeNum) +1
+        root->right = create(pr, in, (pend - rightNodeNum) +1,  pend,                   iNextRoot+1, iend);         
 
         return root;
     }
 };
 // @lc code=end
+/* 
+
+依次使用前序数组中的元素分割中序数组，分割后递归处理
+preorder中的pos位置的元素preorder[pos]为根的子树必然对应着inorder数组中[left,right]之间的值。
+一开始pos = 0，以preorder[0]为根的树，对应着inorder数组中[0, inorder.size()-1]之间的元素
+preorder[0]在inorder中的位置为p，则将inorder数组分为[0, p-1]和[p+1, inorder.size()-1]两部分
+这两部分分别对应左子树的节点集合和右子树的节点集合。
+
+作者：yuexiwen
+链接：https://leetcode-cn.com/problems/construct-binary-tree-from-preorder-and-inorder-traversal/solution/c-fen-zhi-by-yuexiwen/
+ */
 
 /*
  * @lc app=leetcode.cn id=105 lang=cpp

@@ -29,19 +29,15 @@ public:
         {
             //1、创建新拷贝节点： p 
             if ( !mp.count(p) )
-            {
                 mp[p] = new Node(p->val);
-            }
 
             //2、创建新拷贝节点： p->random 
             if ( p->random )            //注意判断非空
             {
                 if ( !mp.count(p->random) )
-                {
                     mp[p->random] = new Node(p->random->val);
-                }
-                //3、关联random，即将新拷贝节点：p、p->random 关联起来。
-                mp[p]->random = mp[p->random];                
+                
+                mp[p] -> random = mp[p->random];     //3、关联random，即将新拷贝节点：p、p->random 关联起来。           
             }
 
             //4、新的拷贝链表指针更新
@@ -50,40 +46,6 @@ public:
         }
 
         return prehead.next;
-    }
-
-
-
-    //无哑结点版本：
-    Node* copyRandomList_noDummy(Node* head) {
-        if(!head) return NULL;
-
-        unordered_map<Node*, Node*> mp; //map[ 旧的节点地址 ] = 新的拷贝节点地址。 如此，则mp[p] 即新的拷贝节点的地址指针。
-        Node *p = head, *pNew = NULL;
-        
-        for(; p; p = p->next)
-        {
-            //1、创建新拷贝节点： p 
-            if(!mp.count(p))                
-                mp[p] = new Node(p->val);                       
-
-            //2、创建新拷贝节点： p->random 
-            if(p->random)
-            {
-                if(!mp.count(p->random))    
-                    mp[p->random] = new Node(p->random->val);   
-
-                //3、关联random，即将新拷贝节点：p、p->random 关联起来。
-                mp[p]->random = mp[p->random];                  
-            }
-
-            //4、新的拷贝链表指针更新
-            if(pNew)   
-                pNew->next = mp[p];
-            pNew = mp[p];            //即：移动到下一个节点
-        }
-
-        return mp[head];
     }
 
 };
@@ -158,4 +120,40 @@ public:
  * 节点数目不超过 1000 。
  * 
  * 
+ */
+
+
+/* 
+
+    //无哑结点版本：
+    Node* copyRandomList_noDummy(Node* head) {
+        if(!head) return NULL;
+
+        unordered_map<Node*, Node*> mp; //map[ 旧的节点地址 ] = 新的拷贝节点地址。 如此，则mp[p] 即新的拷贝节点的地址指针。
+        Node *p = head, *pNew = NULL;
+        
+        for(; p; p = p->next)
+        {
+            //1、创建新拷贝节点： p 
+            if(!mp.count(p))                
+                mp[p] = new Node(p->val);                       
+
+            //2、创建新拷贝节点： p->random 
+            if(p->random)
+            {
+                if(!mp.count(p->random))    
+                    mp[p->random] = new Node(p->random->val);   
+
+                //3、关联random，即将新拷贝节点：p、p->random 关联起来。
+                mp[p]->random = mp[p->random];                  
+            }
+
+            //4、新的拷贝链表指针更新
+            if(pNew)   
+                pNew->next = mp[p];
+            pNew = mp[p];            //即：移动到下一个节点
+        }
+
+        return mp[head];
+    }
  */

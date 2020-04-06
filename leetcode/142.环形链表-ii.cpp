@@ -8,7 +8,7 @@
  *     ListNode(int x) : val(x), next(NULL) {}
  * };
  */
-//参见：https://leetcode-cn.com/problems/linked-list-cycle-ii/solution/linked-list-cycle-ii-kuai-man-zhi-zhen-shuang-zhi-/
+
 class Solution {
 public:
     ListNode *detectCycle(ListNode *head) {
@@ -20,14 +20,13 @@ public:
             s = s->next;
             f = f->next->next;
             
-            if(s == f)              //已经有环，则陷入处理
+            if(s == f)              //有环了，则陷入处理
             {
-                f = head;
+                f = head;           //fast指针重新从头出发
                 while( s != f )     //这里要判断s和f是否已经相等了，然后才能继续同步走，否则，对于2节点的循环判断出错，例如这个  1<-->2
                 {
                     f = f->next;
                     s = s->next;
-                    if(s == f) return f;
                 }
 
                 return f;
@@ -38,6 +37,10 @@ public:
     }
 };
 // @lc code=end
+/* fish
+//参见：https://leetcode-cn.com/problems/linked-list-cycle-ii/solution/linked-list-cycle-ii-kuai-man-zhi-zhen-shuang-zhi-/
+ */
+
 
 /*
  * @lc app=leetcode.cn id=142 lang=cpp

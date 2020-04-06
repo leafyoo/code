@@ -16,23 +16,22 @@ public:
         ListNode * p = &head;
 
         int up = 0, x = 0, y = 0;
-        for(; l1 || l2; p = p->next)                //错误：为什么这里要 || 而不是 &&呢，因为up进位可能还会和后续的产生up，所以劲大限度在这里处理完up
+        //错误： 这里要 ||,  因为up进位可能还会和后续的产生up，所以劲大限度在这里处理完up
+        while( l1 || l2 )                
         {
-            p->next = new ListNode(0);
             x = l1 ? l1->val : 0;
             y = l2 ? l2->val : 0;
 
+            p->next = new ListNode(0);
             p->next->val = (up + x + y)%10;         //错误：, 三值相加！，这里不是： up + (x + y)%10！
             up = (up + x + y)/10;
             
             l1 = l1 ? l1->next : NULL;
             l2 = l2 ? l2->next : NULL;
+            p = p->next;
         }
         if ( up )                                   //fish注意：不要遗漏最后的up
-        {
-            p->next = new ListNode(0);
-            p->next->val = up;
-        }
+            p->next = new ListNode(up);
         return head.next;
     }
 };

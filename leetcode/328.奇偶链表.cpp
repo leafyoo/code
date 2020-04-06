@@ -1,4 +1,3 @@
-
 // @lc code=start
 /**
  * Definition for singly-linked list.
@@ -9,10 +8,6 @@
  * };
  */
 
-//fishyoo:因为奇数偶数两个链表是基于旧的链表生成，所以，旧的链表的节点next指针必须发生变化才行。
-//说明：p1->next的含义是p1指向的对象（节点）的next成员； p1 的含义是 一个节点类型的指针，这个四字节的变量里存着一个地址（节点的地址）
-//题解，看leetcode 官方题解：https://leetcode-cn.com/problems/odd-even-linked-list/solution/qi-ou-lian-biao-by-leetcode/
-//总结:通过修改原有链表的节点指向，使得新生成2个链表，然后把偶数链表拼接在奇数之后
 class Solution {
 public:
     ListNode* oddEvenList(ListNode* head) {
@@ -20,7 +15,7 @@ public:
 
         ListNode *p1 = head, *p2 = head->next, *head2 = head->next;
 
-        while( p2 && p2->next ) 
+        while( p2 && p2->next )    //把链表拆成2个链表
         {
             p1->next = p1->next->next; //这些都是存放指针（node 节点的地址） p1, p1->next, p1->next->next 
             p1 = p1->next;
@@ -35,6 +30,15 @@ public:
     }
 };
 // @lc code=end
+/*  
+fish:因为奇数偶数两个链表是基于旧的链表生成，所以，旧的链表的节点next指针必须发生变化才行。
+说明：p1->next的含义是p1指向的对象（节点）的next成员； p1 的含义是 一个节点类型的指针，这个四字节的变量里存着一个地址（节点的地址）
+题解，看leetcode 官方题解：https://leetcode-cn.com/problems/odd-even-linked-list/solution/qi-ou-lian-biao-by-leetcode/
+总结:通过修改原有链表的节点指向，使得新生成2个链表，然后把偶数链表拼接在奇数之后
+
+ */
+
+
 
 /*
  * @lc app=leetcode.cn id=328 lang=cpp

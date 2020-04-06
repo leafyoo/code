@@ -27,15 +27,17 @@ public:
         {
             while( p )
             {
-                res.push_back( p->val );
+                res.push_back( p->val );            //1：根
+
                 st.push( p);
-                p = p->right;                       //注意：根右左，这里是right
+                p = p->right;                       //2：右
             }
-            p = st.top()->left;
+
+            p = st.top()->left;                     //3：左
             st.pop();
         }
 
-        reverse(res.begin(), res.end());            //注意：不可少
+        reverse(res.begin(), res.end());            //反转
 
         return res;
     }

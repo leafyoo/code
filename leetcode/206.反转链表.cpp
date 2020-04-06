@@ -12,7 +12,7 @@ class Solution {
 public:
     ListNode* reverseList(ListNode* head) {
         ListNode* pre = nullptr, * t = nullptr ;
-        for( ; head;)                   //这里的条件，最后再推导
+        while( head )                   //这里的条件，最后再推导
         {
             t = head->next;             //s型首尾相接赋值    
             head->next = pre;           //注意：定义哑节点与否在这里不同，因为 pre指针没有next成员，所以不能指向别处

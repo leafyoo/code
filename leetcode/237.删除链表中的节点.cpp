@@ -1,3 +1,15 @@
+class Solution {
+public:
+    void deleteNode(ListNode* node) {
+        if(node && node->next)
+        {
+            node->val = node->next->val;
+            node->next = node->next->next;
+        }
+    }
+};
+// @lc code=end
+
 /*
  * @lc app=leetcode.cn id=237 lang=cpp
  *
@@ -57,15 +69,3 @@
  *     ListNode(int x) : val(x), next(NULL) {}
  * };
  */
-class Solution {
-public:
-    void deleteNode(ListNode* node) {
-        if(node && node->next)
-        {
-            node->val = node->next->val;
-            node->next = node->next->next;
-        }
-    }
-};
-// @lc code=end
-

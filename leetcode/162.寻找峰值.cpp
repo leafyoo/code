@@ -7,7 +7,9 @@ public:
         while( b < e )
         {
             int m = (b+e)/2;
-            if(nums[m] > nums[m+1])
+            
+            //注意：这里比较的是m、m+1
+            if(nums[m] > nums[m+1])         
                 e = m;          //m 大于 m+1，那m处才可能是峰值
             else
                 b = m+1;        //m+1 大于 m，那m+1处才可能是峰值

@@ -18,7 +18,7 @@ public:
         {
             if ( l1->val < l2->val )
             {
-                p->next = l1;
+                p->next = l1;       //这里只是改变了p->next这个指针的指向，p的指向还没变
                 l1 = l1->next;
             }
             else

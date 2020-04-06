@@ -1,12 +1,10 @@
-
-
 // @lc code=start
 class Solution {
 public:
     int minSubArrayLen(int s, vector<int>& nums) {
         if(nums.size() < 1) return 0;                   //错误：这里没判空，就导致提交未通过。
 
-        int len = INT_MAX;
+        int imin = INT_MAX;
         int b = 0, e = 0, sum = nums[0];
         while( b <= e && e < nums.size() && b < nums.size() )
         {
@@ -20,16 +18,20 @@ public:
             }
             else
             {
-                len = min(len, e - b + 1 );
+                imin = min(imin, e - b + 1 );
                 sum -= nums[b];
                 ++b;
             }
         }
 
-        return len == INT_MAX ? 0 : len;                    //错误：上面while结束，未必就是找到了
+        return imin == INT_MAX ? 0 : imin;                    //错误：上面while结束，未必就是找到了
     }
 };
 // @lc code=end
+
+/* fish：滑动窗口 法
+
+ */
 
 /*
  * @lc app=leetcode.cn id=209 lang=cpp

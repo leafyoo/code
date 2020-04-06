@@ -18,7 +18,7 @@ public:
             else if( s[i] == '[')
             {
                 stMulti.push( multi);
-                stRes.push( res);
+                stRes.push( res);           //因为可能有多重'['，所以要push到栈里
                 
                 multi = 0;
                 res = "";
