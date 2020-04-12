@@ -19,7 +19,7 @@ public:
         }
 
         int level = 0;
-        vector<pair<int, int> > dir = { {0, 1},{0, -1},{1, 0},{-1, 0} };
+        vector<vector<int> > dir = { {0, 1},{0, -1},{1, 0},{-1, 0} };
         while( !q.empty() )
         {
             int qn = q.size();
@@ -32,8 +32,8 @@ public:
 
                 for( int j = 0; j < dir.size(); ++j)
                 {
-                    int r = qr + dir[j].first;
-                    int c = qc + dir[j].second;
+                    int r = qr + dir[j][0];
+                    int c = qc + dir[j][1];
                     if(r >= 0 && r < nr && c >= 0 && c < nc 
                         && grid[r][c] == 1)
                     {

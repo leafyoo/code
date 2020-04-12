@@ -1,7 +1,23 @@
 // @lc code=start
+class Solution {
+public:
+    vector<int> intersection(vector<int>& nums1, vector<int>& nums2) {
+        unordered_set<int> st(nums1.begin(), nums1.end() ), st2;
+        
+        for( int i = 0; i < nums2.size(); ++i)
+        {
+            if(st.find(nums2[i]) != st.end())
+                st2.insert( nums2[i]);                  //错误：这里不能用vector，会有重复数据，不满足题目要求
+        }
+
+        return vector<int>(st2.begin(), st2.end());
+    }
+};
+
+
 
 //高效版
-class Solution {
+class Solution_better {
 public:
     vector<int> intersection(vector<int>& nums1, vector<int>& nums2) {
         unordered_set<int> st(nums1.begin(), nums1.end() );
@@ -9,7 +25,7 @@ public:
 
         for( int i = 0; i < nums2.size(); ++i)
         {
-            if( st.erase( nums2[i] ))               //删除2个作用：1.避免后面在set里重复查询； 2.避免下面的vector重复插入相同的元素。
+            if( st.erase( nums2[i] ))     //删除2个作用：1.避免后面在set里重复查询； 2.避免下面的vector重复插入相同的元素。
                 res.push_back( nums2[i]);
         }
         return res;
@@ -19,21 +35,12 @@ public:
 fish：
 题目简单，就一定要有高效率方案才行！
 
+知识点：表示成功删除的元素个数
+//删除 set 容器中值为 val 的元素
+size_type erase (const value_type& val);
  */
 
 
-class Solution_2set {
-public:
-    vector<int> intersection(vector<int>& nums1, vector<int>& nums2) {
-        unordered_set<int> st(nums1.begin(), nums1.end() ), st2;
-        for( int i = 0; i < nums2.size(); ++i)
-        {
-            if(st.find(nums2[i]) != st.end())
-                st2.insert( nums2[i]);                  //错误：这里不能用vector，会有重复数据，不满足题目要求
-        }
-        return vector<int>(st2.begin(), st2.end());
-    }
-};
 // @lc code=end
 
 /*

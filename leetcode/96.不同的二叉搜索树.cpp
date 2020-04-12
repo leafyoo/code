@@ -2,7 +2,7 @@
 class Solution {
 public:
     int numTrees(int n) {
-        vector<int> dp(n+1, 0);
+        vector<int> dp(n+1, 0);     //dp[i]，i个节点时，不同的二叉搜索树 的数量
         dp[0] = 1;
         dp[1] = 1;
 
@@ -10,7 +10,7 @@ public:
         {
             for( int root = 1; root <= i; ++root)       //根节点在第 root 个节点处 切分为左右两个子树
             {
-                dp[i] += dp[root - 1] * dp[i-root];
+                dp[i] += dp[root - 1] * dp[i-root];     // [1, 2, 3, ... root ... i ]，所以两部分分别是：（root - 1）个， （i-root）个
             }
         }
 

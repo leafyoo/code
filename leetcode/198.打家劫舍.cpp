@@ -13,9 +13,10 @@ public:
         dp[1] = nums[0];
         dp[2] = max(nums[0], nums[1]);
 
+        //nums[i-1]、nums[i-2]不能连续选择，所以分为两种情况
         for( int i = 3; i <= n; ++i)
         {
-            dp[i] = max(dp[i-2]+nums[i-1], dp[i-3]+nums[i-2]);
+            dp[i] = max(dp[i-2]+nums[i-1], dp[i-3]+nums[i-2]);   // nums[0] ... nums[i-3]之间最大值 加上 nums[i-1]， 和 **取最大值
         }
         
         return dp[n];

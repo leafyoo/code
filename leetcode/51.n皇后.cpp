@@ -28,12 +28,13 @@ public:
             if( isOk(oneRes, ri, ci) )
             {
                 oneRes[ri][ci] = 'Q';
-                dfs(oneRes, ri + 1);
+                dfs(oneRes, ri + 1);        //从第一行往下放
                 oneRes[ri][ci] = '.';       //回溯
             }
         }
     }
 
+    //从第一行开始放的，所以只需要判断ri以上的行
     bool isOk(vector<vector<char>> &oneRes, int ri, int ci )
     {
         for( int i = 0; i < ri; ++i)                                        //1、纵向。 递归里按横向遍历，所以横向合法

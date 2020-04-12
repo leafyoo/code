@@ -4,25 +4,23 @@ class Solution {
      bool canMeasureWater(int x, int y, int z) {
         if (z == 0) return true;
         if (x + y < z) return false;
-        if(x == 0 || y == 0)
-            return x+y == z;
+        if (x == 0 || y == 0) return x+y == z;
 
-        int divisor = greatestCommonDivisor(x, y);
+        int divisor = maxComDivisor(x, y);
         if (z % divisor == 0) 
             return true;
-        else
-            return false;
+        return false;
     }
 
-    int greatestCommonDivisor(int x, int y)     //求，x，y的最大公约数，等价于库函数 gcd(x, y)
+    int maxComDivisor(int x, int y)     //求，x，y的最大公约数，等价于库函数 gcd(x, y)
     {
-        int divisor = 1;
-        for (int i = 2; i <= min(x, y); i++)
+        for (int i = 2; i <= min(x, y); ++i)    //从2开始
         {
             if (x % i == 0 && y % i == 0) 
-                divisor = i;
+                return i;
         }
-        return divisor;
+        
+        return 1;
     }
 
 };
@@ -39,7 +37,7 @@ ax+by=z 有解当且仅当 z 是 x, y 的最大公约数的倍数。因此我们
 
 ax+by=z
 
-而只要满足 z≤x+y，且这样的 a, ba,b 存在，那么我们的目标就是可以达成的。
+而只要满足 z ≤ x+y，且这样的 a, b 存在，那么我们的目标就是可以达成的。
 
  */
 

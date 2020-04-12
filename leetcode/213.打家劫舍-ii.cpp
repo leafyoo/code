@@ -1,4 +1,4 @@
-// @lc code=start
+// @lc code=beg
 class Solution {
 public:
     int rob(vector<int>& nums) {
@@ -9,18 +9,16 @@ public:
         int n = nums.size(), res = 0;
         vector<int> dp(n+1);
         
-        for( int offset = 0; offset < 2; ++offset)          //所有初值、尾值的地方才需要+offset，枚举一个代入，验算一下就知道要不要+offset了
+        for( int beg = 0; beg < 2; ++beg)          //所有初值、尾值的地方才需要+offset，枚举一个代入，验算一下就知道要不要+offset了
         {
-            dp.clear();
-            dp[0+offset] = 0;
-            dp[1+offset] = nums[offset];
-            dp[2+offset] = max(nums[offset], nums[offset + 1]);
+            dp[0+beg] = 0;
+            dp[1+beg] = nums[beg];
+            dp[2+beg] = max(nums[beg], nums[beg + 1]);
 
-            for( int i = 3+offset; i <= n-1+offset; ++i)
-            {
+            for( int i = 3+beg; i <= n-1+beg; ++i)
                 dp[i] = max(dp[i-2]+nums[i-1], dp[i-3]+nums[i-2]);
-            }
-            res = max(res, dp[n-1+offset]);
+
+            res = max(res, dp[n-1+beg]); //因为dp在下一次循环里会被更改，所以这里要res，不可以结尾return max(dp[n-1+0], dp[n-1+1]);
         }
 
         return res;

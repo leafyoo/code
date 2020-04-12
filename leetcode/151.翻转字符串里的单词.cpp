@@ -12,7 +12,6 @@ public:
         if(e < b) return "";
 
         s = s.substr( b, e - b + 1 );
-        std::cout<< s << "/* message */" << std::endl;
 
         //处理中间空格
         int spaceRmCnt = 0;
@@ -34,7 +33,9 @@ public:
         {
             int e = b;
             while( e < s.size() && s[e] != ' ' ) ++e;
+
             reverse( s.begin()+b, s.begin()+e );
+            
             while( e < s.size() && s[e] == ' ' ) ++e;
             b = e;
         }

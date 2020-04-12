@@ -3,8 +3,6 @@ class Solution {
 public:
     string reverseWords(string s) {
         int n = s.size();
-        // for( int b = 0; b < n; )            //错误：这里多了++b，又犯错了！！！杜绝用for循环吧
-        
         int b = 0; 
         while(b < n)                    //注意：技巧：避免用for循环，因为总是处理不好自增，导致多增，少增！！！
         {   
@@ -14,7 +12,6 @@ public:
             reverse(s.begin() + b, s.begin() + e);
         
             while( e < n && s[e] == ' ' ) ++e;
-            
             b = e;
         }
 

@@ -1,4 +1,3 @@
-
 // @lc code=start
 class Solution {
 public:
@@ -6,16 +5,16 @@ public:
         string res = "1";
         for( int i = 0; i < n - 1; ++i)
         {
-            string last = res;
+            string last = res;  //前一行的字符串
             res.clear();
 
-            for( int j = 0, num = 1; j < last.size(); ++j)
+            for( int j = 0, cnt = 1; j < last.size(); ++j)      //遍历前一行的每个字符
             {
-                for(;j+1 < last.size() && last[j] == last[j+1]; ++j) 
-                    ++num;
+                for(;j+1 < last.size() && last[j] == last[j+1]; ++j)    //将相同的字符归并
+                    ++cnt;
 
-                res += to_string( num ) + last[j];
-                num = 1;                            //错误：这里要记得把num重置为1
+                res += to_string( cnt ) + last[j];
+                cnt = 1;                            //错误：这里要记得把num重置为1
             }
         }    
 

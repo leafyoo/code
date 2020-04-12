@@ -10,6 +10,7 @@ public:
 
         this->digitsMember = digits;
 
+        //0 、 1 键上没有字母
         table = vector<string> { "", 
             "", "abc","def",
             "ghi","jkl","mno",
@@ -41,6 +42,11 @@ public:
     }
 
 };
+/* fish
+https://leetcode-cn.com/problems/letter-combinations-of-a-phone-number/solution/leetcode-17-letter-combinations-of-a-phone-number-/
+
+ */
+
 
 //队列
 class Solution_BFS {

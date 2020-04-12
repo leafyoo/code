@@ -25,7 +25,6 @@ public:
             return;
         }
 
-        unordered_set<int> uniq;
         for( int i = 0; i < nums.size(); ++i)
         {
             if(visiting[i]) continue;                   //剪枝
@@ -42,6 +41,12 @@ public:
 
 };
 // @lc code=end
+/* fish
+递归树的图片：
+https://leetcode-cn.com/problems/permutations-ii/solution/hui-su-suan-fa-python-dai-ma-java-dai-ma-by-liwe-2/
+
+ */
+
 
 /*
  * @lc app=leetcode.cn id=46 lang=cpp

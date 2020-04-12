@@ -2,6 +2,21 @@
 class Solution {
 public:
     bool canWinNim(int n) {
+        if(n <= 0) {
+            return false;
+        }
+        if(n <= 3) {
+            return true;
+        }
+        return !canWinNim(n-1) || !canWinNim(n-2) || !canWinNim(n-3);
+    }
+};
+
+
+
+class Solution_math {
+public:
+    bool canWinNim(int n) {
         return (n % 4 != 0);
     }
 };
@@ -16,18 +31,6 @@ fish:
  */
 
 
-class Solution_dfs {
-public:
-    bool canWinNim(int n) {
-        if(n <= 0) {
-            return false;
-        }
-        if(n <= 3) {
-            return true;
-        }
-        return !canWinNim(n-1) || !canWinNim(n-2) || !canWinNim(n-3);
-    }
-};
 
 // @lc code=end
 

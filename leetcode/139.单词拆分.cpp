@@ -23,7 +23,7 @@ public:
 
                 if ( dp[j] && wordDict.end() != find(wordDict.begin(), wordDict.end(), s.substr(j+1, i-j)))
                 {
-                    dp[i] = true;
+                    dp[i] = true;       //dp是一维的，只需要计算出每一个dp[i]就可以暂停了
                     break;
                 }
             }

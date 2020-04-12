@@ -7,6 +7,7 @@ public:
 
         int nr = grid.size();
         int nc = grid[0].size();
+        vector<vector<int>> dir = { {0, 1}, {0, -1}, {1, 0}, {-1, 0} };
         for( int i = 0; i < nr; ++i)
         {
             for( int j = 0; j < nc; ++j)
@@ -18,30 +19,19 @@ public:
                     
                     queue< pair<int, int> > q;
                     q.push( {i, j} );
-                    while( !q.empty() )
+                    while( !q.empty() )       //吸星大法
                     {
-                        int r = (q.front()).first, c = (q.front()).second;
+                        //遍历 4 个方向
+                        int row = (q.front()).first, col = (q.front()).second;
                         q.pop();
-
-                        if(r-1 >= 0 && grid[r-1][c] == '1')
+                        for( int i = 0; i < dir.size(); ++i)
                         {
-                            q.push( {r-1, c} );                     //错误：这里写成了 grid[r-1][c]
-                            grid[r-1][c] = '0';
-                        }
-                        if(r+1 < nr && grid[r+1][c] == '1')         //错误：这里写成了 <=
-                        {
-                            q.push( {r+1, c} );
-                            grid[r+1][c] = '0';
-                        }
-                        if(c-1 >= 0 && grid[r][c-1] == '1')
-                        {
-                            q.push( {r, c-1} );
-                            grid[r][c-1] = '0';
-                        }
-                        if(c+1 < nc && grid[r][c+1] == '1')
-                        {
-                            q.push( {r, c+1} );
-                            grid[r][c+1] = '0';
+                            int r = row + dir[i][0],  c = col + dir[i][1];
+                            if(r >= 0 && r < nr && c >= 0 && c < nc && grid[r][c] == '1')
+                            {
+                              q.push( {r, c} );
+                              grid[r][c] = '0';
+                            }
                         }
                     }
                 }

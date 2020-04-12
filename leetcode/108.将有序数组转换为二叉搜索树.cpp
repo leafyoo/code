@@ -11,6 +11,7 @@
 class Solution {
 public:
     vector<int> numsMember;                             //【leetcode官方题解的做法】递归中，采用对象成员，减少参数传递
+    
     TreeNode* sortedArrayToBST(vector<int>& nums) {
         if(nums.empty()) return nullptr;
         numsMember = nums;

@@ -20,7 +20,7 @@ public:
             {
                 while(i < j && s[i] != s[j])        //错误：这里，要多枚举几种重复的情况，然后看怎么处理
                 {
-                    st.erase(s[i]);
+                    st.erase(s[i]);     //这里会erase，所以上面要有s[i] != s[j]
                     ++i;
                 }
                 ++i;
@@ -33,7 +33,7 @@ public:
 // @lc code=end
 /* 
 fish
-时间复杂度：O(2n) = O(n)O(2n)=O(n)
+时间复杂度：O(2n) = O(n) 
 unordered_set的插入删除 O（1）复杂度。
 
 优化：

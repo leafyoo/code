@@ -11,12 +11,13 @@ public:
         for( int gi = 0, si = 0; gi < gn && si < sn; )
         {
             if( g[gi] > s[si])          //错误：这里写成了 while( g[gi] > s[si])     
-            {
                 ++si;
-                continue;
+            else
+            {
+                ++si; 
+                ++gi; 
+                ++res;
             }
-
-            ++si; ++gi; ++res;
         }
 
         return res;

@@ -33,7 +33,7 @@ public:
     bool checkOk(string str)
     {
         return !(str.size() < 1 || str.size() > 3 
-            || (stoi(str) > 255 || stoi(str) < 0 ) 
+            || (stoi(str) > 255 || stoi(str) < 0 )          //知识点：stoi
             || (str.size() > 1 && str[0] == '0'));          //错误：这里 > 1写成了 ==1
     }
 };

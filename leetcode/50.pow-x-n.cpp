@@ -25,6 +25,9 @@ public:
     }
 };
 // @lc code=end
+/* fish
+https://leetcode-cn.com/problems/powx-n/solution/powx-n-by-leetcode/
+ */
 
 /*
  * @lc app=leetcode.cn id=50 lang=cpp

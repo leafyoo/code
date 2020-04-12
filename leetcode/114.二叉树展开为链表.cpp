@@ -17,6 +17,7 @@ public:
         {
             if( p->left )
             {
+                //找到左子树的最右节点
                 TreeNode* leftR = p->left;
                 while( leftR->right )
                     leftR = leftR->right;
@@ -25,7 +26,8 @@ public:
                 p->right = p->left;
                 p->left = nullptr;              //left要置null，不然不能通过
             }
-            p = p->right;
+
+            p = p->right;   //移到下一个节点，看是否存在左子树
         }
     }
 };

@@ -5,9 +5,10 @@ public:
         if(nums.empty()) return 0;
 
         int nold= nums.size();
-        nums.insert(nums.begin(), 1);
+        nums.insert(nums.begin(), 1);           //插入辅助元素
         nums.push_back(1);
-        int nnew = nums.size();
+
+        int nnew = nums.size();     //塞进去新的元素之后，变大了，不是nold了
 
         vector<vector<int> > dp (nnew, vector<int>(nnew));            //下文主循环 不涉及 i-1，故这里无需申请+1的空间
         for( int len = 1; len <= nold; ++len )
@@ -18,7 +19,8 @@ public:
                 for( int mid = beg; mid <= end; ++mid )
                 {
                     dp[beg][end] = max(dp[beg][end],
-                        nums[beg-1] * nums[mid] * nums[end+1] + dp[beg][mid-1] + dp[mid+1][end] );  //最后一个扎破 mid，其与beg、end相邻
+                        nums[beg-1] * nums[mid] * nums[end+1] 
+                        + dp[beg][mid-1] + dp[mid+1][end] );  //最后一个扎破 mid，其与beg、end相邻
                 }
             }
         }

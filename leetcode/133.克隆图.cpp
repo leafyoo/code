@@ -23,8 +23,40 @@ public:
 };
 */
 
-//深度优先
+//广度优先
 class Solution {
+public:
+    Node* cloneGraph(Node* node) {
+        if(!node) return nullptr;
+
+        queue<Node*> oldQ;                          //存旧的图的节点指针，通过队列实现Node*指针的逐级嵌套遍历
+        oldQ.push(node);
+        
+        unordered_map<Node*, Node*> mpOldNew;       //旧节点 --> 新节点
+        mpOldNew[ node ] = new Node(node->val);
+
+        while( !oldQ.empty() )
+        {
+            Node* pOldNode = oldQ.front();              //每次弹出队列里存储的旧的节点的指针，看看新的图里能不能找到，找不到则拷贝
+            oldQ.pop();
+            for( int i = 0; i < pOldNode->neighbors.size(); ++i)
+            {
+                Node* item = pOldNode->neighbors[ i ];
+                if( mpOldNew.find( item ) == mpOldNew.end() )
+                {
+                    mpOldNew[ item ] = new Node( item->val );       //构造时，不用管neighbors数组，下面会push_back
+                    oldQ.push( item );
+                }
+                mpOldNew[ pOldNode ]->neighbors.push_back( mpOldNew[ item ] );  //错误1：这里 -> 写为了 .  错误2：mpOldNew[ item ] 而不是item 
+            }
+        }
+        
+        return mpOldNew[ node ];
+    }
+};
+
+//深度优先
+class Solution_DFS {
 public:
     Node* cloneGraph(Node* node) {
         if(!node) return nullptr;
@@ -45,37 +77,6 @@ public:
                 {
                     mpOldNew[ item ] = new Node( item->val );       //构造时，不用管neighbors数组，下面会push_back
                     oldStk.push( item );
-                }
-                mpOldNew[ pOldNode ]->neighbors.push_back( mpOldNew[ item ] );  //错误1：这里 -> 写为了 .  错误2：mpOldNew[ item ] 而不是item 
-            }
-        }
-        
-        return mpOldNew[ node ];
-    }
-};
-
-//广度优先
-class Solution_BFS {
-public:
-    Node* cloneGraph(Node* node) {
-        if(!node) return nullptr;
-
-        queue<Node*> oldQ;                          //存旧的图的节点指针，通过队列实现Node*指针的逐级嵌套遍历
-        oldQ.push(node);
-        unordered_map<Node*, Node*> mpOldNew;       //旧节点 --> 新节点
-        mpOldNew[ node ] = new Node(node->val);
-
-        while( !oldQ.empty() )
-        {
-            Node* pOldNode = oldQ.front();              //每次弹出队列里存储的旧的节点的指针，看看新的图里能不能找到，找不到则拷贝
-            oldQ.pop();
-            for( int i = 0; i < pOldNode->neighbors.size(); ++i)
-            {
-                Node* item = pOldNode->neighbors[ i ];
-                if( mpOldNew.find( item ) == mpOldNew.end() )
-                {
-                    mpOldNew[ item ] = new Node( item->val );       //构造时，不用管neighbors数组，下面会push_back
-                    oldQ.push( item );
                 }
                 mpOldNew[ pOldNode ]->neighbors.push_back( mpOldNew[ item ] );  //错误1：这里 -> 写为了 .  错误2：mpOldNew[ item ] 而不是item 
             }

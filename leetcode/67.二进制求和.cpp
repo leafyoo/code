@@ -8,7 +8,7 @@ public:
         
         string res;
         int i = na - 1, j = nb - 1, up = 0;
-        for( ; i >= 0 || j >= 0; )
+        for( ; i >= 0 || j >= 0; )              //从后往前
         {
             int x = ( i >= 0 ? (a[i--] - '0') : 0);
             int y = ( j >= 0 ? (b[j--] - '0') : 0);

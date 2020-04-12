@@ -35,7 +35,7 @@ public:
                 qsum.pop();
 
                 if(!p->left && !p->right && isum == sum)    //错误1：不可以( isum > sum ) continue;，节点值可能为负；错误2：漏掉了 !p->left && !p->right
-                    st.insert( p );
+                    st.insert( p );         //把合适的叶子节点地址存入set
                 else
                 {
                     if(p->left)
@@ -54,6 +54,7 @@ public:
             }
         }
 
+        //这里存满了叶子节点的地址，取出每一个叶子节点地址，然后顺腾摸瓜一路到root
         for( set<TreeNode*>::iterator it = st.begin(); it != st.end(); ++it)
         {
             vector<int> v;

@@ -23,23 +23,16 @@ public:
     }
     
     void put(int key, int value) {
-        if(mp.find(key) != mp.end())        /* key 存在，删尾，添头*/
-        {
+        if(mp.find(key) != mp.end())        /* key 存在： 删尾，添头*/
             lst.erase( mp[key] );
-            lst.push_front( make_pair(key, value) );      //双链表，所以要指定是front
-            mp[key] = lst.begin();
-        }
-        else
+        else if(mp.find(key) == mp.end() && lst.size() >= size)
         {
-            if(lst.size() >= size)
-            {
-                mp.erase( (lst.rbegin())->first );         //.rbegin()
-                lst.pop_back();
-            }
-
-            lst.push_front( make_pair(key, value) );
-            mp[key] = lst.begin();
+            mp.erase( (lst.rbegin())->first );         //.rbegin()
+            lst.pop_back();
         }
+
+        lst.push_front( make_pair(key, value) );            //双链表，所以要指定是front
+        mp[key] = lst.begin();
     }
 };
 
@@ -50,6 +43,15 @@ public:
  * obj->put(key,value);
  */
 // @lc code=end
+
+/* fish
+
+LRU缓存： 写入新数据之前删除最久未使用的数据值
+
+https://leetcode-cn.com/problems/lru-cache/solution/lru-ce-lue-xiang-jie-he-shi-xian-by-labuladong/
+ */
+
+
 
 /*
  * @lc app=leetcode.cn id=146 lang=cpp

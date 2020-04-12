@@ -46,8 +46,9 @@ public:
 
         string res;
         
-        for( int i = 0; i <= n1 - 1; ++i)
+        for( int i = 0; i <= n1 - 1; ++i)   //每次循环以num1的一位分别去乘以 num2的每一位
         {
+            //求num1[i] * num2的乘积
             int up = 0, d = num1[i] - '0';
             string strLow;
             for( int j = n2-1; j >= 0; --j)
@@ -58,6 +59,8 @@ public:
             if(up > 0)
                 strLow = to_string( up) + strLow;
 
+
+            //将上次的结果和当前的乘积相加
             up = 0;
             string strHig = (res.empty() ? "" : (res + '0')) ;
             int ih = strHig.size() - 1, il = strLow.size() - 1;
@@ -77,4 +80,18 @@ public:
     }
 };
 // @lc code=end
+/* fish
+例如：“123” * “456”
+1 * 456 = 456
+2 * 456 = 912
+3 * 456 = 1368
 
+45600 +
+ 9120 +
+ 1368 +
+56088 =
+
+1、 “1” * “456” 得到 strLow；
+2、 用
+
+ */
