@@ -387,6 +387,10 @@ void list_basic_test()
 	lst.unique();					//与算法的unique不同:这里删除了重复
 	lst.empty();					//判断空
 	lst.resize(5);					//多则删，少则加
+
+	advance(it1, 2); //向前移动2个元素
+	distance(lst.begin(), lst.end());	//距离
+
 }
 
 
@@ -453,6 +457,33 @@ void map_in_map()
    
 }
 
+void map_erase
+{
+	map<int , int> mapTest;
+    std::map<int, int>::iterator iter = mapTest.begin();
+
+	//方法1：
+    for(; iter != mapTest.end(); )
+    {
+        if(iter->first == 5)
+        {
+            iter = mapTest.erase(iter);		//1、注意迭代器失效； 2、这里已经返回下一个了，不用 ++iter了
+        }
+		else
+        	++iter;
+    }
+
+	//方法2：
+    for(; iter != mapTest.end(); )
+    {
+        if(iter->first == 5)
+        {
+            mapTest.erase(iter++);		//1、注意迭代器失效； 2、这里已经返回下一个了，不用 ++iter了
+        }
+		else
+        	++iter;
+    }
+}
 
 void map_test()
 {
@@ -503,14 +534,16 @@ void map_test()
 		cout << "No 11" << endl;
 
 	//查找value，并删除
-	for(it = m.begin(); it != m.end(); ++it)
+	for(it = m.begin(); it != m.end(); )
 	{
 		if(it->second == "bb")
 		{
 			cout << endl;
 			cout << "del:" << it->first << endl;
-			m.erase(it->first );
+			it = m.erase(it->first );				//注意迭代器失效
 		}
+		else
+			++it;
 	}
 
 	//打印删除后的map
@@ -641,8 +674,9 @@ priority_queue<int, vector<int>, greater<int> > c;  //这样就是小顶堆 (和
  */
 void priority_queue_()
 {
-	//升序队列
+	//升序队列，小顶堆，greater表示比顶更大的才能进堆，那堆顶就是最小的
 	priority_queue <int,vector<int>,greater<int> > q;
+
 	//降序队列
 	priority_queue <int,vector<int>,less<int> >q;
 

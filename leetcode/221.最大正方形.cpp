@@ -14,7 +14,7 @@ public:
             {
                 if( matrix[i-1][j-1] == '1')                        //错误：这里很迷惑，应该为i-1。注意区分 matrix和dp的边界。
                 {
-                    dp[i][j] = min(dp[i-1][j-1] , min( dp[i-1][j], dp[i][j-1]) ) + 1;
+                    dp[i][j] = 1 + min(dp[i-1][j-1] , min( dp[i-1][j], dp[i][j-1]) );
                     maxLen = max(maxLen, dp[i][j]);
                 }
             }

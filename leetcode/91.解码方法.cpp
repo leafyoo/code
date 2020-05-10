@@ -23,16 +23,16 @@ public:
             else if(s[i-1] >= '1' && s[i-1] <= '6') 
             {
                 if(s[i-2] == '1'|| s[i-2] == '2' )
-                    dp[i] = dp[i-1] + dp[i-2];
+                    dp[i] = dp[i-1] + dp[i-2];  //分开，连起来
                 else
-                    dp[i] = dp[i-1];
+                    dp[i] = dp[i-1];    //分开
             }
             else if( s[i-1] > '6') 
             {
                 if(s[i-2] == '1' )
-                    dp[i] = dp[i-1] + dp[i-2];
+                    dp[i] = dp[i-1] + dp[i-2];//分开，连起来
                 else
-                    dp[i] = dp[i-1];                
+                    dp[i] = dp[i-1];    //分开            
             }
         }
 

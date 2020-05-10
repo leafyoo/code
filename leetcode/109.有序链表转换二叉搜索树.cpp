@@ -19,8 +19,26 @@
 class Solution {
 public:
     TreeNode* sortedListToBST(ListNode* head) {
-        
+        return create(head, nullptr);
     }
+
+    TreeNode* create(ListNode* beg, ListNode* end) {
+        if(beg == end) return nullptr;                            //错误：这里要是null，无子节点了的
+
+        ListNode * slow = beg, * fast = beg;
+        while( fast != end && fast->next != end )                 //错误，写成了 while( fast && fast->next )
+        {
+            slow = slow->next;
+            fast = fast->next->next;
+        }
+
+        TreeNode* root = new TreeNode( slow->val );
+        root->left = create(beg, slow) ;
+        root->right = create(slow->next, end) ;
+
+        return root;
+    }
+
 };
 // @lc code=end
 

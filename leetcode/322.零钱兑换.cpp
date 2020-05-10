@@ -12,7 +12,7 @@ public:
         {
             for( int j = 0; j < coins.size(); ++j)
             {
-                if(i- coins[j] >= 0)
+                if(i - coins[j] >= 0)
                     dp[i] = min(dp[i], dp[ i- coins[j] ] + 1);
                 else
                     break;

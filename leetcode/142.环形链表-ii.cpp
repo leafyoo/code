@@ -39,6 +39,9 @@ public:
 // @lc code=end
 /* fish
 //参见：https://leetcode-cn.com/problems/linked-list-cycle-ii/solution/linked-list-cycle-ii-kuai-man-zhi-zhen-shuang-zhi-/
+ 
+ 当 fast 指针走到f = a  步时，slow 指针走到步s = a+nb ，此时 两指针重合，并同时指向链表环入口 。
+
  */
 
 

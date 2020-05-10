@@ -25,7 +25,7 @@ public:
 
             q->next = t->next;
             t->next = mid->next;
-            mid->next = t;
+            mid->next = t;          //依然挂在mid后面
         }
 
         while( mid && mid ->next )  //把后半段逐个往前迁移

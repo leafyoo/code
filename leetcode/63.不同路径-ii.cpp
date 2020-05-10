@@ -8,6 +8,7 @@ public:
         int row = obstacleGrid.size(), col = obstacleGrid[0].size();
         vector<vector<long long> > dp(row, vector<long long>(col, 0));      //定义为int时，溢出了，所以这里换做long long
 
+        //遇到 障碍物，也停止
         for( int i = 0; i < row && obstacleGrid[i][0] != 1; ++i)
             dp[i][0] = 1;
         for( int i = 0; i < col && obstacleGrid[0][i] != 1; ++i)

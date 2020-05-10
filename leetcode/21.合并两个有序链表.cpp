@@ -14,6 +14,7 @@ public:
 
         ListNode prehead(0);
         ListNode * p = & prehead;
+
         for( ; l1 && l2; p = p->next)
         {
             if ( l1->val < l2->val )
@@ -27,10 +28,12 @@ public:
                 l2 = l2->next;
             }
         }
+        
         if ( l1 || l2 )
         {
             p->next = (l1 ? l1 : l2);
         }
+
         return prehead.next;
     }
 };

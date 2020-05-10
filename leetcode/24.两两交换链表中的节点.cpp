@@ -21,6 +21,7 @@ public:
             t->next = p->next;
             p->next = t;
 
+            //上面都只是更新了next指针，这里要更新p的值
             p = q;
             q = q->next;
         }

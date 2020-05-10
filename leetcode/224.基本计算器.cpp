@@ -2,10 +2,50 @@
 class Solution {
 public:
     int calculate(string s) {
+        
+        stack<int> stkSign;
+        stack<int> stk;
 
+        int res = 0, n = s.size(), sign = 1;
+        for(int i=0; i<n; i++) 
+        {
+            if(s[i] >= '0')                     //正常运算
+            {
+                int num = 0;
+                while(i<n && s[i] >= '0') 
+                {
+                    num = num * 10 + (s[i] - '0');
+                    i++;
+                }
+                i--;        //因为for主循环已经有i++，这里要回退1
+                res += sign * num;
+            }
+            else if(s[i] == '+') sign = 1;
+            else if(s[i] == '-') sign = -1;
+            else if(s[i] == '(')                //压栈
+            {
+                stkSign.push(sign);
+                stk.push(res);
+
+                res = 0;        //reset
+                sign = 1;
+            }
+            else if(s[i] == ')')                //出栈
+            {
+                res *= stkSign.top(); 
+                stkSign.pop();
+                
+                res += stk.top(); 
+                stk.pop();
+            }
+        }
+
+        return res;
     }
 };
+
 // @lc code=end
+
 
 /*
  * @lc app=leetcode.cn id=224 lang=cpp

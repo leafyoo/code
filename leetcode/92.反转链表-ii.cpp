@@ -14,12 +14,14 @@ public:
         prehead.next = head;
         ListNode * p = &prehead;
 
+        //找到了第m个节点
         int i = 0;
         for( ; i < m - 1 && p && p->next; ++i)
         {
             p = p->next;
         }
 
+        //从第m个节点往后反转，反转到第n个节点
         head = p->next;
         for( ; i < n-1 && head && head->next; ++i)
         {

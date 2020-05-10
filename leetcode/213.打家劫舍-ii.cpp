@@ -7,19 +7,27 @@ public:
         if(nums.size() == 2) return max(nums[0], nums[1]);
 
         int n = nums.size(), res = 0;
-        vector<int> dp(n+1);
+        vector<int> dp(n+1, 0);
         
-        for( int beg = 0; beg < 2; ++beg)          //所有初值、尾值的地方才需要+offset，枚举一个代入，验算一下就知道要不要+offset了
-        {
-            dp[0+beg] = 0;
-            dp[1+beg] = nums[beg];
-            dp[2+beg] = max(nums[beg], nums[beg + 1]);
+        dp[0] = 0;
+        dp[1] = nums[0];
+        dp[2] = max(nums[0], nums[1]);
 
-            for( int i = 3+beg; i <= n-1+beg; ++i)
-                dp[i] = max(dp[i-2]+nums[i-1], dp[i-3]+nums[i-2]);
+        //nums[i-1]、nums[i-2]不能连续选择，所以分为两种情况
+        for( int i = 3; i <= n-1; ++i)
+            dp[i] = max(dp[i-2]+nums[i-1], dp[i-3]+nums[i-2]);   // nums[0] ... nums[i-3]之间最大值 加上 nums[i-1]， 和 **取最大值
+        res = dp[n-1] ;
 
-            res = max(res, dp[n-1+beg]); //因为dp在下一次循环里会被更改，所以这里要res，不可以结尾return max(dp[n-1+0], dp[n-1+1]);
-        }
+
+        //所有初值、尾值的地方才需要+offset，枚举一个代入，验算一下就知道要不要+offset了
+        fill(dp.begin(), dp.end(), 0);          //知识点
+        dp[1] = 0;
+        dp[2] = nums[1];
+        dp[3] = max(nums[1], nums[2]);
+
+        for( int i = 4; i <= n ; ++i)
+            dp[i] = max(dp[i-2]+nums[i-1], dp[i-3]+nums[i-2]);
+        res = max(res, dp[n]); //因为dp在下一次循环里会被更改，所以这里要res，不可以结尾return max(dp[n-1+0], dp[n-1+1]);
 
         return res;
     }
@@ -33,8 +41,8 @@ fish:
 
 环状排列意味着第一个房子和最后一个房子中只能选择一个偷窃，因此可以把此环状排列房间问题约化为两个单排排列房间子问题：
 
-在不偷窃第一个房子的情况下（即 nums[1:]nums[1:]），最大金额是 p1
-在不偷窃最后一个房子的情况下（即 nums[:n-1]nums[:n−1]），最大金额是 p2
+在不偷窃第一个房子的情况下（即 nums[1:] ），最大金额是 p1
+在不偷窃最后一个房子的情况下（即 nums[:n-1] ），最大金额是 p2
 
 综合偷窃最大金额： 为以上两种情况的较大值，即 max(p1,p2)max(p1,p2) 。
 下面的任务则是解决 单排排列房间（即 198. 打家劫舍） 问题。

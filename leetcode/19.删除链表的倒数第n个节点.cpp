@@ -25,7 +25,10 @@ public:
             p = p->next;
             q = q->next;
         }
-        p->next = p->next->next;
+        p->next = p->next->next;            
+        /* //删除链表节点，并不需要真实删除底层node，因为不一定是new出来的节点，也可能是在 全局的数据区。
+        例如，这个链表中，某一个节点，我就是定义的全局的 ListNode 变量，把它单独链接到全链表中的，那就不能delete
+        delete 会导致程序终止，非法的地址*/
 
         return prehead.next;
     }
