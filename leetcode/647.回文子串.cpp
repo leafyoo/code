@@ -22,7 +22,7 @@ public:
             }
         }
 
-        for( int i = 3; i <= n; ++i)             //回文串的长度, 所以，这里i可以为n
+        for( int i = 3; i <= n; ++i)             //i表示回文串的长度, 所以，这里i可以为n
         {
             for( int j = 0; j+i-1 < n; ++j)
             {

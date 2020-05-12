@@ -13,6 +13,7 @@ public:
             int tmp = -1;
             while( !stk.empty() && stk.top() <= nums[i % n])        //错误：这里是 <=，因为相等时不是大于，也要pop出来，
                 stk.pop();
+                
             if( !stk.empty() && stk.top() > nums[i % n])
                 tmp = stk.top();
             

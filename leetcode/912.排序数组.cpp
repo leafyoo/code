@@ -259,28 +259,28 @@ public:
 
         swap( nums[ (b+e)/2 ], nums[e]);    //增加随机性,若数组有序,不替换复杂度为O(n^2),这里基准数为nums[e]
 
-        //这里做的工作都是为了下面的   swap(nums[bigThanE], nums[e]);     
-        int bigThanE = b;                         // 最右侧节点的值nums[e] 应该 在数组中的位置bigThanE，bigThanE之左全比nums[e]小
+        //这里做的工作都是为了下面的   swap(nums[t], nums[e]);     
+        int t = b;                         // 最右侧节点的值nums[e] 应该 在数组中的位置t，t之左全比nums[e]小
         for( int i = b; i < e; ++i)
         {
-            if(nums[i] < nums[e])               //nums[bigThanE]之前的数都小于等于nums[e], 但是nums[bigThanE] 大于nums[e]
+            if(nums[i] < nums[e])               //nums[t]之前的数都小于等于nums[e], 但是nums[t] 大于nums[e]
             {
-                if(i != bigThanE)
-                    swap(nums[i], nums[bigThanE]);  //找到一个比nums[e]小的，那就把他调到前面去
-                ++bigThanE;                        //i这里比e那里还小，那就在往
+                if(i != t)
+                    swap(nums[i], nums[t]);  //找到一个比nums[e]小的，那就把他调到前面去
+                ++t;                        //i这里比e那里还小，那就在往
             }
         }
-        swap(nums[bigThanE], nums[e]);       //此时bigThanE所指的位置即为num[e]在数组中 最终的位置
+        swap(nums[t], nums[e]);       //此时t所指的位置即为num[e]在数组中 最终的位置
 
-        quickSort(nums, b, bigThanE-1);
-        quickSort(nums, bigThanE+1, e);
+        quickSort(nums, b, t-1);
+        quickSort(nums, t+1, e);
     }
 };
 /* 
 fish：
 思想：
-1、每次找数组中一个标杆值，然后在数组中找出这个标杆值的最终位置 bigThanE，然后把标杆值nums[e]调配到 bigThanE里来。
-2、分治，对bigThanE 之前和之后两个区间分别采用同样的思路，递归下去。
+1、每次找数组中一个标杆值，然后在数组中找出这个标杆值的最终位置 t，然后把标杆值nums[e]调配到 t里来。
+2、分治，对t 之前和之后两个区间分别采用同样的思路，递归下去。
 
  */
 
