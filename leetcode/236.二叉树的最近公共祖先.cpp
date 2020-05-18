@@ -8,6 +8,52 @@
  *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
  * };
  */
+//层序遍历，用map记录每个节点的父节点，最后从根往root遍历记录写入set，找公共节点
+class Solution_queue {
+public:
+    TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
+        if(!root) return nullptr;
+        if(!p || !q) return ( !p ? q : p);
+        
+        queue<TreeNode*> que;
+        map<TreeNode*, TreeNode*> mp;
+        que.push(root);
+        mp[ root ] = nullptr;
+
+        /*相比层序遍历而言，少了一个外层的判断que的循环，因为层序遍历需要搞成二维的vector，所以要外层循环，
+        而假如只需要一维的vecotor，那就下面这样，一个循环就好了*/
+        //这里while的终止条件这样更优，如果用que来判断，那需要遍历完所有的树节点
+        while( mp.find( q ) == mp.end() || mp.find( p ) == mp.end() )       //错误：这里错写为  != mp.end()
+        {
+            TreeNode* p = que.front();
+            que.pop();
+            if(p->left)
+            {
+                que.push( p->left);
+                mp[ p->left ] = p;
+            }
+            if(p->right)
+            {
+                que.push( p->right);
+                mp[ p->right ] = p;
+            }
+        }
+
+        set<TreeNode*> st;
+        for(TreeNode* t = p;  t; t = mp[t])
+            st.insert(t);
+        for(TreeNode* t = q;  t; t = mp[t])
+        {
+            if( st.end() != st.find(t) )
+                return t;
+        }
+        
+        return nullptr;
+    }
+
+};
+
+
 class Solution {
 public:
     TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
@@ -60,45 +106,6 @@ public:
 
 */
 
-//层序遍历，用map记录每个节点的父节点，最后从根往root遍历记录写入set，找公共节点
-class Solution_queue {
-public:
-    TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
-        if(!root) return nullptr;
-        if(!p || !q) return ( !p ? q : p);
-        
-        queue<TreeNode*> que;
-        map<TreeNode*, TreeNode*> mp;
-        que.push(root);
-        mp[ root ] = nullptr;
-        while( mp.find( q ) == mp.end() || mp.find( p ) == mp.end() )       //错误：这里错写为  != mp.end()
-        {
-            TreeNode* p = que.front();
-            que.pop();
-            if(p->left)
-            {
-                que.push( p->left);
-                mp[ p->left ] = p;
-            }
-            if(p->right)
-            {
-                que.push( p->right);
-                mp[ p->right ] = p;
-            }
-        }
-
-        set<TreeNode*> se;
-        for(TreeNode* t = p;  t; t = mp[t])
-            se.insert(t);
-        for(TreeNode* t = q;  t; t = mp[t])
-        {
-            if( se.end() != se.find(t) )
-                return t;
-        }
-        return nullptr;
-    }
-
-};
 // @lc code=end
 
 /*

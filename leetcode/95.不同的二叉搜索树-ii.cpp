@@ -39,7 +39,6 @@ public:
                     TreeNode * p = new TreeNode( root );
                     p->left = *lit;
                     p->right = *rit;
-                    std::cout<< root << "-" <<  std::endl;
                     res.push_back( p );              //【4】如【2】处所说，要把这棵树的root节点塞入总的root节点集合内。
                 }                
             }

@@ -275,6 +275,12 @@ void vec_basic_test()
 	//错，不支持:vec.push_front("a");
 
 	vec.~vector<int>(); //用析构函数清楚vec及其内存
+
+	/*  【知识点】，注意二维vector的resize方法  ，使得矩阵变为 row x col 的
+	void resize ( n,  val ); */
+	vector<vector<char> > used;
+	used.resize(row, vector<char>(col, 0)); 
+
 }
 
 void vec_erase_test()

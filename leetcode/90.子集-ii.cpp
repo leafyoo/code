@@ -3,17 +3,14 @@ class Solution {
 public:
     vector<vector<int>> res;
     vector<int> path;
-    vector<int> numsMember;
-    int size;
+    vector<int> m_nums;
 
     vector<vector<int>> subsetsWithDup(vector<int>& nums) {
-        numsMember = nums;
-        size = numsMember.size();
+        m_nums = nums;
         
-        sort(numsMember.begin(), numsMember.end());
+        sort(m_nums.begin(), m_nums.end());
 
         DFS(0);
-
         return res;    
     }
 
@@ -21,14 +18,14 @@ public:
     {
         res.push_back(path);
 
-        for( int i = beg; i < size; ++i)
+        for( int i = beg; i < m_nums.size(); ++i)
         {
-            if(i > beg && numsMember[i] == numsMember[i-1])     //剪枝：相同的子树，不进一步递归
+            if(i > beg && m_nums[i] == m_nums[i-1])     //剪枝：避免出现相同的子集。相同的子树，不进一步递归
                 continue;
 
-            path.push_back( numsMember[i] );
+            path.push_back( m_nums[i] );        //【添加】
             DFS(i + 1);
-            path.pop_back();
+            path.pop_back();                        //【撤销】
         }
     }
 };

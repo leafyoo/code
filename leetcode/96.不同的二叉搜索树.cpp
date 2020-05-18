@@ -6,7 +6,7 @@ public:
         dp[0] = 1;
         dp[1] = 1;
 
-        for( int i = 2; i <= n; ++i)                    //总共节点数
+        for( int i = 2; i <= n; ++i)                    //这棵树所有所有的节点数
         {
             for( int root = 1; root <= i; ++root)       //根节点在第 root 个节点处 切分为左右两个子树
             {

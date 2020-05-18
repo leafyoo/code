@@ -5,17 +5,17 @@ public:
         if(needle.empty()) 
             return 0;
 
-        int i = 0, j = 0;
-        for( i = 0, j = 0; i < haystack.size(); ++i)
+        int ih = 0, in = 0;
+        for( ih = 0, in = 0; ih < haystack.size(); ++ih)
         {
-            for( j = 0; i+j< haystack.size() && j < needle.size(); ++j)
+            for( in = 0; ih+in< haystack.size() && in < needle.size(); ++in)
             {
-                if ( haystack[ i+j ] != needle[j] )
+                if ( haystack[ ih+in ] != needle[in] )
                     break;           
             }
 
-            if(j >= needle.size())
-                return i; 
+            if(in >= needle.size())
+                return ih; 
         }
 
         return -1;

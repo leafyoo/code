@@ -1,25 +1,29 @@
 // @lc code=start
 
 //回溯
-class Solution_backtrack {
+class Solution  {
 public:
     vector<vector<int>> res;
-    vector<int> oneRes;
+    vector<int> oneRes, m_nums;
 
     vector<vector<int>> subsets(vector<int>& nums) {
-        subs(nums, 0);
+        m_nums = nums;
+
+        dfs( 0);
+        
         return res;
     }
 
-    void subs(vector<int>& nums, int pos) {
+    void dfs( int pos) 
+    {
         res.push_back(oneRes);
         
         //在一个平层上依次深入  //每一次for循环都会从改层深入下去
-        for( int i = pos; i < nums.size(); ++i)     //最后一个元素时，不会再进一步递归了，所以不会有重复的集合
+        for( int i = pos; i < m_nums.size(); ++i)     //最后一个元素时，不会再进一步递归了，所以不会有重复的集合
         {
-            oneRes.push_back( nums[i]);
-            subs(nums, i+1);                    //错误：这里是i+1，而不是 pos+1  //注意
-            oneRes.pop_back( );     // backtrack
+            oneRes.push_back( m_nums[i]);
+            dfs( i+1 );                         //错误：这里是i+1，而不是 pos+1  
+            oneRes.pop_back( );                 // backtrack
         }
     }
 };
@@ -29,10 +33,11 @@ https://leetcode.com/problems/subsets/discuss/27278
 图片：
 https://leetcode-cn.com/problems/subsets/solution/hui-su-si-xiang-tuan-mie-pai-lie-zu-he-zi-ji-wen-t/
 
+
  */
 
 
-class Solution {
+class Solution_ {
 public:
     vector<vector<int>> res;
     vector<int> oneRes;

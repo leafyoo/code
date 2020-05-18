@@ -4,13 +4,13 @@ public:
     
     vector<vector<int>> res;
     vector<int> path;                   //递归路径
-    vector<bool> visiting;              //在递归路径上，已入栈的那些位置
+    vector<bool> used;              //在递归路径上，已入栈的那些位置
 
     vector<vector<int>> permute(vector<int>& nums) {
         int n = nums.size();
         if(n < 1) return {{}};
 
-        visiting.resize( nums.size());          //知识点：重设数组大小
+        used.resize( nums.size());          //知识点：重设数组大小
 
         DFS(nums );
 
@@ -27,14 +27,17 @@ public:
 
         for( int i = 0; i < nums.size(); ++i)
         {
-            if(visiting[i]) continue;                   //剪枝
+            if(used[i]) continue;                   //【剪枝】 去重
 
-            visiting[i] = true;
+            //这样去重也可以，只是性能差一些
+            // if( find(path.begin(), path.end(), nums[i]) != path.end()) continue;
+
+            used[i] = true;
             path.push_back( nums[i] );
             
             DFS(nums );
 
-            visiting[i] = false;        
+            used[i] = false;        
             path.pop_back( );       // backtrack
         }
     }
@@ -44,6 +47,15 @@ public:
 /* fish
 递归树的图片：
 https://leetcode-cn.com/problems/permutations-ii/solution/hui-su-suan-fa-python-dai-ma-java-dai-ma-by-liwe-2/
+
+
+这里不能通过：
+
+for( int i = 0; 
+DFS(nums , i+1) 的方式来搞，这样的话，路会走死，只有一个结果：
+[1,2,3]
+
+因为一层遍历时，第一层 i=1， 第二层 i可能是 i=4， 那序列就是： 1 4， 不连续，所以不能根据beg来去重
 
  */
 

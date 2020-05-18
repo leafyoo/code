@@ -16,6 +16,7 @@ public:
             else
                 e = m-1;
         }
+        
         return (m * m > x) ? m-1 : m;       //处理平方根为小数的情况
     }
 };

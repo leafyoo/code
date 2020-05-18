@@ -3,21 +3,15 @@ class Solution {
 public:
     int removeDuplicates(vector<int>& nums) {
         if ( nums.size() < 2 )
-        {
             return nums.size();
-        }
 
         int i = 0;
         for( int j = i+1; j < nums.size(); )
         {
             if ( nums[i] == nums[j] )   //因为要重点关注相等时怎么处理，所以if里是相等而不是不等
-            {
                 ++j;
-            }
             else
-            {
                 nums[++i] = nums[j++];    
-            }
         }
         return i + 1;                   //【域】注意上文中 int i = 0;的位置，不能在for循环中
     }

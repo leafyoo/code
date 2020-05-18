@@ -11,7 +11,7 @@ public:
     //left   左括号还有几个可以使用
     void DFS(string str, int left, int right)
     {
-        if(left > right)    //剩余左括号数量大于右括号数量。为什么？因为字符串必须是以左括号开头
+        if(left > right)    //剩余左括号数量大于右括号数量。为什么？因为字符串必须是以左括号开头,所以占用了一个
             return ;
 
         if ( !left && !right )

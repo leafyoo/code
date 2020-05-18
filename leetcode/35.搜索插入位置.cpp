@@ -15,9 +15,9 @@ public:
                 b = m+1;
         }
 
+        //target比nums[b]大，则返回 b+1； target比nums[b]小，则返回 b；
         if(b >= 0 && b < nums.size() && target > nums[b]) 
             return b+1;     //错误：这里要判断b的合法性，因为上面一系列变动会导致b可能越界。
-
         return b;
     }
 };

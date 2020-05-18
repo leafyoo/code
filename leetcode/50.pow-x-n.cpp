@@ -1,32 +1,27 @@
 // @lc code=start
 class Solution {
 public:
-    double pow(double x, int N) {
-        if(N == 0) return 1.0;
-
-        double half = pow(x, N/2);
-        if(N % 2 == 0)
-            return half * half;
-        else
-            return half * half * x;
-    }
-
-    double myPow(double x, int n) {
-        long long N = n;
-
-        if(N == 0)  return 1.0;
-        if(N < 0)
+    double myPow(double x, long long n) {
+        if (n == 0)
+            return 1;
+        if (n == 1)
+            return x;
+        if (n < 0)
+            return 1.0 / myPow(x, -n);
+        
+        if (n  % 2 == 1)
+            return x * myPow(x, n - 1);
+        else 
         {
-            x = 1/x;
-            N = -N;             //错误： n = -n;   对n直接取负值，int溢出了！！
+            double cur = myPow(x, n / 2);
+            return cur * cur;
         }
-
-        return pow(x, N);
     }
 };
+
 // @lc code=end
 /* fish
-https://leetcode-cn.com/problems/powx-n/solution/powx-n-by-leetcode/
+链接：https://leetcode-cn.com/problems/powx-n/solution/di-gui-yu-die-dai-by-fuxuemingzhu/
  */
 
 /*

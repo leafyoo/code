@@ -19,6 +19,10 @@ public:
 
 };
 /* 
+因为是“可以跳跃的最大长度” ，也就是可以跳 0 - x步之间任何一个数，
+所以可以用贪心算法，不用担心跳得太多而错过
+
+
 时间复杂度：O(n) ，只需要访问 nums 数组一遍，共 n  个位置，n 是 nums 数组的长度。
 空间复杂度：O(1) ，不需要额外的空间开销。
 
@@ -69,18 +73,20 @@ Time Limit Exceeded
 
 class Solution_recursion {
 public:
+    vector<int> m_nums;
     bool canJump(vector<int>& nums) {
-        return jump(nums, 0);
+        m_nums = nums;
+        return jump( 0);
     }
 
-    bool jump(vector<int> &v, int pos)
+    bool jump( int pos)
     {
-        if(pos == v.size() - 1) return true;
-        if(pos >= v.size()) return false;
+        if(pos == m_nums.size() - 1) return true;
+        if(pos >= m_nums.size()) return false;
 
-        for( int i = 1; i <= v[pos]; ++i)
+        for( int i = 1; i <= m_nums[pos]; ++i)
         {
-            if( jump(v, pos+i) )
+            if( jump(  pos+i) )
                 return true;
         }
 

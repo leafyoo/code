@@ -3,15 +3,18 @@ class Solution {
 public:
     vector<vector<int>> res;
     vector<int> path;
+    int m_k;
 
     vector<vector<int>> combinationSum3(int k, int n) {
-        DFS(k, n, 1);                           //错误：这里1写成了0
+        m_k = k;
+
+        DFS( n, 1);                           //错误：这里1写成了0
         return res;
     }
 
-    void DFS(int k, int sum, int beg)
+    void DFS( int sum, int beg)
     {
-        if(k == 0 && sum == 0)
+        if(path.size() == m_k && sum == 0)
         {
             res.push_back(path);
             return ;
@@ -20,7 +23,7 @@ public:
         for( int i = beg; i <= 9 && sum >= i; ++i)
         {
             path.push_back(i);
-            DFS( k-1, sum - i , i+1);
+            DFS( sum - i , i+1);
             path.pop_back();
         }
     }

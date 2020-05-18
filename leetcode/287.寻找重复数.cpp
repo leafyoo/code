@@ -3,7 +3,8 @@ class Solution {
 public:
     int findDuplicate(vector<int> &nums) {
         int n = nums.size();
-        int begVal = 1, endVal = n - 1;           //错误：begVal = 1  //注意：这里begVal 和 endVal是value，不是index
+        
+        int begVal = 1, endVal = n;           //错误：begVal = 1  //注意：这里begVal 和 endVal是value，不是index
         while( begVal < endVal )
         {
             int cnt = 0, midVal = (begVal+endVal)/2;
@@ -21,8 +22,9 @@ public:
         return begVal;
     }
 };
-/* 
+
 // @lc code=end
+/* 
 //fish：这个题不同于传统的二分法，传统的二分法处理index，而这里处理的是value的范围
 /*区间 [1, 7] 的中位数是 4，遍历整个数组，统计小于等于 4 的整数的个数，至多应该为 4 个。换句话说，整个数组里小于等于 4 的整数的个数如果严格大于 4 个，就说明重复的数存在于区间 [1, 4]，它的反面是：重复的数存在于区间 [5, 7]。
 

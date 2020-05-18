@@ -6,6 +6,8 @@ public:
         if(!na || !nb) return 0;
 
         int res = 0;
+
+        //dp[i][j]含义：A的i之前部分 与 B的j之前部分 相同子串的长度
         vector<vector<int> > dp (na+1, vector<int>(nb+1, 0));
 
         for( int i = 1; i <= na; ++i)

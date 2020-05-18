@@ -23,18 +23,15 @@ public:
         }
         if(idx == -1) return num;   //即全部为降序
 
-
-        //step 2： 在低区中查找，找到低区的做大值
+        //step 2： 在低区中查找，找到低区的最大值
         int lowMaxIdx = idx, highMinIdx = 0;
         for( int i = idx+1; i < v.size(); ++i)
         {
             if(v[i] >= v[lowMaxIdx])         //例如7588，所以要取等号
-            {
                 lowMaxIdx = i;    
-            }
         }
 
-        //step 3： 在高区中查找，找到第一个比低区最大值大的地方，然后交换
+        //step 3： 在高区中查找，找到第一个比低区最大值小的地方，然后交换
         for( int i = 0; i < idx; ++i)
         {
             if(v[i] < v[lowMaxIdx])
@@ -47,9 +44,7 @@ public:
         //step 4：整理数组
         num = 0;
         for(int i = 0 ; i< v.size(); ++i  )
-        {
             num = num * 10 + v[i];
-        }
 
         return num;
     }

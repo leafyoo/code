@@ -11,13 +11,10 @@ public:
         
         if(i < str.size() && str[i] == '+')         //【2】正负号。 +-号只可出现其一，所以这里是if、else
             ++i;
-        else
+        else if(i < str.size() && str[i] == '-')
         {
-            if(i < str.size() && str[i] == '-')
-            {
-                sign = -1;
-                ++i;
-            }
+            sign = -1;
+            ++i;
         }
 
         while( i < str.size() && str[i] >= '0' && str[i] <= '9' && res <= INT_MAX && res >= INT_MIN )

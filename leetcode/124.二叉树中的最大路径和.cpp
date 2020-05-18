@@ -11,7 +11,8 @@
 class Solution {
 public:
     int globalMax ;
-    int maxPathSum(TreeNode* root) {
+    int maxPathSum(TreeNode* root) 
+    {
         if(!root) return 0;
         globalMax = INT_MIN;
 

@@ -9,7 +9,8 @@ class Solution {
         int divisor = maxComDivisor(x, y);
         if (z % divisor == 0) 
             return true;
-        return false;
+        else
+            return false;
     }
 
     int maxComDivisor(int x, int y)     //求，x，y的最大公约数，等价于库函数 gcd(x, y)

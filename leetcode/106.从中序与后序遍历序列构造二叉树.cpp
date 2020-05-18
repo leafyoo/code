@@ -21,7 +21,7 @@ public:
     {
         if(pbeg > pend || ibeg > iend) return nullptr;
 
-        TreeNode *root = new TreeNode( po[ pend] );
+        TreeNode *root = new TreeNode( po[ pend] );         //注意这里 是pend
         
         //遍历中序，找出元素在中序里的索引iNextRoot
         int iNextRoot = ibeg;

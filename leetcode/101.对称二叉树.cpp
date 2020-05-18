@@ -8,6 +8,30 @@
  *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
  * };
  */
+class Solution_recursion {
+public:
+    bool isSymmetric(TreeNode* root) {
+        if(!root ) 
+            return true;
+
+        return sym(root->left, root->right);
+    }
+
+    bool sym(TreeNode* l, TreeNode* r)
+    {
+        if(!l || !r)
+        {
+            if(!l && !r) 
+                return true;
+            else
+                return false;
+        }
+
+        return (l->val == r->val) 
+            && sym(l->left, r->right) 
+            && sym(l->right, r->left);
+    }
+};
 
 class Solution {
 public:
@@ -43,30 +67,6 @@ fish
 可以优化为一个queue
  */
 
-class Solution_recursion {
-public:
-    bool isSymmetric(TreeNode* root) {
-        if(!root ) 
-            return true;
-
-        return sym(root->left, root->right);
-    }
-
-    bool sym(TreeNode* l, TreeNode* r)
-    {
-        if(!l || !r)
-        {
-            if(!l && !r) 
-                return true;
-            else
-                return false;
-        }
-
-        return (l->val == r->val) 
-            && sym(l->left, r->right) 
-            && sym(l->right, r->left);
-    }
-};
 /* 
 fish:
 时间复杂度：O(n)O(n)，因为我们遍历整个输入树一次，所以总的运行时间为 O(n)O(n)，其中 nn 是树中结点的总数。

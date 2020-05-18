@@ -6,9 +6,10 @@ public:
 
         vector<int> dp(nums.size(), 1);         //直接都初始化为1
 
+        //找出以每一个i为尾巴的lis
         for( int i = 1; i < nums.size(); ++i)
         {
-            for( int j = 0; j < i; ++j)
+            for( int j = 0; j < i; ++j)  //通过比较来更新 以i为尾巴的lis
             {
                 if(nums[i] > nums[j])
                 {

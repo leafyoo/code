@@ -22,11 +22,11 @@ public:
 
         for (int i = beg; i < candidates.size(); i++) 
         {       
-            if(candidates[i] > target )//在数组sort后有序的前提下，剪枝  target - candidates[i] >= 0 
+            if(candidates[i] > target )//【剪枝】 在数组sort后有序的前提下，剪枝  target - candidates[i] >= 0 
                 break;
             
             path.push_back(candidates[i]);
-            DFS(i, target - candidates[i]);     //在搜索起点 beg 之前的数因为以前的分支搜索过了，所以一定会产生重复。
+            DFS(i, target - candidates[i]);     //在搜索起点 beg 之前的数因为以前的分支搜索过了，所以一定会产生重复，下一层递归搜索要从i开始。
             path.pop_back();
         }
     }
@@ -38,7 +38,6 @@ private:
     vector<int> path;
 
 };
-
 
 
 

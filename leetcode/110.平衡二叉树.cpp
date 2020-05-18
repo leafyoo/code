@@ -28,7 +28,7 @@ public:
         int lDeep = maxDeep( root->left);
         int rDeep = maxDeep( root->right);
         if(abs (lDeep - rDeep) > 1)                     //用abs()
-            isBal = false;
+            isBal = false;                              //注意：因为是递归maxDeep，所以这里不能return，不然只是返回了一层结果
 
         return 1 + max(lDeep, rDeep ) ;
     }

@@ -1,49 +1,50 @@
 // @lc code=start
 class Solution {
 public:
-    vector<vector<char>> boardMbr;
-    string wordMbr;
-    int row, col, wordLen;
-
+    vector<vector<char>> m_board;
+    vector<vector<char>> used;
+    string m_word;
+    int row, col ;
+    
     bool exist(vector<vector<char>>& board, string word) {
         if(board.empty() || board[0].empty()) return false;     //错误：如果这里没有，则下文board[0]错误
 
-        this->boardMbr = board;
-        this->wordMbr = word;
-        this->wordLen = word.size();
+        this->m_board = board;
+        this->m_word = word;
         this->row = board.size();
         this->col = board[0].size();
+
+        /*  【知识点】，注意二维vector的resize方法 。  void resize ( n,  val ); */
+        used.resize(row, vector<char>(col, 0)); 
 
         for( int i = 0; i < row; ++i)       // 从二维表格的每一个格子出发
         {
             for( int j = 0; j < col; ++j)
-            {
                 if( dfs(i, j, 0) ) return true;   
-            }
         }
         return false;
     }
 
-    bool dfs(int i, int j, int wordPos)
+    bool dfs(int i, int j, int pos)
     {
         if(i >= row || i < 0 
         || j >= col || j < 0 
-        || wordPos >= wordLen 
-        || boardMbr[i][j] != wordMbr[wordPos])          //错误：这里少了判断：i < 0 ，因为下面有 i-1
+        || pos >= m_word.size() 
+        || m_board[i][j] != m_word[pos]
+        || used[i][j])          //错误：这里少了判断：i < 0 ，因为下面有 i-1
             return false;
         else
-        {//当前字符相等
-            if(wordPos + 1 == wordLen)              // 最后一个字母也相等, 返回成功
+        {   //当前字符相等
+            if(pos + 1 == m_word.size())              //并且 如果是最后一个字母了，返回成功
                 return true;
             
-            int backup = boardMbr[i][j];            //标记为已读。先备份当前值，然后清空，避免后面递归时又走回来。
-            boardMbr[i][j] = 0;                 
+            used[i][j] = true;       //【去重】 标记为已读。先备份当前值，然后清空，避免后面递归时又走回来。          
 
-            if(dfs(i-1, j, wordPos+1) || dfs(i, j+1, wordPos+1) 
-                || dfs(i+1, j, wordPos+1) || dfs(i, j-1, wordPos+1))        //往上、右、下、左 其中一条能走通，就算成功
+            if(dfs(i-1, j, pos+1) || dfs(i, j+1, pos+1) 
+                || dfs(i+1, j, pos+1) || dfs(i, j-1, pos+1))        //往上、右、下、左 其中一条能走通，就算成功
                 return true;
             
-            boardMbr[i][j] = backup;                // 如果都不通，则回溯上一状态, 恢复原状，以便进行下一次搜索
+            used[i][j] = false;      //【回退】 如果都不通，则回溯上一状态, 恢复原状，以便进行下一次搜索
         }    
 
         return false;

@@ -90,6 +90,11 @@ public:
 
 // @lc code=end
 /* 
+广度优先：
+https://leetcode-cn.com/problems/letter-combinations-of-a-phone-number/solution/tong-su-yi-dong-dong-hua-yan-shi-17-dian-hua-hao-m/
+
+https://leetcode-cn.com/problems/letter-combinations-of-a-phone-number/solution/hui-su-dui-lie-tu-jie-by-ml-zimingmeng/
+
 https://leetcode-cn.com/problems/letter-combinations-of-a-phone-number/solution/cpp-hui-su-suan-fa-by-xu-zhou-geng/
  */
 

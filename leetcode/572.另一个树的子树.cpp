@@ -24,12 +24,17 @@ public:
         
          //函数开始到这里为止，都是判断当前树是否满足条件，下面的代码就是递归、丢给自己再处理了
          //所以这里是isSameTree，下面是isSubtree
-        if( isSameTree(s, t) ) return true;        
+        if( isSameTree(s, t) ) return true;        //这里只能是same才行，看题目里的示例2
 
-        return ( isSubtree(s->left, t) || isSubtree(s->right, t)) ;
+        return ( isSubtree(s->left, t) || isSubtree(s->right, t)) ;         //不一定要是same tree，是sub tree就可以了
     }
 };
 // @lc code=end
+/* 
+fish：注意，下面的示例2 里，是false！！！！
+
+ */
+
 
 /*
  * @lc app=leetcode.cn id=572 lang=cpp

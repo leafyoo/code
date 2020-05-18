@@ -13,23 +13,24 @@ public:
     int kthSmallest(TreeNode* root, int k) {
         if(!root ) return -1;
         stack<TreeNode*> stk;
-        
-        while(root || !stk.empty())
+
+        TreeNode* p = root;
+        while(p || !stk.empty())
         {
             //找到最左子节点（最小的）
-            while( root )
+            while( p )
             {
-                stk.push(root);
-                root = root->left;
+                stk.push(p);
+                p = p->left;
             }
 
-            root = stk.top();
+            p = stk.top();
             
             --k;
-            if(k == 0) return root->val;
+            if(k == 0) return p->val;
             
             //切换到右子树
-            root = root->right;
+            p = p->right;
             stk.pop();
         }
 

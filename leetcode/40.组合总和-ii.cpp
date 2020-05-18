@@ -30,8 +30,9 @@ public:
             if(candidates[i] > target )//在数组sort后有序的前提下，剪枝  target - candidates[i] >= 0 
                 break;
 
-            if( i > beg && candidates[i] == candidates[i-1] )
-                continue;                                    /*剪枝：连续相同数字会造成重复的组合数组*/
+            /*剪枝：连续相同数字会造成重复的组合数组，这里为了确保，同一个平层上（同一个for循环）不会长出两个一样的树支*/
+            if( i > beg && candidates[i] == candidates[i-1] )   
+                continue;                                    
 
             path.push_back( candidates[i]);
             DFS( i+1, target - candidates[i] );             // 元素不可重复利用，使用下一个即i+1
