@@ -11,7 +11,7 @@ public:
         {
             if(nums[i] > 0)
             {
-                imax = max(imax*nums[i], nums[i]);
+                imax = max(imax*nums[i], nums[i]);          //因为是连续子数组，所以，这里是: , nums[i]);
                 imin = min(imin*nums[i], nums[i]);
             }
             else

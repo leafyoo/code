@@ -16,7 +16,7 @@ public:
             res[ idx++ ] = cur;
 
             cur *= 10;                          //根节点值*10就是下一层 子节点的起始值。
-            for( int i = 9; i >=0; --i)
+            for( int i = 9; i >=0; --i)         //降序压栈，出栈才是升序
             {
                 if(cur + i <= n)
                     stk.push(cur + i);

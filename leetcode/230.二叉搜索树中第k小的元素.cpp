@@ -25,13 +25,13 @@ public:
             }
 
             p = stk.top();
+            stk.pop();
             
             --k;
             if(k == 0) return p->val;
             
             //切换到右子树
             p = p->right;
-            stk.pop();
         }
 
         return -1;

@@ -6,8 +6,8 @@ public:
         if(n < 1) return 0;
         if(n == 1) return A[0];
 
-        int preMax = A[0];                      //在位置i之前  A[i] + i 的最大值
-        int maxSum = A[0] + A[1] - 1;           //在位置i之前 (A[i] + i) + (A[j] - j) 的最大值
+        int preMax = A[0] + 0;                      //在位置i之前  A[i] + i 的最大值
+        int maxSum = A[0] + 0 + A[1] - 1;           //在位置i之前 (A[i] + i) + (A[j] - j) 的最大值
 
         for( int i = 1; i < n; ++i)
         {

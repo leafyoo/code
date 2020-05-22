@@ -22,7 +22,7 @@ public:
         for( int i = 0; i < vec.size(); ++i)
             res = res + vec[i];
 
-        if( res[0] == '0' && res.size() > 1)        //处理 "00000"这种情况
+        if(res.size() > 1 && res[0] == '0')        //处理 "00000"这种情况
             return "0";
 
         return res;

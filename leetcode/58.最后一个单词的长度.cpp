@@ -3,19 +3,14 @@ class Solution {
 public:
     int lengthOfLastWord(string s) {
         if(s.empty()) return 0;
+        
         int end = s.size() - 1;
-        for( ; end >= 0 ; --end)
-        {
-            if(s[end] != ' ')
-                break;    
-        }
+        while( end >= 0 && s[end] == ' ' )
+            --end;
 
-        int beg = -1;
-        for( int i = 0; i <= end; ++i)
-        {
-            if(s[i] == ' ') 
-                beg = i;
-        }
+        int beg = end;
+        while( beg >= 0 && s[beg] != ' ')
+            --beg;
         
         return (end - beg); //错误： return (beg == -1) ? s.size() : (end - beg);
     }

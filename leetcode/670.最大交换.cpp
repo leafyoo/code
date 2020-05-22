@@ -27,8 +27,8 @@ public:
         int lowMaxIdx = idx, highMinIdx = 0;
         for( int i = idx+1; i < v.size(); ++i)
         {
-            if(v[i] >= v[lowMaxIdx])         //例如7588，所以要取等号
-                lowMaxIdx = i;    
+            if(v[i] >= v[lowMaxIdx])         //例如7588，所以要取等号 
+                lowMaxIdx = i;    //上面 v[lowMaxIdx] 的值会实时更新，相当于记录了最大值了，没必要单独变量来记录了
         }
 
         //step 3： 在高区中查找，找到第一个比低区最大值小的地方，然后交换

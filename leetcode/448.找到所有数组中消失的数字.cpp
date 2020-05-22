@@ -7,7 +7,7 @@ public:
         vector<int> v;
         for( int i = 0; i < nums.size(); )
         {
-            if(nums[i] == i +1 || nums[i] == nums[ nums[i]-1 ])
+            if(nums[i] == i +1 || nums[i] == nums[ nums[i]-1 ])     //nums[i] == nums[ nums[i]-1 ] 这个是为了避免重复swap
                 ++i;
             else
                 swap(nums[i], nums[ nums[i]-1 ]);

@@ -89,8 +89,7 @@ public:
                     minIdx = j;
             }
 
-            if(i != minIdx)
-                swap(nums[minIdx], nums[i]);
+            swap(nums[minIdx], nums[i]);
         }
 
         return nums;

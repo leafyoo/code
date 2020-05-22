@@ -3,7 +3,7 @@ class Solution {
 public:
     bool validUtf8(vector<int>& data) {
         int n = data.size(), cnt = 0;
-        for( int i = 0; i < n; )                                 //错误：这里读了i++
+        for( int i = 0; i < n; )                                 //错误：这里多了i++
         {
             //1 ： 只能以这些开头
             if( (data[i] & 0b10000000) ==  0b00000000 )           //错误：严重错误：写成了16进制：0x10000000

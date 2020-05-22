@@ -18,8 +18,11 @@ public:
     vector<int> shuffle() {
         for(int end = mNums.size() - 1; end >= 0; --end) {      //为什么要从倒数开始？ 下面rand时方便一点
             int randI = rand() % (end + 1);          //如nums：[1,2,3,4]，end=4-1=3, end+1=4, randI:0,1,2,3
+
+            //所以，这里其实有可能交换的是自身，那其实就是不交换
             swap(mNums[randI], mNums[end]);          //[0,1,2,3 ...,end, ... n-1 ]  ，在0~end之间随机选一个和end交换
         }
+        
         return mNums;
     }
 };

@@ -12,6 +12,7 @@ public:
         {
             for( int j = 0; j < nc; ++j)
             {
+                //陷入，一次性腐蚀完所有1
                 if(grid[i][j] == 1)                     //错误：这里是数字1   ！！！而不是 字符 '1'， if(grid[i][j] == '1')
                 {
                     int tmpRes = 0;
