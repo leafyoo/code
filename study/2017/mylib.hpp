@@ -102,7 +102,7 @@ typedef struct treeNode
 TreeNode * arrToBSTTreeDo(int a[], int b, int e)
 {
 	if(b > e)
-		return nullptr;
+		return NULL;
 	int m = (b + e)/2;					//按照有序数组转换为BST(二叉排序树)
 
 	TreeNode *p = new TreeNode;

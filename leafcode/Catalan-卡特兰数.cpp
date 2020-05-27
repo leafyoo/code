@@ -12,7 +12,7 @@ int catalan(int n)
     for(int i=2;i<=n;i++)
     {
         for(int j=0;j<i;j++)
-            h[i]+=h[j]*h[i-j-1];
+            h[i] += h[j]*h[i-j-1];
     }
 	
     return h[n];

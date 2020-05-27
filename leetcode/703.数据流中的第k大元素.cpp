@@ -1,22 +1,22 @@
 // @lc code=start
 class KthLargest {
 public:
-    int mK;                         //技巧：注意类成员变量的区分，可以用m前缀
+    int m_k;                         //技巧：注意类成员变量的区分，可以用m前缀
     multiset<int> ms;
 
     KthLargest(int k, vector<int>& nums) {
-        this->mK = k;
+        this->m_k = k;
         for( int i = 0; i < nums.size(); ++i)
         {
             ms.insert(nums[i]);
-            if(ms.size() > mK)
+            if(ms.size() > m_k)
                 ms.erase( ms.begin());      //注意：第k大，就是降序排列的第k个元素，要删除小的值
         }
     }
     
     int add(int val) {
         ms.insert(val);
-        if(ms.size() > mK)
+        if(ms.size() > m_k)
             ms.erase( ms.begin());
         return *(ms.begin());           //错误：返回值：迭代器要解引用
     }
@@ -24,22 +24,22 @@ public:
 
 class KthLargest_pq {
 public:
-    int mK;                         //技巧：注意类成员变量的区分，可以用m前缀
+    int m_k;                         //技巧：注意类成员变量的区分，可以用m前缀
     priority_queue<int, vector<int>, greater<int> > pq;
 
     KthLargest_pq(int k, vector<int>& nums) {   //错误：这里是构造函数，要和类同名，不然编译不通过，KthLargest_pq
-        this->mK = k;
+        this->m_k = k;
         for( int i = 0; i < nums.size(); ++i)
         {
             pq.push(nums[i]);
-            if(pq.size() > mK)
+            if(pq.size() > m_k)
                 pq.pop();
         }
     }
     
     int add(int val) {
         pq.push(val);
-        if(pq.size() > mK)
+        if(pq.size() > m_k)
             pq.pop();
         return pq.top();           //错误：返回值：迭代器要解引用
     }

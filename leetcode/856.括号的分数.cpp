@@ -16,7 +16,7 @@ public:
                 times /= 2;
                 if( i-1 >= 0 && S[i-1] == '(' )
                 {
-                    sum += times * 1;
+                    sum += times * 1;       //1， 一个括号一分
                 }
             }
         }

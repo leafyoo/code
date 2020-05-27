@@ -69,6 +69,8 @@ void string_basic_test()
 
 	//比较,  正数:s > s1,    0:s == s1
 	s.compare(s1);
+	/* 一定要注意： s = 11， s1 = 2，则比较结果 s1 > s ！！！，所以可以根据size来先过滤一下 */
+
 	s.compare(index, len, s1);//s从下标index开始的len个和s2比较
 
 	string s3;

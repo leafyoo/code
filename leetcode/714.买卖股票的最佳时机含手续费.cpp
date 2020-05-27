@@ -5,7 +5,9 @@ public:
         if(prices.empty()) return 0;
         
         int dayCnt = prices.size(), statCnt = 2;   
-
+        
+        //这里要明白：dp代表的是 因为投资股票而引起的收益，所以并不是一个人的所有财富什么的！！
+        //那这样的话，当然第一天的初始收益就很合理了
         vector<vector< int> > dp(dayCnt, vector<int>(statCnt, 0) );
         dp[0][0] = 0;
         dp[0][1] = -prices[0] - fee;        //第一天，就买入一笔股票，自己贴了很多钱进去，当然利润是负值

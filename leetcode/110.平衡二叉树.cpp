@@ -12,25 +12,26 @@
 //找到的解法全是递归的，没有找到非递归的
 class Solution {
 public:
-    bool isBal;
     bool isBalanced(TreeNode* root) {
-        isBal = true;
-        
-        maxDeep(root);
+        if(!root) return true;
 
-        return isBal;
+        int left = deep(root->left);
+        int right = deep(root->right);
+
+        if( abs(left - right) > 1 ) 
+            return false;
+        else
+            return isBalanced(root->left) && isBalanced(root->right);
     }
 
-    int maxDeep(TreeNode* root)
+    int deep(TreeNode* root)
     {
-        if(!root || !isBal) return 0;
+        if(!root) return 0;
 
-        int lDeep = maxDeep( root->left);
-        int rDeep = maxDeep( root->right);
-        if(abs (lDeep - rDeep) > 1)                     //用abs()
-            isBal = false;                              //注意：因为是递归maxDeep，所以这里不能return，不然只是返回了一层结果
+        int left = deep(root->left);
+        int right = deep(root->right);
 
-        return 1 + max(lDeep, rDeep ) ;
+        return 1 + max(left, right);
     }
 };
 

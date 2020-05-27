@@ -264,8 +264,7 @@ public:
         {
             if(nums[i] < nums[e])               //nums[t]之前的数都小于等于nums[e], 但是nums[t] 大于nums[e]
             {
-                if(i != t)
-                    swap(nums[i], nums[t]);  //找到一个比nums[e]小的，那就把他调到前面去
+                swap(nums[i], nums[t]);  //找到一个比nums[e]小的，那就把他调到前面去
                 ++t;                        //i这里比e那里还小，那就在往
             }
         }

@@ -992,7 +992,7 @@ void strnstr_test(int n)
 	const char *str1 = "bc";
 	const char *tmp = strnstr(str, str1, 3) ;
 
-	if(tmp == nullptr)
+	if(tmp == NULL)
 	{
 		cout << "Not matched!" << endl;
 		exit(0);
@@ -1091,6 +1091,46 @@ void mecp_u(void *s, int c)
 		printf("!=\n");
 
 }
+
+//weixin shi pin hao
+void remove(char *s, char x)
+{
+    if(!s || *s == '\0' || x == '\0')
+        return;
+    
+    int len = strlen(s);
+
+    int a = 0, b = 0, cnt = 0;
+    while( b < len )
+    {
+        if(s[b] == x)
+		{
+			++cnt;
+            ++b;
+		}
+        else
+            s[a++] = s[b++];
+    }
+	s[len - cnt ] = '\0';
+
+    return;
+}
+
+
+void remove_test()
+{
+    char token[] ="abadc";
+
+    printf("%s\n",token);
+    
+	char *tokenremain = token;
+    
+	remove(tokenremain, 'a');
+
+    printf("tokenremain:%s\n",tokenremain);
+
+}
+
 int test_uc_c()
 {
 	int i = 122;
@@ -1166,10 +1206,10 @@ mecp_u:200, 200
 
 int main(int argc, char ** argv)
 {
-	int n = 1;
-	if(argc != 1)
-		n = atoi(argv[1]);
-	cout << "argc:" << n << endl;
+	// int n = 1;
+	// if(argc != 1)
+	// 	n = atoi(argv[1]);
+	// cout << "argc:" << n << endl;
 //	memcpy_my_test();
 //	memmove_my_test();
 //	atoi_my_test();
@@ -1191,7 +1231,7 @@ int main(int argc, char ** argv)
 //	strchr_test(n) ;
 //	strrchr_test(3);
 //	strnchr_test(n);
-	strim_test();
+	// strim_test();
 //	strspn_test();
 //	strcspn_test();
 //	strpbrk_test() ;
@@ -1241,7 +1281,8 @@ int main(int argc, char ** argv)
 //	cout << strpbrk("abbbcd", "bb" ) << endl;
 //	cout << strstr("abbbcd", "abbbcd" ) << endl;
 	
-	
+	remove_test();
+
 	return 0;
 }
 
