@@ -62,7 +62,7 @@ public:
             return ;
         }
 
-        unordered_set<int> st;  ////枚举的时候去重，只用没有排过的，因为选择重复的数字，得到的子树一样
+        unordered_set<int> st;  //平层内去重，枚举的时候去重，只用没有排过的，因为选择重复的数字，得到的子树一样
         for( int i = 0; i < nums.size(); ++i)
         {
             if(used[i] || st.count(nums[i])) continue;      

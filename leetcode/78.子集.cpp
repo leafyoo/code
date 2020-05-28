@@ -18,7 +18,7 @@ public:
     {
         res.push_back(oneRes);
         
-        //在一个平层上依次深入  //每一次for循环都会从改层深入下去
+        //在一个平层上依次深入  //每一次for循环都会从该层深入下去
         for( int i = pos; i < m_nums.size(); ++i)     //最后一个元素时，不会再进一步递归了，所以不会有重复的集合
         {
             oneRes.push_back( m_nums[i]);

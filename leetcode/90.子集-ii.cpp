@@ -20,7 +20,7 @@ public:
 
         for( int i = beg; i < m_nums.size(); ++i)
         {
-            if(i > beg && m_nums[i] == m_nums[i-1])     //剪枝：避免出现相同的子集。相同的子树，不进一步递归
+            if(i > beg && m_nums[i] == m_nums[i-1])     //平层去重，剪枝：避免出现相同的子集。相同的子树，不进一步递归
                 continue;
 
             path.push_back( m_nums[i] );        //【添加】
