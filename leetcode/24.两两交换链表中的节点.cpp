@@ -22,8 +22,8 @@ public:
             p->next = t;
 
             //上面都只是更新了next指针，这里要更新p的值
-            p = q;
-            q = q->next;
+            p = p->next->next;
+            q = q->next;
         }
 
         return prehead.next;

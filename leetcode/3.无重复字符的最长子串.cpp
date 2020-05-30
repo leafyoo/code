@@ -8,24 +8,24 @@ public:
         int res = 1;
         unordered_set<char> st;
         st.insert(s[0]);
-        for( int i = 0, j = 1; i < n && j < n; )
+        for( int b = 0, e = 1; b < n && e < n; )
         {
-            if(st.find(s[j]) == st.end())
+            if(st.find(s[e]) == st.end())
             {
-                res = max(res, j-i+1);
-                st.insert(s[j]);
-                ++j;                    //错误：这里++j要在局部最后面
+                res = max(res, e-b+1);
+                st.insert(s[e]);
+                ++e;                    //错误：这里++j要在局部最后面
             }
             else
             {
                 //寻找新的起点，即找不重复的点
-                while(i < j && s[i] != s[j])        //错误：这里，要多枚举几种重复的情况，然后看怎么处理
+                while(b < e && s[b] != s[e])        //错误：这里，要多枚举几种重复的情况，然后看怎么处理
                 {
-                    st.erase(s[i]);     //这里会erase，所以上面要有s[i] != s[j]
-                    ++i;
+                    st.erase(s[b]);     //这里会erase，所以上面要有s[b] != s[e]
+                    ++b;
                 }
-                ++i;
-                ++j;
+                ++b;
+                ++e;
             }
         }
         return res;
@@ -38,7 +38,7 @@ fish
 unordered_set的插入删除 O（1）复杂度。
 
 优化：
-可以用map代替set，map的value记录index，就可以避免 while(i < j && s[i] != s[j]) 来循环比较。
+可以用map代替set，map的value记录index，就可以避免 while(b < e && s[b] != s[e]) 来循环比较。
 
  */
 

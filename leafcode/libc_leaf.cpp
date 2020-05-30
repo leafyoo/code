@@ -350,7 +350,9 @@ char *strncpy(char *dst, const char *src, size_t n)
 		if(*src)
 			++src;
 		--n;
-	}											//最后不用*d = '\0';	标准源码中无此处理
+	}											
+	*d = '\0';    ////最后不用*d = '\0'; ？标准源码中无此处理
+
 	return dst;
 }
 /*
@@ -450,7 +452,6 @@ char *strstr(const char *dst, const char *src)
 	int n2 = strlen(src);
 	int x1 = 0, x2 = 0;
 	while(x1 <= n1 - n2)
-
 	{
 		x2 = 0;
 		while(x2 < n2 && dst[x1+x2] == src[x2])
@@ -509,7 +510,6 @@ char *strnstr(const char *dst, const char *src, size_t n)
 	size_t n2 = strlen(src);
 	size_t x1 = 0, x2 = 0;
 	while(x1 <= n1 - n2 && n >= n2)
-
 	{
 		x2 = 0;
 		while(x2 < n2 && dst[x1+x2] == src[x2])
@@ -744,6 +744,32 @@ char *strpbrk(const char *s1, const char *s2)
 }
 
 
+//weixin shi pin hao
+void remove(char *s, char x)
+{
+    if(!s || *s == '\0' || x == '\0')
+        return;
+    
+    int len = strlen(s);
+
+    int a = 0, b = 0, cnt = 0;
+    while( b < len )
+    {
+        if(s[b] == x)
+		{
+			++cnt;
+            ++b;
+		}
+        else
+            s[a++] = s[b++];
+    }
+	s[len - cnt ] = '\0';
+
+    return;
+}
+
+
+
 #define __NO__SEE__
 
 
@@ -881,9 +907,9 @@ void strcpy_test()
 void strncpy_test()  
 {  
         char str[10] = "abc";
-		const char *str1 = "defg"; 		//这里要定义为const !!!!
+		const char *str1 = "defg0000000000"; 		//这里要定义为const !!!!
 		
-        strncpy(str, str1, 6);  
+        strncpy(str, str1, 10);  
         cout << str << endl;  
 }  
 
@@ -1092,30 +1118,6 @@ void mecp_u(void *s, int c)
 
 }
 
-//weixin shi pin hao
-void remove(char *s, char x)
-{
-    if(!s || *s == '\0' || x == '\0')
-        return;
-    
-    int len = strlen(s);
-
-    int a = 0, b = 0, cnt = 0;
-    while( b < len )
-    {
-        if(s[b] == x)
-		{
-			++cnt;
-            ++b;
-		}
-        else
-            s[a++] = s[b++];
-    }
-	s[len - cnt ] = '\0';
-
-    return;
-}
-
 
 void remove_test()
 {
@@ -1218,7 +1220,7 @@ int main(int argc, char ** argv)
 //	strncat_test(6);
 
 //	strcpy_test();  
-//	strncpy_test();  
+	strncpy_test();  
 
 //	strcmp_test();  
 
@@ -1281,7 +1283,7 @@ int main(int argc, char ** argv)
 //	cout << strpbrk("abbbcd", "bb" ) << endl;
 //	cout << strstr("abbbcd", "abbbcd" ) << endl;
 	
-	remove_test();
+	// remove_test();
 
 	return 0;
 }

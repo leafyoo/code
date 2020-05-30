@@ -30,6 +30,7 @@ public:
             if(candidates[i] > target )//在数组sort后有序的前提下，剪枝  target - candidates[i] >= 0 
                 break;
 
+            //这里是continue，表示在平层里，只是跳过当前节点；而上面是break，表示平层里其他后面的节点均跳过
             /*剪枝：连续相同数字会造成重复的组合数组，这里为了确保，同一个平层上（同一个for循环）不会长出两个一样的树支*/
             if( i > beg && candidates[i] == candidates[i-1] )   
                 continue;                                    
