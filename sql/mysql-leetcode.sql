@@ -2,9 +2,51 @@
 176. 第二高的薪水
 https://leetcode-cn.com/problems/second-highest-salary/
 
+编写一个 SQL 查询，获取 Employee 表中第二高的薪水（Salary） 。
+
++----+--------+
+| Id | Salary |
++----+--------+
+| 1  | 100    |
+| 2  | 200    |
+| 3  | 300    |
++----+--------+
+例如上述 Employee 表，SQL查询应该返回 200 作为第二高的薪水。如果不存在第二高的薪水，那么查询应返回 null。
+
++---------------------+
+| SecondHighestSalary |
++---------------------+
+| 200                 |
++---------------------+
+
+来源：力扣（LeetCode）
+链接：https://leetcode-cn.com/problems/second-highest-salary
+著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
+
 https://leetcode-cn.com/problems/second-highest-salary/solution/qiu-di-er-gao-de-xin-shui-zhi-yun-yong-fen-ye-si-x/
  */
 
+/* 
+思路1：
+使用子查询找出语文成绩查询最大的成绩记为a，然后再找出小于a的最大值就是课程成绩的第二高值。
+max(列名) 可以返回该列的最大值
+可以用下面的sql语句得到语文课的最大值
+
+select max(distinct 成绩) 
+from 成绩表
+where 课程='语文';
+然后再找出小于a的最大值就是课程成绩的第二高值。
+
+select max(distinct 成绩) 
+from 成绩表
+where 课程='语文' and
+      成绩 < (select max(distinct 成绩) 
+              from 成绩表 
+              where 课程='语文');
+
+作者：houziAI
+链接：https://leetcode-cn.com/problems/second-highest-salary/solution/tu-jie-sqlmian-shi-ti-ru-he-cha-zhao-di-ngao-de-sh/
+ */
 /* 
 错误：limit 1,1 ，这里的1表示第二个元素
  */
@@ -634,6 +676,6 @@ https://blog.csdn.net/Hello_JavaScript/article/details/103388520
  /* fish: join on里的on后面跟的条件很灵活 */
 select A1.seat_id as id1,A2.seat_id as id2
 from cinema as A1 
-join cinema as A2 on(A1.seat_id+1 = A2.aeat_id and A1.free = 1 and A2.free = 1)
+join cinema as A2 on(A1.seat_id+1 = A2.seat_id and A1.free = 1 and A2.free = 1)
 
 

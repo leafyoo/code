@@ -13,7 +13,8 @@ class Solution {
 public:
     bool hasCycle(ListNode *head) 
     {
-        if(!head || !head->next) return false;  //一个节点成环也被这里考虑到了，因为head->next == head 而不是null
+        if(!head || !head->next) 
+            return false;  //一个节点成环也被这里考虑到了，因为head->next == head 而不是null
 
         ListNode *s = head, *f = head;    //s: slow, f: fast
         while(  s && f && f->next )
@@ -21,7 +22,8 @@ public:
             s = s->next;
             f = f->next->next;
 
-            if(s == f) return true;
+            if(s == f) 
+                return true;
         }
 
         return false;   //上面循环结束了，这里必然是无环了。不必再判断了

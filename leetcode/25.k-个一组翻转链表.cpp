@@ -30,6 +30,7 @@ public:
             p = head;
             head = head->next;
         }
+        
         return  prehead.next;
     }
 };

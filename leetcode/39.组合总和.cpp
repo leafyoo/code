@@ -5,7 +5,7 @@ public:
     vector<vector<int>> combinationSum(vector<int> &candidates, int target) {
         this->candidates = candidates;
 
-        std::sort(this->candidates.begin(), this->candidates.end());    //为了结果集里的去重
+        std::sort(this->candidates.begin(), this->candidates.end());    //为了下面的 【剪枝】
         
         DFS(0, target);
 

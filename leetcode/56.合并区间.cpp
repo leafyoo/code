@@ -13,7 +13,7 @@ public:
         }
 
         int b = mp.begin()->first, e = mp.begin()->second;                  //错误：这里不该用e = intervals[0][1]; 因为intervals还没有排序
-        for( map<int, int>::iterator it = mp.begin(); it != mp.end(); ++it)
+        for( multimap<int, int>::iterator it = mp.begin(); it != mp.end(); ++it)
         {
             if(it->first <= e) 
                 e = max(e, it->second);

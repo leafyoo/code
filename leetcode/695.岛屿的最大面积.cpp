@@ -17,6 +17,7 @@ public:
                 {
                     int tmpRes = 0;
                     queue< pair<int, int> > q;
+                    
                     q.push( {i, j} );
                     grid[i][j] = 0;                     //每一次入队，都有消除当前节点
                     
@@ -26,7 +27,7 @@ public:
                         q.pop();
                         ++tmpRes;                        //在这里累加面积就好了： 队列入队的数量就是岛屿面积
 
-                        for( int i = 0; i < 4; ++i)     //上下左右
+                        for( int i = 0; i < dir.size(); ++i)     //上下左右
                         {
                             int r = oldr + dir[i][0], c = oldc + dir[i][1];
                             if(r >= 0 && r < nr && c >= 0 && c < nc && grid[r][c] == 1)

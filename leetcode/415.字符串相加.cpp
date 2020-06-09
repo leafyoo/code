@@ -18,7 +18,8 @@ public:
             up = (n1+n2+up)/10 ;
         }
 
-        if(up) res = to_string(up) + res;            //也可以：  res += up + '0';
+        if(up) 
+            res = to_string(up) + res;            //也可以：  res += up + '0';
 
         return res;
     }

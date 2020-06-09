@@ -5,7 +5,10 @@ public:
         if(S < -1000 || S > 1000 || nums.empty()) return 0;
 
         int n = nums.size();
+        
+        //2001个
         vector<vector<int> > dp(n, vector<int>(2001, 0) );
+        
         dp[0][nums[0] + 1000] = 1;          //这里+1000只是dp的偏移（因为数组下标不能为负数）。含义：前0个数组成和为nums[0]的方案的个数。
         dp[0][-nums[0] + 1000] = 1;
         if(nums[0] == 0) dp[0][nums[0] + 1000] = 2;

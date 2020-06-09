@@ -8,6 +8,7 @@ public:
         sort(coins.begin(), coins.end(), less<int>() );
 
         dp[0] = 0;
+        //这里的内外层循环和 [518] 题不一样
         for( int i = 1; i <= amount; ++i)
         {
             for( int j = 0; j < coins.size(); ++j)
@@ -23,7 +24,14 @@ public:
     }
 };
 // @lc code=end
+/* 
+fish：
+【相似】 和 518题不太一样，内外层循环是反过来的。
 
+这里有讲解：
+https://leetcode-cn.com/problems/coin-change-2/solution/ling-qian-dui-huan-iihe-pa-lou-ti-wen-ti-dao-di-yo/
+
+ */
 /*
  * @lc app=leetcode.cn id=322 lang=cpp
  *

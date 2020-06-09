@@ -6,13 +6,15 @@ public:
     Trie* next[26];             //存储指针的数组，26个Trie* 指针。里头存储着 char 这个字符所在的节点，并不是当前节点
 
     /** Initialize your data structure here. */
-    Trie() {
+    Trie() 
+    {
         isStringEnd = false;
         memset(next, 0, sizeof(next) );
     }
     
     /** Inserts a word into the trie. */
-    void insert(string word) {
+    void insert(string word) 
+    {
         if(word.empty())  return ;
 
         Trie* p = this;                                 //trie.insert("apple"); 这里使得指针（root） 指向 trie对象(this)的地址
@@ -23,6 +25,7 @@ public:
                 p->next[c - 'a'] = new Trie();
             p = p->next[c - 'a'] ;
         }
+
         p->isStringEnd = true;
     }
     

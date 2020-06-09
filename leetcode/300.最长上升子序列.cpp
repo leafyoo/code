@@ -2,7 +2,8 @@
 class Solution {
 public:
     int lengthOfLIS(vector<int>& nums) {
-        if(nums.size() < 2) return nums.size();
+        if(nums.size() < 2) 
+            return nums.size();
 
         vector<int> dp(nums.size(), 1);         //直接都初始化为1
 
@@ -11,7 +12,7 @@ public:
         {
             for( int j = 0; j < i; ++j)  //通过比较来更新 以i为尾巴的lis
             {
-                if(nums[i] > nums[j])
+                if(nums[j] < nums[i])
                 {
                     dp[i] = max(dp[i], dp[j] + 1);
                 }
@@ -23,7 +24,10 @@ public:
 };
 // @lc code=end
 /*
-fish: dp[i] :表示以i为最后一个元素的上升子序列的长度
+fish: 
+【相似：上升子序列】 同 673
+
+dp[i] :表示以i为最后一个元素的上升子序列的长度
 
 
 */

@@ -39,6 +39,14 @@ public:
 };
 // @lc code=end
 
+/* 
+fish：
+
+【相似】同第 516 题， 第 5 题
+
+
+ */
+
 /*
  * @lc app=leetcode.cn id=647 lang=cpp
  *

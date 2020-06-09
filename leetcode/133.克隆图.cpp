@@ -32,26 +32,26 @@ public:
         queue<Node*> oldQ;                          //存旧的图的节点指针，通过队列实现Node*指针的逐级嵌套遍历
         oldQ.push(node);
         
-        unordered_map<Node*, Node*> mpOldNew;       //旧节点 --> 新节点
-        mpOldNew[ node ] = new Node(node->val);
+        unordered_map<Node*, Node*> mp;       //旧节点 --> 新节点
+        mp[ node ] = new Node(node->val);
 
         while( !oldQ.empty() )
         {
-            Node* pOldNode = oldQ.front();              //每次弹出队列里存储的旧的节点的指针，看看新的图里能不能找到，找不到则拷贝
+            Node* pOld = oldQ.front();              //每次弹出队列里存储的旧的节点的指针，看看新的图里能不能找到，找不到则拷贝
             oldQ.pop();
-            for( int i = 0; i < pOldNode->neighbors.size(); ++i)
+            for( int i = 0; i < pOld->neighbors.size(); ++i)
             {
-                Node* item = pOldNode->neighbors[ i ];
-                if( mpOldNew.find( item ) == mpOldNew.end() )
+                Node* item = pOld->neighbors[ i ];
+                if( mp.find( item ) == mp.end() )
                 {
-                    mpOldNew[ item ] = new Node( item->val );       //构造时，不用管neighbors数组，下面会push_back
+                    mp[ item ] = new Node( item->val );       //构造时，不用管neighbors数组，下面会push_back
                     oldQ.push( item );
                 }
-                mpOldNew[ pOldNode ]->neighbors.push_back( mpOldNew[ item ] );  //错误1：这里 -> 写为了 .  错误2：mpOldNew[ item ] 而不是item 
+                mp[ pOld ]->neighbors.push_back( mp[ item ] );  //错误1：这里 -> 写为了 .  错误2：mpOldNew[ item ] 而不是item 
             }
         }
         
-        return mpOldNew[ node ];
+        return mp[ node ];
     }
 };
 
@@ -63,26 +63,26 @@ public:
 
         stack<Node*> oldStk;                          //存旧的图的节点指针，通过队列实现Node*指针的逐级嵌套遍历
         oldStk.push(node);
-        unordered_map<Node*, Node*> mpOldNew;       //旧节点 --> 新节点
-        mpOldNew[ node ] = new Node(node->val);
+        unordered_map<Node*, Node*> mp;       //旧节点 --> 新节点
+        mp[ node ] = new Node(node->val);
 
         while( !oldStk.empty() )
         {
-            Node* pOldNode = oldStk.top();              //每次弹出队列里存储的旧的节点的指针，看看新的图里能不能找到，找不到则拷贝
+            Node* pOld = oldStk.top();              //每次弹出队列里存储的旧的节点的指针，看看新的图里能不能找到，找不到则拷贝
             oldStk.pop();
-            for( int i = 0; i < pOldNode->neighbors.size(); ++i)
+            for( int i = 0; i < pOld->neighbors.size(); ++i)
             {
-                Node* item = pOldNode->neighbors[ i ];
-                if( mpOldNew.find( item ) == mpOldNew.end() )
+                Node* item = pOld->neighbors[ i ];
+                if( mp.find( item ) == mp.end() )
                 {
-                    mpOldNew[ item ] = new Node( item->val );       //构造时，不用管neighbors数组，下面会push_back
+                    mp[ item ] = new Node( item->val );       //构造时，不用管neighbors数组，下面会push_back
                     oldStk.push( item );
                 }
-                mpOldNew[ pOldNode ]->neighbors.push_back( mpOldNew[ item ] );  //错误1：这里 -> 写为了 .  错误2：mpOldNew[ item ] 而不是item 
+                mp[ pOld ]->neighbors.push_back( mp[ item ] );  //错误1：这里 -> 写为了 .  错误2：mpOldNew[ item ] 而不是item 
             }
         }
         
-        return mpOldNew[ node ];
+        return mp[ node ];
     }
 };
 // @lc code=end

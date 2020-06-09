@@ -11,18 +11,25 @@ public:
 
         while(ib <= ie && jb <= je)
         {
-            for( j = jb; j <= je; ++j) res.push_back(matrix[ib][j] );           //错误，这里matrix 每次都会有一个参数固定，这里ib不可以是i！
-            if(++ib > ie) break;
+            for( j = jb; j <= je; ++j) 
+                res.push_back(matrix[ib][j] );           //错误，这里matrix 每次都会有一个参数固定，这里ib不可以是i！
+            if(++ib > ie) 
+                break;
 
-            for( i = ib; i <= ie; ++i) res.push_back(matrix[i][je] );
-            if(--je < jb) break;
+            for( i = ib; i <= ie; ++i) 
+                res.push_back(matrix[i][je] );
+            if(--je < jb) 
+                break;
 
-            for( j = je; j >= jb; --j) res.push_back(matrix[ie][j] );   
-            if(--ie < ib) break;
+            for( j = je; j >= jb; --j) 
+                res.push_back(matrix[ie][j] );   
+            if(--ie < ib) 
+                break;
 
-            for( i = ie; i >= ib; --i) res.push_back(matrix[i][jb] );   
-            if(++jb > je) break;
-            
+            for( i = ie; i >= ib; --i) 
+                res.push_back(matrix[i][jb] );   
+            if(++jb > je) 
+                break;
         }
 
         return res;

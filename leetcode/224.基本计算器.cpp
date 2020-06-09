@@ -27,12 +27,12 @@ public:
                 stkSign.push(sign);
                 stk.push(res);
 
-                res = 0;        //reset
+                res = 0;        //reset  //【知识点】 上面已经存到栈里了，这里就没用了，可以清空了
                 sign = 1;
             }
             else if(s[i] == ')')                //出栈
             {
-                res *= stkSign.top(); 
+                res *= stkSign.top();           //先处理 符号
                 stkSign.pop();
                 
                 res += stk.top(); 

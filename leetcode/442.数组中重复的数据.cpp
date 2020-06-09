@@ -1,4 +1,3 @@
-
 // @lc code=start
 
 class Solution {
@@ -17,7 +16,7 @@ public:
         for( int i = 0; i < nums.size(); ++i)
         {
             if( nums[i] != i+1 )   
-                res.push_back(nums[i]);
+                res.push_back(nums[i]);         //【相似】类似于 448题，只是这里不同
         }
         
         return res;

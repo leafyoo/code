@@ -40,7 +40,7 @@ public:
         }
 
         set<TreeNode*> st;
-        for(TreeNode* t = p;  t; t = mp[t])
+        for(TreeNode* t = p;  t; t = mp[t])     //将树p的根节点以上 一直 到root树的根节点的这些节点，全部存到set里
             st.insert(t);
         for(TreeNode* t = q;  t; t = mp[t])
         {
@@ -53,6 +53,16 @@ public:
 
 };
 
+/* 
+     root
+      /\
+     /  \
+    /\
+   p  q
+  /    \
+ /      \
+
+ */
 
 class Solution {
 public:

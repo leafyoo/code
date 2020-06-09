@@ -3,9 +3,12 @@ class Solution {
 public:
     int canCompleteCircuit(vector<int>& gas, vector<int>& cost) {
         int ng = gas.size(), nc = cost.size();
-        if(!ng || !nc || ng != nc) return -1;
         
-        if(accumulate(gas.begin(), gas.end() ,0) < accumulate(cost.begin(), cost.end(),0 ))   //注意stl算法的使用accumulate   //错误：少了第三个参数 ,0
+        if(!ng || !nc || ng != nc) 
+            return -1;
+        
+        //注意stl算法的使用accumulate   //错误：少了第三个参数 ,0
+        if(accumulate(gas.begin(), gas.end() ,0) < accumulate(cost.begin(), cost.end(),0 ))   
             return -1;
 
         int minGasSum = INT_MAX, minIdx = 0, gasSum = 0; 

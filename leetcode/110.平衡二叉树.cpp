@@ -16,9 +16,9 @@ public:
         if(!root) return true;
 
         int left = deep(root->left);
-        int right = deep(root->right);
+        int right = deep(root->right);  
 
-        if( abs(left - right) > 1 ) 
+        if( abs(left - right) > 1 )         //这里只能说明这一节点左右是否平衡，子树里的平衡情况还要单独判断
             return false;
         else
             return isBalanced(root->left) && isBalanced(root->right);
@@ -27,11 +27,7 @@ public:
     int deep(TreeNode* root)
     {
         if(!root) return 0;
-
-        int left = deep(root->left);
-        int right = deep(root->right);
-
-        return 1 + max(left, right);
+        return 1 + max(deep(root->left), deep(root->right));
     }
 };
 

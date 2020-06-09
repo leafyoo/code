@@ -189,6 +189,7 @@ int memcmp(void *dst, void *src, size_t n)
 		++s;
 		--n;
 	}
+	
 	return 0;
 }
 

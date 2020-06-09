@@ -11,7 +11,9 @@ public:
     {
         int n = nums.size();
         string res;
-        if(n < 1) return res;
+
+        if(n < 1) 
+            return res;
 
         vector<string> vec;
         for( int i = 0; i < n; ++i)
@@ -22,6 +24,7 @@ public:
         for( int i = 0; i < vec.size(); ++i)
             res = res + vec[i];
 
+        //【重要】务必注意，这里一定不要遗漏 “0000”这种情况
         if(res.size() > 1 && res[0] == '0')        //处理 "00000"这种情况
             return "0";
 

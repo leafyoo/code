@@ -15,7 +15,7 @@ public:
         for( int i = 0; i < nums.size(); ++i)
         {
             if(nums[i] != i+1) 
-                v.push_back( i+1);
+                v.push_back( i+1);          //【相似】类似于 442题，只是这里不同
         }
 
         return v;

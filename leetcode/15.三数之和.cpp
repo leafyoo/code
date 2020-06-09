@@ -17,9 +17,9 @@ public:
                 if(sum == 0) 
                 {
                     res.push_back({nums[i] ,nums[b], nums[e]});     //知识点：三个元素的数组的创建方法
-                    while( b< e && nums[b] == nums[b+1]) ++b;       //去重1：对第二位置的重复考察
-                    while( b< e && nums[e] == nums[e-1]) --e;       //去重2：对第三位置的重复考察
-                    ++b;
+                    while( b< e && nums[b] == nums[b+1]) ++b;       //去重1：对第二位置的重复考察。是否和下一个位置相同
+                    while( b< e && nums[e] == nums[e-1]) --e;       //去重2：对第三位置的重复考察。是否和下一个位置相同
+                    ++b;        //因为上面已经push_back，已经选用过了，所以这里要再进一步跳过重复值。
                     --e;
                 }
                 else if(sum < 0)

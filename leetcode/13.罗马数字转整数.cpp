@@ -1,13 +1,6 @@
 // @lc code=start
 class Solution {
 public:
-    inline int getHigh(int i)
-    {
-        while( i >= 10 )
-            i = i/10;
-        return i;
-    }
-
     int romanToInt(string s) {
         if(s.empty()) return 0;
         int n = s.size();
@@ -26,7 +19,7 @@ public:
         for( int i = 0; i < n; )
         {
             if(i+1 < n 
-            && getHigh(mp[ s[i] ]) == 1
+            && (s[i] == 'I' || s[i] == 'X' || s[i] == 'C' || s[i] == 'M')   /* 或者 改为： getHigh(mp[ s[i] ]) == 1 */
             && (mp[ s[i] ] * 5 == mp[ s[i+1] ] || mp[ s[i] ] * 10 == mp[ s[i+1] ]) )
             {
                 res += mp[ s[i+1] ] - mp[ s[i] ];
@@ -43,6 +36,17 @@ public:
     }
 };
 // @lc code=end
+
+/* 
+fish：
+
+    inline int getHigh(int i)
+    {
+        while( i >= 10 )
+            i = i/10;
+        return i;
+    }
+ */
 
 /*
  * @lc app=leetcode.cn id=13 lang=cpp

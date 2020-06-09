@@ -32,9 +32,10 @@ public:
                 if(p->right)
                     q.push( p->right);
             }    
-            
-            res.insert(res.begin(), v);     //整体和 102题一致，就这里不一样
+            res.push_back( v);     
         }
+
+        reverse(res.begin(), res.end());        //整体和 102题一致，就这里不一样
 
         return res;                               
     }

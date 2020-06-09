@@ -27,8 +27,8 @@ int rand1to7()
 	int num = 0;
 	do
 	{
-		num = (rand1to5()-1)*5 + rand1to5() - 1;	//前半部分生成 0 5 10 15 。。
-	}while(num > 20);
+		num = ( rand1to5()-1 )*5 + (rand1to5()-1);	//前半部分生成 0 5 10 15 。。
+	}while(num > 20);		//因为3*7=21，所以这里可以是20，是num > 7也可以的下面要改逻辑
 	return num % 7 + 1;
 }
 void __test_rand1to7()

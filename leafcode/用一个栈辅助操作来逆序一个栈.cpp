@@ -21,9 +21,9 @@ int getLastElement(stack<int> &s)
     int result = s.top();
     s.pop();
     if (s.empty()) 
-		return result;    				// 如果只有一个元素即为栈底的元素 返回  
+		     return result;    				// 如果只有一个元素即为栈底的元素 返回  
     else 
-	{
+	  {
         int last = getLastElement(s);   // 得到栈底元素  
         s.push(result);   				// 并栈顶元素压栈  
         return last;
@@ -32,7 +32,7 @@ int getLastElement(stack<int> &s)
 void reverseStack(stack<int> &s) 
 {
     if (s.empty()) 
-		return;    						// 递归结束的终止条件  
+      return;    						// 递归结束的终止条件  
     int i = getLastElement(s);   		// 得到栈底的最后一个元素 剩下元素依旧  
     reverseStack(s);    				// reverse 剩下  
     s.push(i);  						// 将i push进去  

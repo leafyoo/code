@@ -6,13 +6,16 @@ public:
 
         int imin = INT_MAX;
         int b = 0, e = 0, sum = nums[0];
+        
         while( b <= e && e < nums.size() && b < nums.size() )
         {
             if(nums[b] >= s || nums[e] >= s)
                 return 1;
+
             if(sum < s )
             {
-                if( e+1 > nums.size() - 1) break;           //错误：这里要再次判断e的范围
+                if( e+1 > nums.size() - 1) 
+                    break;           //错误：这里要再次判断e的范围
                 ++e;
                 sum += nums[e];
             }
@@ -30,6 +33,7 @@ public:
 // @lc code=end
 
 /* fish：滑动窗口 法
+不会错过，因为，基于每一个下标处其实都已考察、已覆盖到。
 
  */
 

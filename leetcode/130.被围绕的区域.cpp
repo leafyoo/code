@@ -2,33 +2,35 @@
 class Solution {
 public:
     vector< pair<int, int> > dir = { {0, 1}, {0, -1}, {1, 0}, {-1, 0} };
-    int nr, nc;
+    int m_nr, m_nc;
 
     void solve(vector<vector<char>>& board) 
     {
-        if(board.size() < 3 || board[0].size() < 3 ) return;
+        if(board.size() < 3 || board[0].size() < 3 ) 
+            return;
 
-        this->nr = board.size();
-        this->nc = board[0].size();
+        this->m_nr = board.size();
+        this->m_nc = board[0].size();
 
-        for( int i = 0; i < nr; ++i)        //标记两条纵边
+        for( int i = 0; i < m_nr; ++i)        //标记两条纵边
         {
             if(board[i][0] == 'O')
-                markBoard(board, i, 0);
-            if(board[i][nc-1] == 'O')
-                markBoard(board, i, nc-1);
+                clean(board, i, 0);
+            if(board[i][m_nc-1] == 'O')
+                clean(board, i, m_nc-1);
         }
-        for( int j = 0; j < nc; ++j)        //标记两条横边
+        
+        for( int j = 0; j < m_nc; ++j)        //标记两条横边
         {
             if(board[0][j] == 'O')
-                markBoard(board, 0, j);
-            if(board[nr-1][j] == 'O')
-                markBoard(board, nr-1, j);
+                clean(board, 0, j);
+            if(board[m_nr-1][j] == 'O')
+                clean(board, m_nr-1, j);
         }
 
-        for( int i = 0; i < nr; ++i)        //标记O、还原O
+        for( int i = 0; i < m_nr; ++i)        //标记O、还原O
         {
-            for( int j = 0; j < nc; ++j)
+            for( int j = 0; j < m_nc; ++j)
             {
                 if( board[i][j] == 'O')
                     board[i][j] = 'X';              //错误：拼写错误为 board[r]][c]了
@@ -36,9 +38,9 @@ public:
                     board[i][j] = 'O';
             }
         }
-
     }
-    void markBoard(vector<vector<char>>& board, int row, int col)
+
+    void clean(vector<vector<char>>& board, int row, int col)
     {
         board[row][col] = '*';
         for( int i = 0; i < dir.size(); ++i)
@@ -46,10 +48,10 @@ public:
             int r = dir[i].first + row;
             int c = dir[i].second + col;
             
-            if(r >= 0 && r < nr && c >= 0 && c < nc)
+            if(r >= 0 && r < m_nr && c >= 0 && c < m_nc)
             {
                 if(board[r][c] == 'O')
-                    markBoard(board, r, c);
+                    clean(board, r, c);
             }
         }
     }

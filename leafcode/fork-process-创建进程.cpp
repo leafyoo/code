@@ -25,11 +25,21 @@ int func()
     
     for (int i = 0; i < child; ++i)//创建子进程个数
     {
-    	if (pid=fork()==0)//判断是否为子进程
+        pid=fork()
+    	if (pid==0)//判断是否为子进程
     	{
-    		printf("子进程%d：%d\n",i+1,getpid());
+    		printf("子进程 %d：%d\n",i+1,getpid());
     		return 0;//结束子进程
     	}
+        else if(pid < 0)
+        {
+    		printf("fork error! \n" );
+    		return -1;//结束子进程
+        }
+        else
+        {
+            printf("这里是父进程，刚才创建了子进程： %d ! \n" ,pid);
+        }
 
     	// waitpid(pid,NULL,WUNTRACED);//等待当前子进程结束
     }

@@ -20,7 +20,8 @@ public:
         
         k = k % len;    //处理 k >= len的情况  //**溢** 
 
-        for( p = head; len > k + 1; p = p->next, --len){ } //{}内部可为空 // p = head; 从头开始
+        for( p = head; len > k + 1; p = p->next)        //走 k的互补的步数
+            --len;
         
         head = p->next;
         p->next = nullptr;

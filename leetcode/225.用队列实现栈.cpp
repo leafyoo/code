@@ -17,7 +17,11 @@ public:
             int t = q.front();
             q.pop();
             q.push( t );
-        }   
+        }
+
+        if(q.empty())
+            throw runtime_error("empty"); 
+
         int ret = q.front();
         if(!q.empty())
             q.pop();
@@ -27,6 +31,9 @@ public:
     
     /** Get the top element. */
     int top() {
+        if(q.empty())
+            throw runtime_error("empty"); 
+                    
         return q.back();            //这里注意，不是 q.top()!!  而是  q.back() ！！
     }
     

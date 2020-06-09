@@ -21,7 +21,7 @@ public:
                     int sum = nums[i] + nums[j] + nums[b] + nums[e];    //这里赋值给sum，使得下文可读性更高
                     if(sum < target)    
                     {
-                        ++b;
+                        ++b;     
                         while(b < e && nums[b] == nums[b-1]) ++b;       //去重3：保第3/4个元素不重复
                     }
                     else if(sum > target)    

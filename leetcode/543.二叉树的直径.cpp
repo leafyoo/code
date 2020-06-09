@@ -16,7 +16,9 @@ public:
         if(!root)
             return 0;
         maxLen = 0;
+        
         getDeep(root);
+
         return maxLen - 1;                          //下文统计的是节点的数目，这里是边长，边长在节点数目基础上减一
     }
 
@@ -24,8 +26,10 @@ public:
     {
         if(!p)
             return 0;
+        
         int l = getDeep(p->left );
         int r = getDeep(p->right );
+
         maxLen = max(maxLen, l + r +1);     
 
         return max(l, r) + 1;                       //求深度的过程中，顺便更新maxLen，所以返回这里还是要注意返回深度。

@@ -1,4 +1,49 @@
 // @lc code=start
+
+
+class Solution_set {
+public:
+    vector<vector<int>> res;
+    vector<int> path;
+    vector<bool> used;
+
+    vector<vector<int>> permuteUnique(vector<int>& nums) {
+        if(nums.size() < 1) return {{}};
+        used.resize(nums.size());
+        DFS(nums);
+        return res;
+    }
+
+    void DFS(vector<int>& nums)
+    {
+        if(path.size() == nums.size())
+        {
+            res.push_back(path);
+            return ;
+        }
+
+        //used数组、set并不重复，used数组用来在深度方向去重，set用来在广度方向去重
+        unordered_set<int> st;  //平层内去重，枚举的时候去重，只用没有排过的，因为选择重复的数字，得到的子树一样
+        for( int i = 0; i < nums.size(); ++i)
+        {
+            if(used[i] || st.count(nums[i])) 
+                continue;      
+
+            st.insert( nums[i]);
+                        
+            used[i] = true;
+            path.push_back( nums[i]);
+
+            DFS(nums);
+            
+            //因为是为了避免同一个平层上不相同，所以这里不需要回溯，即不需要st.erase
+            used[i] = false;
+            path.pop_back();
+        }   
+    }
+
+};
+
 class Solution  {
 public:
     vector<vector<int>> res;
@@ -41,45 +86,6 @@ public:
 
 };
 
-class Solution_set {
-public:
-    vector<vector<int>> res;
-    vector<int> path;
-    vector<bool> used;
-
-    vector<vector<int>> permuteUnique(vector<int>& nums) {
-        if(nums.size() < 1) return {{}};
-        used.resize(nums.size());
-        DFS(nums);
-        return res;
-    }
-
-    void DFS(vector<int>& nums)
-    {
-        if(path.size() == nums.size())
-        {
-            res.push_back(path);
-            return ;
-        }
-
-        unordered_set<int> st;  //平层内去重，枚举的时候去重，只用没有排过的，因为选择重复的数字，得到的子树一样
-        for( int i = 0; i < nums.size(); ++i)
-        {
-            if(used[i] || st.count(nums[i])) continue;      
-
-            used[i] = true;
-            st.insert( nums[i]);            
-            path.push_back( nums[i]);
-
-            DFS(nums);
-            
-            //因为是为了避免同一个平层上不相同，所以这里不需要回溯，即不需要st.erase
-            used[i] = false;
-            path.pop_back();
-        }   
-    }
-
-};
 
 
 // @lc code=end

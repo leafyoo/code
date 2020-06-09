@@ -22,13 +22,40 @@ public:
             p->next = t;
 
             //上面都只是更新了next指针，这里要更新p的值
-            p = p->next->next;
+            p = q; //或者 p = p->next->next;
             q = q->next;
         }
 
         return prehead.next;
     }
 };
+
+class Solution_digui 
+{
+public:
+    ListNode* swapPairs(ListNode* head) 
+    {
+        if(head == NULL || head->next == NULL)      ///终止条件为所有都交换完了的链表
+            return head;
+        ///递归单元内两个节点做交换
+        //定义一个p结点为head->next(该递归单元内第二个节点)
+        
+        //【待提交】
+        ListNode *nextH         = head->next->next;       //记录第三个节点同时也是下一次递归的head
+        ListNode *newH          = head->next;
+        
+        head->next->next        = head;         //使此单元内第二个节点指向第一个节点，即交换位置
+        head->next              = swapPairs(nextH);  //交换完成后的head应指向下一次单元返回的头节点
+        
+        return newH;   //返回该单元的头节点
+    }
+};
+/* 
+链接：https://leetcode-cn.com/problems/swap-nodes-in-pairs/solution/di-gui-die-dai-dong-zhong-wen-jiu-ying-gai-neng-li/
+来源：力扣（LeetCode）
+ */
+
+
 // @lc code=end
 
 /*

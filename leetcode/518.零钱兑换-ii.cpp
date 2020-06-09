@@ -5,18 +5,22 @@ public:
 
         vector<int> dp(amount+1, 0);        //错误：这里应该是 amount
         dp[0] = 1;
-        for(int coin : coins)   //遍历硬币面值
+
+        //这里的内外层循环和 [322] 题不一样
+        for(int i = 0; i < coins.size(); ++i)   //遍历硬币面值
         {
             //所有金额均小于 coin 美分不会受到 coin 美分硬币的影响。 因此对于 amount = 0 、1 的结果没有变化。
-            for( int i = coin; i <= amount; ++i)    //遍历金额        
+            for( int j = coins[i]; j <= amount; ++j)    //遍历金额        
             {
-                dp[i] += dp[i-coin];
+                dp[j] += dp[ j - coins[i] ];
             }
         }
+
         return dp[amount];
     }
 };
 // @lc code=end
+
 /* 
 fish
 遍历所有硬币面值：

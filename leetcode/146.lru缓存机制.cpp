@@ -2,7 +2,7 @@
 class LRUCache {
 private:
     int size;
-    list< pair<int, int> > lst;
+    list< pair<int, int> > lt;
     map<int, list<pair<int, int> >::iterator> mp;       //注意：是list的迭代器
 
 public:
@@ -10,29 +10,31 @@ public:
         this->size = capacity; 
     }
     
-    int get(int key) {
+    int get(int key) 
+    {
         if(mp.find(key) == mp.end())
             return -1;
 
         pair<int, int> kv = *mp[key];
-        lst.erase( mp[key] );
-        lst.push_front( kv );
+        lt.erase( mp[key] );
+        lt.push_front( kv );
 
-        mp[key] = lst.begin();                  //值没变，但是迭代器指针变了，所以map也要更新 
-        return (lst.begin())->second;           
+        mp[key] = lt.begin();                  //值没变，但是迭代器指针变了，所以map也要更新 
+        return (lt.begin())->second;           
     }
     
-    void put(int key, int value) {
+    void put(int key, int value) 
+    {
         if(mp.find(key) != mp.end())        /* key 存在： 删尾，添头*/
-            lst.erase( mp[key] );
-        else if(mp.find(key) == mp.end() && lst.size() >= size)
+            lt.erase( mp[key] );
+        else if(mp.find(key) == mp.end() && lt.size() >= size)
         {
-            mp.erase( (lst.rbegin())->first );         //.rbegin()
-            lst.pop_back();
+            mp.erase( (lt.rbegin())->first );         //.rbegin()
+            lt.pop_back();
         }
 
-        lst.push_front( make_pair(key, value) );            //双链表，所以要指定是front
-        mp[key] = lst.begin();
+        lt.push_front( make_pair(key, value) );            //双链表，所以要指定是front
+        mp[key] = lt.begin();
     }
 };
 

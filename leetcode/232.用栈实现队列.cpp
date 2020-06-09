@@ -31,7 +31,7 @@ public:
         
         //这里要判断并抛出异常，否则，st2为空，返回一个值，调用侧该怎么理解。
         if(st2.empty())
-            throw new RuntimeException("queue is empty");       //【知识点】 抛异常
+            throw runtime_error("empty");        //【知识点】 抛异常
         else
             return st2.top();
     }

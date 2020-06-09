@@ -23,9 +23,12 @@ public:
     }
 
     TreeNode* create(ListNode* beg, ListNode* end) {
-        if(beg == end) return nullptr;                            //错误：这里要是null，无子节点了的
+        if(beg == end) 
+            return nullptr;                            //错误：这里要是null，无子节点了的
 
         ListNode * slow = beg, * fast = beg;
+
+        //因为这里是通过  != end 来判断结束条件的，所以不需要将链表切断！
         while( fast != end && fast->next != end )                 //错误，写成了 while( fast && fast->next )
         {
             slow = slow->next;

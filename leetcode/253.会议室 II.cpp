@@ -7,7 +7,7 @@ public:
         int n = intervals.size(), room = 1;
         if(n < 1) return 0;
 
-        sort(intervals.begin(), intervals.end());
+        sort(intervals.begin(), intervals.end());   //所有会议，按照开始时间排序
         
         //堆里只记录会议结束时间，堆顶是最小的结束时间（即最早结束的会议）
         priority_queue<int, vector<int>, greater<int> > pque;       //知识点：小顶堆

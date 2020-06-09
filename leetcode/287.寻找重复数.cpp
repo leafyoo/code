@@ -5,10 +5,10 @@ public:
         int n = nums.size();
         
         int begVal = 1, endVal = n;           //错误：begVal = 1  //注意：这里begVal 和 endVal是value，不是index
-        while( begVal < endVal )
+        while( begVal < endVal )            /* 时间复杂度为 O(logN)， */
         {
             int cnt = 0, midVal = (begVal+endVal)/2;
-            for( int i = 0; i < nums.size(); ++i)       //每次都是遍历整个数组, 统计小半区里的数字的个数
+            for( int i = 0; i < nums.size(); ++i)     /* 时间复杂度为 O(N)， */  //每次都是遍历整个数组, 统计小半区里的数字的个数
             {
                 if(nums[i] <= midVal)        //错误：这里是 <=
                     ++cnt;
@@ -24,7 +24,16 @@ public:
 };
 
 // @lc code=end
+
 /* 
+
+时间复杂度 O(NlogN) ：
+二分法的时间复杂度为 O(logN)，
+在二分法的内部，执行了一次 for 循环，时间复杂度为 O(N)，
+故时间复杂度为 O(NlogN)。
+
+
+
 //fish：这个题不同于传统的二分法，传统的二分法处理index，而这里处理的是value的范围
 /*区间 [1, 7] 的中位数是 4，遍历整个数组，统计小于等于 4 的整数的个数，至多应该为 4 个。换句话说，整个数组里小于等于 4 的整数的个数如果严格大于 4 个，就说明重复的数存在于区间 [1, 4]，它的反面是：重复的数存在于区间 [5, 7]。
 

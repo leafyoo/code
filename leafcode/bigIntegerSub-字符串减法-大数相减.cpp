@@ -59,7 +59,7 @@ string mySub(string A,string B)//只限两个非负整数
 
     int lmax = max(la,lb);
 
-    //从个位开始相减
+    //从个位开始相减，va的第0位存着整个数字的最低位
     for (int i=0;i<lmax;i++)
     {
         va[i] -= vb[i];
@@ -70,7 +70,7 @@ string mySub(string A,string B)//只限两个非负整数
         }
     }
 
-    //处理前置0
+    //处理前置0，即将高位的0去掉
     while (!va[lmax])
         lmax--;
 

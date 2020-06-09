@@ -13,16 +13,18 @@ public:
         if(!head || !head->next) return head;
         
         //把链表切分成前后两半
+        //因为 fast是另一个头，而如果只有2个节点，那fast必须要是其中之一，所以这里 fast = head->next
         ListNode *slow = head,* fast = head->next; //这里第二个指针一定要有星号，* fast
         for( ; fast && fast->next;  )
         {
             slow = slow ->next;
             fast = fast ->next ->next;
         }
-        fast = slow->next;
+
+        ListNode * mid = slow->next;
         slow->next = nullptr;
         
-        return merge(sortList(head), sortList(fast) );  //1. 归并排序：归并在外，排序在内 //2. 这里是head 而不是slow，slow位置已变。
+        return merge(sortList(head), sortList( mid ) );  //1. 归并排序：归并在外，排序在内 //2. 这里是head 而不是slow，slow位置已变。
     }
 
     ListNode* merge(ListNode* a, ListNode *b) {

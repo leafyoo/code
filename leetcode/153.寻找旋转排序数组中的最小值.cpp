@@ -9,7 +9,7 @@ public:
             int m = (b+e)/2;
 
             //注意：这里比较的是m、e
-            if(nums[m] > nums[e])      //只能和e比较才能确定最小值的范围 
+            if(nums[m] > nums[e])      //注意：nums[m] 和 nums[e] 比较， 才能确定最小值的范围 
                 b = m+1;
             else
                 e = m; 

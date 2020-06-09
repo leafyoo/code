@@ -11,7 +11,10 @@ class Solution {
 public:
     void reorderList(ListNode* head) {
         int len = 0;
-        for(ListNode *p = head; p; p = p->next) ++len;
+
+        for(ListNode *p = head; p; p = p->next) 
+            ++len;
+
         if(len < 3)return;
 
         ListNode * mid = head;

@@ -14,8 +14,9 @@ public:
         if(!head || !head->next || !head->next->next) return head;
 
         ListNode *p1 = head, *p2 = head->next, *head2 = head->next;
-
-        while( p2 && p2->next )    //把链表拆成2个链表
+        
+        //【1】把链表拆成2个链表
+        while( p2 && p2->next )    
         {
             //每一轮循环里，p1 p2都变一下，交错螺旋前进，这样的话，不会影响彼此的下一个节点
             p1->next = p1->next->next; //这些都是存放指针（node 节点的地址） p1, p1->next, p1->next->next 
@@ -25,6 +26,7 @@ public:
             p2 = p2->next;
         }
 
+        //【2】把两个链表合并
         p1->next = head2;
 
         return head;

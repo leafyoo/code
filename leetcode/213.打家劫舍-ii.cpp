@@ -26,7 +26,8 @@ public:
         dp[3] = max(nums[1], nums[2]);
 
         for( int i = 4; i <= n ; ++i)
-            dp[i] = max(dp[i-2]+nums[i-1], dp[i-3]+nums[i-2]);
+            dp[i] = max(dp[i-2]+nums[i-1], dp[i-3]+nums[i-2]);      //表达式一样，只是边界值不一样而已。
+
         res = max(res, dp[n]); //因为dp在下一次循环里会被更改，所以这里要res，不可以结尾return max(dp[n-1+0], dp[n-1+1]);
 
         return res;

@@ -12,35 +12,38 @@ public:
         return res;
     }
 
-    void DFS(string tail, int segCnt, string ip)
+    void DFS(string tail, int partCnt, string ip)
     {
-        if(tail.empty() || segCnt == 4)
+        if(tail.empty() || partCnt == 4)
         {
-            if( tail.empty() && segCnt == 4 ) res.push_back(ip);
+            if( tail.empty() && partCnt == 4 ) res.push_back(ip);
             return;
         }
 
         for( int partLen = 1; partLen <= 3; ++partLen)      //每个分节的长度
         {
-            if( tail.size() < partLen || !checkOk( tail.substr(0, partLen)) ) break;            //剪枝
+            string part = tail.substr(0, partLen);
 
-            string append = (segCnt == 3) ? tail.substr(0, partLen) :  (tail.substr(0, partLen) + ".");
+            if( tail.size() < partLen || notOK( part ) ) 
+                break;            //剪枝
+
+            string append = (partCnt == 3) ? part:  (part + ".");
             
-            DFS(tail.substr(partLen), segCnt+1, ip + append);
+            DFS(tail.substr(partLen), partCnt+1, ip + append);
         }
     }
 
-    bool checkOk(string str)
+    bool notOK(string str)
     {
-        return !(str.size() < 1 || str.size() > 3 
-            || (stoi(str) > 255 || stoi(str) < 0 )          //知识点：stoi
-            || (str.size() > 1 && str[0] == '0'));          //错误：这里 > 1写成了 ==1
+        return ((str.size() < 1     || str.size() > 3) 
+            || ( stoi(str) > 255    || stoi(str) < 0 )          //知识点：stoi
+            || (str.size() > 1      && str[0] == '0')   );          //错误：这里 > 1写成了 ==1
     }
 };
 /*
 https://leetcode-cn.com/problems/restore-ip-addresses/solution/cdi-gui-hui-su-jian-zhi-by-codave/
 
-std::cout<< tail << "="<< segCnt << "=" << ip << "=" << "#" << std::endl;
+std::cout<< tail << "="<< partCnt << "=" << ip << "=" << "#" << std::endl;
 std::cout<< partLen << "="<< tail.substr(partLen) << "=" << ip + append << "=" << "##" << std::endl;
 
  */
@@ -68,7 +71,7 @@ public:
                         string s3 = s.substr(i+j+2, m+1);
                         string s4 = s.substr(i+j+m+3, n+1);
 
-                        if( checkOk(s1) && checkOk(s2) && checkOk(s3) && checkOk(s4) )
+                        if( notOK(s1) && notOK(s2) && notOK(s3) && notOK(s4) )
                             res.push_back( s1 + "." + s2 + "." + s3 + "." + s4);
                     }
                 }
@@ -78,7 +81,7 @@ public:
         return res;
     }
 
-    bool checkOk(string str)
+    bool notOK(string str)
     {
         return !(str.size() < 1 || str.size() > 3 
             || (stoi(str) > 255 || stoi(str) < 0 ) 

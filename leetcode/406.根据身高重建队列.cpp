@@ -8,7 +8,9 @@ public:
 
     vector<vector<int>> reconstructQueue(vector<vector<int>>& people) {
         vector<vector<int>> res;
-        if(people.empty() || people[0].empty()) return res;
+        
+        if(people.empty() || people[0].empty()) 
+            return res;
         
         sort(people.begin(), people.end(), comp );
 

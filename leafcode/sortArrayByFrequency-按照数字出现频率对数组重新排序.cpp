@@ -39,7 +39,7 @@ void sortArrayByFrequency(vector<int> & v)
         ++mp[v[i]];
     }
 
-    //这里是按照顺序来插入的，所以key相同的情况下，value是按照插入顺序来排序的
+    //这里是按照顺序来插入的，所以key相同的情况下，value是按照插入顺序来排序的，是稳定的（排序算法中的稳定性）
     multimap<int, int, greater<int> > mmp;
     for( map<int,int>::iterator it = mp.begin(); it != mp.end(); ++it)
     {
