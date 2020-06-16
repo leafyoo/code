@@ -10,7 +10,8 @@
 class Solution {
 public:
     ListNode* sortList(ListNode* head) {
-        if(!head || !head->next) return head;
+        if(!head || !head->next) 
+            return head;
 
         ListNode prehead(0);
         ListNode * p = &prehead, *q = head, *end = nullptr;

@@ -1,8 +1,10 @@
 // @lc code=start
 class Solution {
 public:
-    int coinChange(vector<int>& coins, int amount) {
-        if(coins.empty() || amount <= 0) return 0;              //非法值判断永不忘！！！不要管已知题干告诉的信息
+    int coinChange(vector<int>& coins, int amount) 
+    {
+        if(coins.empty() || amount <= 0) 
+            return 0;              //非法值判断永不忘！！！不要管已知题干告诉的信息
 
         vector<int> dp(amount+1, amount+1);                     //错误：这里用了dp(amount+1, INT_MAX); 导致下文溢出了
         sort(coins.begin(), coins.end(), less<int>() );
@@ -28,10 +30,14 @@ public:
 fish：
 【相似】 和 518题不太一样，内外层循环是反过来的。
 
+这个差异使得一个求解结果是排列数，一个求解结果是组合数。
+对于组合问题：我们不关心硬币使用的顺序，而是硬币有没有被用到。
+
 这里有讲解：
 https://leetcode-cn.com/problems/coin-change-2/solution/ling-qian-dui-huan-iihe-pa-lou-ti-wen-ti-dao-di-yo/
 
  */
+
 /*
  * @lc app=leetcode.cn id=322 lang=cpp
  *

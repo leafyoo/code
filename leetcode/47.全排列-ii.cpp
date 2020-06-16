@@ -1,6 +1,5 @@
 // @lc code=start
 
-
 class Solution_set {
 public:
     vector<vector<int>> res;
@@ -8,9 +7,12 @@ public:
     vector<bool> used;
 
     vector<vector<int>> permuteUnique(vector<int>& nums) {
-        if(nums.size() < 1) return {{}};
+        if(nums.size() < 1) 
+            return {{}};
+        
         used.resize(nums.size());
         DFS(nums);
+        
         return res;
     }
 
@@ -71,7 +73,8 @@ public:
         for( int i = 0; i < nums.size(); ++i)
         {
             /* 如果nums[i-1]或者nums[i]已经被使用，那说明是第一次，所以nums[i-1] == nums[i]可以相等 */
-            if(  used[i] || ( i > 0  && !used[i-1]  && !used[i] && nums[i-1] == nums[i] )  ) 
+            if(  used[i] 
+                || ( i > 0  && !used[i-1]  && !used[i] && nums[i-1] == nums[i] )  ) 
                 continue;      
 
             used[i] = true;

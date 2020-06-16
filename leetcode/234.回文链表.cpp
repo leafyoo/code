@@ -7,10 +7,12 @@
  *     ListNode(int x) : val(x), next(NULL) {}
  * };
  */
+
 class Solution {
 public:
     bool isPalindrome(ListNode* head) {
-        if(!head) return true;  //leetcode将 空两边也当做回文链表了，所以这里返回true
+        if(!head) 
+            return true;  //leetcode将 空两边也当做回文链表了，所以这里返回true
 
         ListNode *s = head, *f = head;
         while(f && f->next)
@@ -43,6 +45,14 @@ public:
     }
 };
 // @lc code=end
+
+/* 
+fish:
+如果明确说明不能改变链表，那就用栈。
+
+ */
+
+
 /*
  * @lc app=leetcode.cn id=234 lang=cpp
  *

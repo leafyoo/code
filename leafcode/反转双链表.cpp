@@ -19,6 +19,7 @@ DNode *reverseDoubleList(DNode *h)
 {
 	if(!h || !h->next)
 		return h;	
+		
 	DNode *pre = NULL, *next = NULL;
 	while(h)
 	{
@@ -28,6 +29,7 @@ DNode *reverseDoubleList(DNode *h)
 		pre = h;
 		h = next;
 	}
+
 	return pre;
 }
 void _test_reverseDoubleList()

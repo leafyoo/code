@@ -2,27 +2,28 @@
 class Solution {
 public:
     int maxProfit(vector<int>& prices, int fee) {
-        if(prices.empty()) return 0;
+        if(prices.empty()) 
+            return 0;
         
-        int dayCnt = prices.size(), statCnt = 2;   
+        int dn = prices.size(), statCnt = 2;   //dn：day count， 
         
         //这里要明白：dp代表的是 因为投资股票而引起的收益，所以并不是一个人的所有财富什么的！！
         //那这样的话，当然第一天的初始收益就很合理了
-        vector<vector< int> > dp(dayCnt, vector<int>(statCnt, 0) );
+        vector<vector< int> > dp(dn, vector<int>(statCnt, 0) );
         dp[0][0] = 0;
         dp[0][1] = -prices[0] - fee;        //第一天，就买入一笔股票，自己贴了很多钱进去，当然利润是负值
 
-        for( int day = 1; day < dayCnt; ++day)   
+        for( int d = 1; d < dn; ++d)   
         {
             //今天无股票
-            dp[day][0] = max( dp[day-1][0], dp[day-1][1] + prices[day] );      
+            dp[d][0] = max( dp[d-1][0], dp[d-1][1] + prices[d] );      
 
             //今天有股票
             //解释：-fee 相当于买入股票的价格升高了。在第一个式子里减也是一样的，相当于卖出股票的价格减小了。参见下面的另一个版本
-            dp[day][1] = max( dp[day-1][1], dp[day-1][0] - prices[day] - fee);  //为什么是求max？因为对比的是昨天就买划算 还是 等到今天再买划算
+            dp[d][1] = max( dp[d-1][1], dp[d-1][0] - prices[d] - fee);  //为什么是求max？因为对比的是昨天就买划算 还是 等到今天再买划算
         }
 
-        return dp[dayCnt-1][0];
+        return dp[dn-1][0];
     }
 };
 // @lc code=end
@@ -38,23 +39,23 @@ public:
     int maxProfit(vector<int>& prices, int fee) {
         if(prices.empty()) return 0;
         
-        int dayCnt = prices.size(), statCnt = 2;    //actCnt允许的最大交易次数，本题为2
+        int dn = prices.size(), statCnt = 2;    //actCnt允许的最大交易次数，本题为2
 
-        vector<vector< int> > dp(dayCnt, vector<int>(statCnt, 0) );
+        vector<vector< int> > dp(dn, vector<int>(statCnt, 0) );
         dp[0][0] = 0;
         dp[0][1] = -prices[0];
 
-        for( int day = 1; day < dayCnt; ++day)   
+        for( int d = 1; d < dn; ++d)   
         {
             //今天无股票
-            dp[day][0] = max( dp[day-1][0], dp[day-1][1] + prices[day] - fee);      
+            dp[d][0] = max( dp[d-1][0], dp[d-1][1] + prices[d] - fee);      
 
             //今天有股票
             //解释：-fee 相当于买入股票的价格升高了。在第一个式子里减也是一样的，相当于卖出股票的价格减小了。
-            dp[day][1] = max( dp[day-1][1], dp[day-1][0] - prices[day] );  
+            dp[d][1] = max( dp[d-1][1], dp[d-1][0] - prices[d] );  
         }
 
-        return dp[dayCnt-1][0];
+        return dp[dn-1][0];
     }
 };
  */

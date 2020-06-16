@@ -1,4 +1,3 @@
-
 // @lc code=start
 /**
  * Definition for a binary tree node.
@@ -11,12 +10,15 @@
  */
 class Solution {
 public:
-    int minDepth(TreeNode* root) {
-        if(!root) return 0;
+    int minDepth(TreeNode* root) 
+    {
+        if(!root) 
+            return 0;
 
         int deep = 1;
         queue<TreeNode*> q;
         q.push(root);
+        
         while( !q.empty() )
         {
             int cnt = q.size();
@@ -24,8 +26,10 @@ public:
             {
                 TreeNode* p = q.front();
                 q.pop();
+
                 if(!p->left && !p->right)
                     return deep;
+                
                 if(p->left)
                     q.push(p->left);
                 if(p->right)

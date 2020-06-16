@@ -6,14 +6,14 @@
 class Solution {
 public:
     int rand10() {
-        int num = 0;
+        int n = 0;
         
         do
         {
-            num = (rand7() - 1) * 7 + rand7();      //错误：若rand7() * rand7() 执行超时，且得到的不是连续的数字   //这里会得到 1～49 之间的数
-        }while (num > 40);      //因为40是10的倍数，所以最终概率相等
+            n = (rand7() - 1) * 7 + rand7();      //错误：若rand7() * rand7() 执行超时，且得到的不是连续的数字   //这里会得到 1～49 之间的数
+        }while (n > 40);      //因为40是10的倍数，所以最终概率相等
 
-        return 1 + (num - 1) % 10;
+        return 1 + (n - 1) % 10;
     }
 };
 // @lc code=end

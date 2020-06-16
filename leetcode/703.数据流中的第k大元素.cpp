@@ -4,20 +4,25 @@ public:
     int m_k;                         //技巧：注意类成员变量的区分，可以用m前缀
     multiset<int> ms;
 
-    KthLargest(int k, vector<int>& nums) {
+    KthLargest(int k, vector<int>& nums) 
+    {
         this->m_k = k;
         for( int i = 0; i < nums.size(); ++i)
         {
             ms.insert(nums[i]);
+            
             if(ms.size() > m_k)
                 ms.erase( ms.begin());      //注意：第k大，就是降序排列的第k个元素，要删除小的值
         }
     }
     
-    int add(int val) {
+    int add(int val) 
+    {
         ms.insert(val);
+        
         if(ms.size() > m_k)
             ms.erase( ms.begin());
+
         return *(ms.begin());           //错误：返回值：迭代器要解引用
     }
 };

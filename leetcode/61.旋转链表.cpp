@@ -10,11 +10,13 @@
 class Solution {
 public:
     ListNode* rotateRight(ListNode* head, int k) {
-        if(!head || !head->next || k == 0) return head;
+        if(!head || !head->next || k == 0) 
+            return head;
 
         int len = 1;
         ListNode *p = head;
-        for(; p->next ;p = p->next) ++len;
+        for(; p->next ;p = p->next) 
+            ++len;
 
         p->next = head; //连成环
         

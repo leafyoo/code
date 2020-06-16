@@ -6,7 +6,8 @@ public:
         return ( (a[0] == b[0] ) ? (a[1] < b[1]) : (a[0] > b[0]) );
     }
 
-    vector<vector<int>> reconstructQueue(vector<vector<int>>& people) {
+    vector<vector<int>> reconstructQueue(vector<vector<int>>& people) 
+    {
         vector<vector<int>> res;
         
         if(people.empty() || people[0].empty()) 

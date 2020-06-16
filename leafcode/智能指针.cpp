@@ -10,7 +10,6 @@
 #include <queue>
 #include <list>
 #include <stdexcept>
-#include "mylib.hpp"
 using namespace std;
 
 
@@ -30,10 +29,9 @@ class SmartPtr
 			ref_count = 1;
 		}
 
-		//还有很多
 	private:
-	int *ref;
-	int ref_count;
+		int *ref;
+		int ref_count;
 };
 
 

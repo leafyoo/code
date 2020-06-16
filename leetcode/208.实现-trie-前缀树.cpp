@@ -31,7 +31,8 @@ public:
     
     /** Returns if the word is in the trie. */
     bool search(string word) {
-        if(word.empty()) return true;
+        if(word.empty()) 
+            return true;
 
         Trie* p = this;                         // p 初始化为根结点指针
         int i = 0;
@@ -49,7 +50,8 @@ public:
     
     /** Returns if there is any word in the trie that starts with the given prefix. */
     bool startsWith(string prefix) {
-        if(prefix.empty()) return true;
+        if(prefix.empty()) 
+            return true;
 
         Trie* p = this;
         int i = 0;

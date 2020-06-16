@@ -10,8 +10,11 @@
  */
 class Solution {
 public:
-    TreeNode* invertTree(TreeNode* root) {
-        if(!root) return nullptr;
+    TreeNode* invertTree(TreeNode* root) 
+    {
+        if(!root) 
+            return nullptr;
+
         rev(root);
         return root;
     }
@@ -20,6 +23,7 @@ public:
     {
         if(!p)
             return;
+            
         swap( p->left , p->right );
         rev(p->left);
         rev(p->right);

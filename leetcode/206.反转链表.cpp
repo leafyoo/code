@@ -10,15 +10,18 @@
 
 class Solution {
 public:
-    ListNode* reverseList(ListNode* head) {
-        ListNode* pre = nullptr, * t = nullptr ;
+    ListNode* reverseList(ListNode* head) 
+    {
+        ListNode* pre = nullptr ;
+
         while( head )                   //这里的条件，最后再推导
         {
-            t = head->next;             //s型首尾相接赋值    
+            ListNode* t = head->next;             //s型首尾相接赋值    
             head->next = pre;           //注意：定义哑节点与否在这里不同，因为 pre指针没有next成员，所以不能指向别处
             pre = head;                 //pre , head,这几个指针在每一轮的循环里都要移动，当然要在内部发生赋值。
             head = t;
         }
+
         return pre;
     }
 };

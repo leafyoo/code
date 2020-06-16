@@ -12,7 +12,8 @@
 class Solution {
 public:
     ListNode *detectCycle(ListNode *head) {
-        if(!head || !head->next) return nullptr;  //一个节点成环也被这里考虑到了，因为head->next == head 而不是null
+        if(!head || !head->next) 
+            return nullptr;  //一个节点成环也被这里考虑到了，因为head->next == head 而不是null
 
         ListNode *s = head, *f = head;    //s: slow, f: fast
         while( f && f->next )

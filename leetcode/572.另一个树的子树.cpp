@@ -11,20 +11,26 @@
  */
 class Solution {
 public:
-    bool isSameTree(TreeNode* p, TreeNode* q) {
-        if(!p && !q) return true;
-        if(!p || !q) return false;
+    bool same(TreeNode* p, TreeNode* q) {
+        if(!p && !q) 
+            return true;
+        if(!p || !q) 
+            return false;
+
         return (p->val == q->val) && 
-            isSameTree(p->left, q->left) && isSameTree(p->right, q->right);
+            same(p->left, q->left) && same(p->right, q->right);
     }
 
     bool isSubtree(TreeNode* s, TreeNode* t) {
-        if(!s && !t) return true;
-        if(!s) return false;
+        if(!s && !t) 
+            return true;
+        if(!s) 
+            return false;
         
          //函数开始到这里为止，都是判断当前树是否满足条件，下面的代码就是递归、丢给自己再处理了
          //所以这里是isSameTree，下面是isSubtree
-        if( isSameTree(s, t) ) return true;        //这里只能是same才行，看题目里的示例2
+        if( same(s, t) ) 
+            return true;        //这里只能是same才行，看题目里的示例2
 
         return ( isSubtree(s->left, t) || isSubtree(s->right, t)) ;         //不一定要是same tree，是sub tree就可以了
     }

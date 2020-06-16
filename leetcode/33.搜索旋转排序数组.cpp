@@ -8,7 +8,8 @@ public:
         while( b <= e )
         {
             int m = (b+e)/2;
-            if(target == nums[m])return m;
+            if(target == nums[m])
+                return m;
 
             if ( nums[b] <= nums[m] )                                //错误：这里要有 = ，因为可能是  3333012这种，  口诀：【能等则等】
             {//左半边有序

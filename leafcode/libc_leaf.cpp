@@ -311,6 +311,7 @@ char *strncat(char *dst, const char *src, size_t n)
 {  
   	if(!dst || !src || !n)
 		return NULL;
+
     char *d = dst;  
     while(*d)  
         ++d;  
@@ -344,6 +345,7 @@ char *strncpy(char *dst, const char *src, size_t n)
 {
 	if(!dst || !src || !n)
 		return NULL;
+
 	char *d = dst;
 	while(n)
 	{			
@@ -437,12 +439,11 @@ char *strnchr(const char *s, int c, size_t n)
 		++s;
 		--n;
 	}
+
 	return NULL;
 }
 
 //判断字符串src是否是dst的子串。
-
-
 
 char *strstr(const char *dst, const char *src)
 {
@@ -768,7 +769,6 @@ void remove(char *s, char x)
 
     return;
 }
-
 
 
 #define __NO__SEE__

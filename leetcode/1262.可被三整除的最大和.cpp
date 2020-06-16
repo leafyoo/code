@@ -2,7 +2,8 @@
 class Solution {
 public:
     int maxSumDivThree(vector<int>& nums) {
-        if(nums.empty()) return 0;
+        if(nums.empty()) 
+            return 0;
 
         int n = nums.size();
         vector<vector<int> > dp(n + 1, vector<int>(3, 0));

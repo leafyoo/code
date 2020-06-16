@@ -2,7 +2,8 @@
 class Solution {
 public:
     vector<int> singleNumber(vector<int>& nums) {
-        if(nums.empty()) return {};
+        if(nums.empty()) 
+            return {};
         unordered_set<int> st;
         
         for( int i = 0; i < nums.size(); ++i)

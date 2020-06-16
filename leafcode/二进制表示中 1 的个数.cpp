@@ -24,12 +24,14 @@ int bit_count(int n)
 {
 	unsigned int flag = 1;
 	int count = 0;
+
 	while(flag)
 	{
 		if(n & flag)
 			++count;
 		flag <<= 1;
 	}
+
 	return count;
 }
 void _test_bit_count()
@@ -40,6 +42,5 @@ void _test_bit_count()
 
 int main()
 {
-
 	return 0;
 }

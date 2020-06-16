@@ -3,33 +3,36 @@ class Solution {
 public:
     vector<string> res;             //错误：restoreIpAddresses函数内定义了同样一个 vector<string> res
 
-    vector<string> restoreIpAddresses(string s) {
+    vector<string> restoreIpAddresses(string s) 
+    {
         int sLen = s.size();
-        if(sLen < 4 || sLen > 12) return res;
+        if(sLen < 4 || sLen > 12) 
+            return res;
 
         DFS(s, 0, "");
 
         return res;
     }
 
-    void DFS(string tail, int partCnt, string ip)
+    void DFS(string tail, int seq, string ip)
     {
-        if(tail.empty() || partCnt == 4)
+        if(tail.empty() || seq == 4)
         {
-            if( tail.empty() && partCnt == 4 ) res.push_back(ip);
+            if( tail.empty() && seq == 4 ) 
+                res.push_back(ip);
             return;
         }
 
-        for( int partLen = 1; partLen <= 3; ++partLen)      //每个分节的长度
+        for( int l = 1; l <= 3; ++l)      //每个分节的长度
         {
-            string part = tail.substr(0, partLen);
+            string part = tail.substr(0, l);
 
-            if( tail.size() < partLen || notOK( part ) ) 
+            if( tail.size() < l || notOK( part ) ) 
                 break;            //剪枝
 
-            string append = (partCnt == 3) ? part:  (part + ".");
+            string apd = (seq == 3) ? part:  (part + ".");
             
-            DFS(tail.substr(partLen), partCnt+1, ip + append);
+            DFS(tail.substr(l), seq+1, ip + apd);
         }
     }
 
@@ -43,8 +46,8 @@ public:
 /*
 https://leetcode-cn.com/problems/restore-ip-addresses/solution/cdi-gui-hui-su-jian-zhi-by-codave/
 
-std::cout<< tail << "="<< partCnt << "=" << ip << "=" << "#" << std::endl;
-std::cout<< partLen << "="<< tail.substr(partLen) << "=" << ip + append << "=" << "##" << std::endl;
+std::cout<< tail << "="<< seq << "=" << ip << "=" << "#" << std::endl;
+std::cout<< l << "="<< tail.substr(l) << "=" << ip + apd << "=" << "##" << std::endl;
 
  */
 

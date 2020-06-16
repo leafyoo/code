@@ -3,7 +3,8 @@ class Solution {
 public:
     int findLength(vector<int>& A, vector<int>& B) {
         int na = A.size(), nb = B.size();
-        if(!na || !nb) return 0;
+        if(!na || !nb) 
+            return 0;
 
         int res = 0;
 
@@ -17,6 +18,7 @@ public:
                 if(A[i-1] == B[j-1])        //当前值相等，数组的下标比dp下标小1
                 {
                     dp[i][j] = dp[i-1][j-1] + 1;    //dp[i-1][j-1] ： 左上方那个点的匹配情况
+
                     res = max(res, dp[i][j]);
                 }
             }

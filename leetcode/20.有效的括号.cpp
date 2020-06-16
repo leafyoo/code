@@ -2,7 +2,8 @@
 class Solution {
 public:
     bool isValid(string s) {
-        if(s.empty()) return true;
+        if(s.empty()) 
+            return true;
         
         stack<char> st;
         unordered_map<char, char> mp{ 

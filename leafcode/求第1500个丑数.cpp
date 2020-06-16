@@ -13,8 +13,6 @@
 #include "mylib.hpp"
 using namespace std;
 
-
-
 //jor p199，丑数，即:只含因子2、3、5的数，求第1500个丑数
 bool isUgly(int n)
 {

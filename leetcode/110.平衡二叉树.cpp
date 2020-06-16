@@ -13,7 +13,8 @@
 class Solution {
 public:
     bool isBalanced(TreeNode* root) {
-        if(!root) return true;
+        if(!root) 
+            return true;
 
         int left = deep(root->left);
         int right = deep(root->right);  
@@ -26,7 +27,8 @@ public:
 
     int deep(TreeNode* root)
     {
-        if(!root) return 0;
+        if(!root) 
+            return 0;
         return 1 + max(deep(root->left), deep(root->right));
     }
 };

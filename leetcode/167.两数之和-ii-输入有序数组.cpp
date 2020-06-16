@@ -1,8 +1,9 @@
-
 // @lc code=start
-class Solution {
+class Solution 
+{
 public:
-    vector<int> twoSum(vector<int>& numbers, int target) {
+    vector<int> twoSum(vector<int>& numbers, int target) 
+    {
         int b = 0, e = numbers.size()-1;
 
         while( b < e )
@@ -14,7 +15,6 @@ public:
             else
                 --e;
         }
-
         return{-1, -1};
     }
 };

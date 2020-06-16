@@ -4,9 +4,9 @@
 class Solution {
 public:
     bool searchMatrix(vector<vector<int>>& matrix, int target) {
-        if(matrix.empty() || matrix[0].empty()) return false;
+        if(matrix.empty() || matrix[0].empty()) 
+            return false;
         int nr = matrix.size(), nc = matrix[0].size();
-
         int i = 0, j = nc - 1;          //最右上角是起点
 
         while( i < nr && j >= 0 )

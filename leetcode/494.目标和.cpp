@@ -1,8 +1,10 @@
 // @lc code=start
 class Solution {
 public:
-    int findTargetSumWays(vector<int>& nums, int S) {
-        if(S < -1000 || S > 1000 || nums.empty()) return 0;
+    int findTargetSumWays(vector<int>& nums, int S) 
+    {
+        if(S < -1000 || S > 1000 || nums.empty()) 
+            return 0;
 
         int n = nums.size();
         

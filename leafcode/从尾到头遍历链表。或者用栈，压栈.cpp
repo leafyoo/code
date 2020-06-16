@@ -23,6 +23,7 @@ void printFromEnd_digui(Node *p)
 {
 	if(!p)
 		return;
+		
 	printFromEnd_digui(p->next);
 	cout << p->val << endl;
 }

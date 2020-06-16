@@ -1,37 +1,37 @@
 // @lc code=start
 class Solution {
 public:
-    int findDuplicate(vector<int> &nums) {
+    int findDuplicate(vector<int> &nums) 
+    {
         int n = nums.size();
         
-        int begVal = 1, endVal = n;           //错误：begVal = 1  //注意：这里begVal 和 endVal是value，不是index
-        while( begVal < endVal )            /* 时间复杂度为 O(logN)， */
+        int b = 1, e = n;           //错误：begVal = 1  //注意：这里begVal 和 endVal是value，不是index
+        while( b < e )            /* 时间复杂度为 O(logN)， */
         {
-            int cnt = 0, midVal = (begVal+endVal)/2;
+            int cnt = 0, m = (b+e)/2;
             for( int i = 0; i < nums.size(); ++i)     /* 时间复杂度为 O(N)， */  //每次都是遍历整个数组, 统计小半区里的数字的个数
             {
-                if(nums[i] <= midVal)        //错误：这里是 <=
+                if(nums[i] <= m)        //错误：这里是 <=
                     ++cnt;
             }
-            if(cnt > midVal)
-                endVal = midVal;              // 重复元素位于区间 [left, mid]
+            
+            if(cnt > m)
+                e = m;              // 重复元素位于区间 [left, mid]
             else
-                begVal = midVal + 1;          // [mid + 1, right]
+                b = m + 1;          // [mid + 1, right]
         }
 
-        return begVal;
+        return b;
     }
 };
 
 // @lc code=end
 
 /* 
-
 时间复杂度 O(NlogN) ：
 二分法的时间复杂度为 O(logN)，
 在二分法的内部，执行了一次 for 循环，时间复杂度为 O(N)，
 故时间复杂度为 O(NlogN)。
-
 
 
 //fish：这个题不同于传统的二分法，传统的二分法处理index，而这里处理的是value的范围

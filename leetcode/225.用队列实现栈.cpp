@@ -11,7 +11,8 @@ public:
     }
     
     /** Removes the element on top of the stack and returns that element. */
-    int pop() {
+    int pop() 
+    {
         for( int i = q.size(); i > 1 ; --i)         //思路：每次pop时，把所有的头部的值pop一遍，再塞到尾部，相当于一次大回旋
         {
             int t = q.front();

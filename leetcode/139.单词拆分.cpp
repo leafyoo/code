@@ -3,12 +3,13 @@
 class Solution {
 public:
     bool wordBreak(string s, vector<string>& wordDict) {
-        if(s.empty()) return true;
+        if(s.empty()) 
+            return true;
 
         int n = s.size();
         vector<bool> dp(n, false);      //dp[i] 表示 下标区间为 [0 , i]的部分都包含在dict里 
-
         
+        //0...i 这一段构成整个字符串
         for( int i = 0; i < n; ++i)     //1、从头部开始，处理不能被细分的情况，也就是不用 j 游标来循环判断的
         {
             if(wordDict.end() != find(wordDict.begin(), wordDict.end(), s.substr(0, i+1)))  //错误：不可以用 s[0]，是char

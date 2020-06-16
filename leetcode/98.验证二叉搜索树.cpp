@@ -14,21 +14,25 @@
 class Solution {
 public:
     bool isValidBST(TreeNode* root) {
-        if(!root) return true;
+        if(!root) 
+            return true;
 
         vector<int> res;
         traMidFirst( root, res );
+
         for( int i = 1; i < res.size(); ++i)
         {
             if(res[i] <= res[i-1])
                 return false;
         }
+        
         return true;
     }
 
     void traMidFirst(TreeNode * root, vector<int> &res )            
     {
-        if(!root) return;
+        if(!root) 
+            return;
         
         stack<TreeNode * > st;
         TreeNode * p = root;
@@ -58,7 +62,9 @@ public:
     }
     bool isBST(TreeNode * p, long  imin, long  imax)            //错误：这里应为 long
     {
-        if(!p) return true;                                     //错误：拼写错 为ture
+        if(!p) 
+            return true;                                     //错误：拼写错 为ture
+
         if(p->val <= imin || p->val >= imax)                    //step 1： 当前节点满足bst
             return false;
 

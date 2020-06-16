@@ -4,6 +4,7 @@ public:
     string reverseWords(string s) {
         int n = s.size();
         int b = 0; 
+        
         while(b < n)                    //注意：技巧：避免用for循环，因为总是处理不好自增，导致多增，少增！！！
         {   
             int e = b;

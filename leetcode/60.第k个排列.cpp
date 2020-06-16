@@ -1,10 +1,57 @@
 // @lc code=start
 class Solution {
+private:
+    vector<int> hash;
+    vector<int> factorial;
+    bool flag = true;
+    void dfs(int cur, int n, int &k, string &ret, int &cnt, string path){
+        if(cur == n){
+            ret = path;
+            flag = false;
+            return;
+        }
+        int temp = factorial[n-cur-1];
+        for(int i=0; i<n; i++){
+            if(hash[i] && flag){
+                if(temp < k ){
+                    k = k - temp;
+                    continue;
+                }
+                path.push_back(i+1+'0');
+                hash[i] = 0;
+                dfs(cur+1,n,k,ret,cnt,path);
+                hash[i] = 1;
+                path.pop_back();
+            }
+        }
+    }
+
 public:
     string getPermutation(int n, int k) {
-        
+        //calculate the factorial
+        if(n == 1) return "1";
+        factorial.resize(n);
+        factorial[0] = 1;
+        factorial[1] = 1;
+        if(n > 2){
+            for(int i=2; i<n; i++){
+                factorial[i] = i * factorial[i-1];
+            }
+        }
+        string ret;
+        string path;
+        hash.resize(n,1);
+        int cnt = 0;
+        dfs(0,n,k,ret,cnt,path);
+        return ret;
     }
 };
+
+/* 
+作者：edward_wang
+链接：https://leetcode-cn.com/problems/permutation-sequence/solution/jian-ji-cppdfsjian-zhi-by-edward_wang/
+来源：力扣（LeetCode）
+著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。 */
 // @lc code=end
 
 /*

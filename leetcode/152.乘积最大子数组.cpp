@@ -2,26 +2,21 @@
 class Solution {
 public:
     int maxProduct(vector<int>& nums) {
-        int n = nums.size();
-        if(n < 1) return 0;
-        if(n == 1) return nums[0];
+        if(nums.empty()) 
+            return 0;
 
-        int imax = 1, imin = 1, res = nums[0];              //错误：这里定义为long long，导致和max(int, int)函数不匹配了
-        for( int i = 0; i < n; ++i)
+        int imax = nums[0] , imin = nums[0], res = nums[0];
+        
+        //错误：这里不能从0开始，虽然内部不会越界，但是存在重复计算
+        for( int i = 1; i < nums.size(); ++i)                       
         {
-            if(nums[i] > 0)
-            {
-                imax = max(imax*nums[i], nums[i]);          //因为是连续子数组，所以，这里是: , nums[i]);
-                imin = min(imin*nums[i], nums[i]);
-            }
-            else
-            {
-                int imaxOld = imax;                         //错误：这里要备份上一次的imax，避免被覆盖
-                imax = max(imin*nums[i], nums[i]);
-                imin = min(imaxOld*nums[i], nums[i]);
-            }
+            //错误：这里没有用 imaxLast、iminLast，则会导致计算imin时，imax已近被改变了。
+            int imaxLast = imax, iminLast = imin;                   
 
-            res = max(res, imax);                           //注意imax不一定是全局的max
+            imax = max(nums[i], max(iminLast*nums[i], imaxLast*nums[i]));
+            imin = min(nums[i], min(iminLast*nums[i], imaxLast*nums[i]));
+
+            res = max(imax, res);
         }
 
         return res;

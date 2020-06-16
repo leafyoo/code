@@ -3,7 +3,8 @@ class Solution {
 public:
     vector<int> spiralOrder(vector<vector<int>>& matrix) {
         vector<int> res;
-        if( matrix.empty() ) return res;
+        if( matrix.empty() ) 
+            return res;
 
         int ib = 0, jb = 0;
         int ie= matrix.size() - 1, je = matrix[0].size() - 1 ;

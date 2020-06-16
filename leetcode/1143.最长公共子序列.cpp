@@ -4,9 +4,11 @@ public:
     int longestCommonSubsequence(string text1, string text2) {
         int n1 = text1.size(), n2 = text2.size();
 
-        if(!n1 || !n2) return 0;
+        if(!n1 || !n2) 
+            return 0;
 
         vector<vector<int> > dp(n1+1, vector<int>(n2+1, 0));        //dp[i][j] : text1的区间[0, i] 与 text2的区间[0, j] 的最长公共子序列
+        
         for( int i = 1; i <= n1; ++i)
         {
             for( int j = 1; j <= n2; ++j)

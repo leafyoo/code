@@ -1,7 +1,8 @@
 // @lc code=start
 class Solution {
 public:
-    vector<int> dailyTemperatures(vector<int>& T) {
+    vector<int> dailyTemperatures(vector<int>& T) 
+    {
         int n = T.size();
 
         vector<int> res(n);

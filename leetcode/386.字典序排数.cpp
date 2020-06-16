@@ -3,23 +3,23 @@ class Solution {
 public:
     vector<int> lexicalOrder(int n) {
         vector<int> res(n);
-        stack<int> stk;
+        stack<int> st;
 
         for( int i = min(9, n); i >= 1 ; --i)           //注意：降序压栈，才能保证 1 是在栈顶
-            stk.push(i);
+            st.push(i);
         
         int idx = 0;
-        while( !stk.empty() )                    //对这棵10叉字典树，进行前序遍历
+        while( !st.empty() )                    //对这棵10叉字典树，进行前序遍历
         {
-            int cur = stk.top();
-            stk.pop();
+            int cur = st.top();
+            st.pop();
             res[ idx++ ] = cur;
 
             cur *= 10;                          //根节点值*10就是下一层 子节点的起始值。
             for( int i = 9; i >=0; --i)         //降序压栈，出栈才是升序
             {
                 if(cur + i <= n)
-                    stk.push(cur + i);
+                    st.push(cur + i);
             }
         }
 

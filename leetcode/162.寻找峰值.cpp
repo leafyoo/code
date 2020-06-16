@@ -1,9 +1,11 @@
 // @lc code=start
 class Solution {
 public:
-    int findPeakElement(vector<int>& nums) {
+    int findPeakElement(vector<int>& nums) 
+    {
         int n = nums.size();
         int b = 0, e = n - 1;
+
         while( b < e )
         {
             int m = (b+e)/2;

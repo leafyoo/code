@@ -9,12 +9,16 @@ public:
         {
             vector<int> v;
 
-            if(i >= 0) v.push_back( 1 );
+            if(i >= 0) 
+                v.push_back( 1 );
+            
             for( int j = 1; j < i; ++j)
             {
                 v.push_back( last[j - 1] + last[j] );
             }
-            if(i >= 1) v.push_back( 1 );
+
+            if(i >= 1) 
+                v.push_back( 1 );
 
             last = v;
             res.push_back( v );

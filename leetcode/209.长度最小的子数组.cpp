@@ -2,7 +2,8 @@
 class Solution {
 public:
     int minSubArrayLen(int s, vector<int>& nums) {
-        if(nums.size() < 1) return 0;                   //错误：这里没判空，就导致提交未通过。
+        if(nums.size() < 1) 
+            return 0;                   //错误：这里没判空，就导致提交未通过。
 
         int imin = INT_MAX;
         int b = 0, e = 0, sum = nums[0];

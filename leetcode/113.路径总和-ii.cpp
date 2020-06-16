@@ -13,41 +13,43 @@ public:
     vector<vector<int>> pathSum(TreeNode* root, int sum) {
         vector<vector<int>> res;
 
-        if(!root) return res;
+        if(!root) 
+            return res;
 
-        queue<TreeNode*> qnode;
-        queue<int> qsum;
-        qnode.push( root);
-        qsum.push( root->val);
+        queue<TreeNode*> qn;
+        queue<int> qs;
+        qn.push( root);
+        qs.push( root->val);
 
         map<TreeNode*, TreeNode*> mp;
         mp[root] = nullptr;
         set<TreeNode*> st;
 
-        while( !qnode.empty() )
+        while( !qn.empty() )
         {
-            int cnt = qnode.size();
+            int cnt = qn.size();
             for( int i = 0; i < cnt; ++i)
             {
-                TreeNode * p = qnode.front();
-                qnode.pop();
-                int isum = qsum.front();
-                qsum.pop();
+                TreeNode * p = qn.front();
+                qn.pop();
+                int s = qs.front();
+                qs.pop();
 
-                if(!p->left && !p->right && isum == sum)    //错误1：不可以( isum > sum ) continue;，节点值可能为负；错误2：漏掉了 !p->left && !p->right
+                //错误1：不可以( s > sum ) continue;，节点值可能为负；错误2：漏掉了 !p->left && !p->right
+                if(!p->left && !p->right && s == sum)    
                     st.insert( p );         //把合适的叶子节点地址存入set
                 else
                 {
                     if(p->left)
                     {
-                        qnode.push(p->left);   
-                        qsum.push( p->left->val + isum);
+                        qn.push(p->left);   
+                        qs.push( p->left->val + s);
                         mp[ p->left ] = p;
                     }
                     if(p->right)
                     {
-                        qnode.push(p->right);   
-                        qsum.push( p->right->val + isum);
+                        qn.push(p->right);   
+                        qs.push( p->right->val + s);
                         mp[ p->right ] = p;
                     }
                 }
@@ -63,13 +65,11 @@ public:
             reverse(v.begin(), v.end());
             res.push_back(v);
         }
+
         return res;
     }
-
 };
 // @lc code=end
-
-
 
 
 /*

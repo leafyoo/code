@@ -11,18 +11,20 @@
 class Solution {
 public:
     void flatten(TreeNode* root) {
-        if(!root) return;
+        if(!root) 
+            return;
         TreeNode* p = root;
+
         while( p )
         {
             if( p->left )
             {
                 //找到左子树的最右节点
-                TreeNode* leftR = p->left;
-                while( leftR->right )
-                    leftR = leftR->right;
+                TreeNode* lr = p->left;
+                while( lr->right )
+                    lr = lr->right;
                 
-                leftR->right = p->right;
+                lr->right = p->right;
                 p->right = p->left;
                 p->left = nullptr;              //left要置null，不然不能通过
             }
@@ -51,11 +53,11 @@ public:
         TreeNode* p = root;
         if( p->left )
         {
-            TreeNode* leftR = p->left;
-            while( leftR->right )
-                leftR = leftR->right;
+            TreeNode* lr = p->left;
+            while( lr->right )
+                lr = lr->right;
             
-            leftR->right = p->right;
+            lr->right = p->right;
             p->right = p->left;
             p->left = nullptr;              //left要置null，不然不能通过
         }

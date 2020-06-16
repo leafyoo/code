@@ -11,7 +11,9 @@
 class Solution {
 public:
     int widthOfBinaryTree(TreeNode* root) {
-        if(!root) return 0;
+        if(!root) 
+            return 0;
+            
         int res = 1;
         
         queue< pair<TreeNode *, unsigned long long> > q;        //错误：这里是int 或者 long long 都会溢出

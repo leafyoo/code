@@ -1,23 +1,27 @@
 // @lc code=start
 class Solution {
 public:
-    int minimumTotal(vector<vector<int>>& triangle) {
-        if(triangle.empty() || triangle[0].empty()) return 0;
+    int minimumTotal(vector<vector<int>>& triangle) 
+    {
+        if(triangle.empty() || triangle[0].empty()) 
+            return 0;
 
-        int row = triangle.size();
-        vector<vector<int> > dp(row, vector<int>(row, 0)); //错误：这里用了dp(row, vector<int>(col)); 其中col = triangle[0].size();，每一行大小是不同的！
+        int r = triangle.size();
+
+        //错误：这里用了dp(r, vector<int>(col)); 其中col = triangle[0].size();，每一行大小是不同的！
+        vector<vector<int> > dp(r, vector<int>(r, 0)); 
 
         dp[0][0] = triangle[0][0];
-        for( int i = 1; i < row; ++i)
+        for( int i = 1; i < r; ++i)
         {
             dp[i][0] = dp[i-1][0] + triangle[i][0];
         }
-        for( int i = 1; i < row; ++i)
+        for( int i = 1; i < r; ++i)
         {
             dp[i][i] = dp[i-1][i-1] + triangle[i][i];
         }
 
-        for( int i = 1; i < row; ++i)
+        for( int i = 1; i < r; ++i)
         {
             for( int j = 1; j < i; ++j)
             {
@@ -25,7 +29,7 @@ public:
             }
         }
 
-        return *min_element(dp[row - 1].begin(), dp[row - 1].end());
+        return *min_element(dp[r - 1].begin(), dp[r - 1].end());
     }
 };
 // @lc code=end

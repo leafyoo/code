@@ -14,10 +14,10 @@ public:
         if(n < 1) 
             return vector<TreeNode*> ();
 
-        return handler(1, n);
+        return dfs(1, n);
     }
 
-    vector<TreeNode *> handler(int beg, int end)
+    vector<TreeNode *> dfs(int beg, int end)
     {
         vector<TreeNode *> res;
         if(beg > end)
@@ -28,8 +28,8 @@ public:
         
         for( int root = beg; root <= end; ++root)       //【1】以区间[beg, end]之间的每一个节点为root，以lRootVec左子树集合、rRootVec右子树集合枚举所有组合方案
         {
-            vector<TreeNode *> lRootVec = handler(beg, root-1);     //【2】以区间[beg, root-1]内的所有节点构造BST，可以构造出来的所有的树的root节点的集合
-            vector<TreeNode *> rRootVec = handler(root+1, end);
+            vector<TreeNode *> lRootVec = dfs(beg, root-1);     //【2】以区间[beg, root-1]内的所有节点构造BST，可以构造出来的所有的树的root节点的集合
+            vector<TreeNode *> rRootVec = dfs(root+1, end);
 
             //【3】分别从lRootVec、rRootVec两个集合中拎出来一个分别挂在root的左右两边，一共有(lRootVec.size()  *  rRootVec.size())种组合
             for( vector<TreeNode *>::iterator lit = lRootVec.begin(); lit != lRootVec.end(); ++lit)

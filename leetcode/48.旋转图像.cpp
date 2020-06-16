@@ -1,9 +1,9 @@
-
 // @lc code=start
 class Solution {
 public:
     void rotate(vector<vector<int>>& matrix) {
-        if(matrix.size() < 2) return ;
+        if(matrix.size() < 2) 
+            return ;
 
         int row = matrix.size(), col = matrix[0].size();
         for( int i = 0; i < row/2; ++i)
@@ -26,6 +26,9 @@ public:
 // @lc code=end
 /*
 fish:
+如果要逆时针旋转90度 也是一个道理，无非是先转置或者后转置的区别。
+
+
 思路：先按行镜像，之后按主对角线镜像
 
 1,2,3    7,8,9    7,4,1

@@ -2,7 +2,8 @@
 class Solution {
 public:
     int maximalSquare(vector<vector<char>>& matrix) {
-        if(matrix.empty() || matrix[0].empty()) return 0;
+        if(matrix.empty() || matrix[0].empty()) 
+            return 0;
 
         int row = matrix.size(), col = matrix[0].size();
         vector<vector<int> > dp(row+1, vector<int>(col+1, 0));     //这里多申请 +1的好处：下文用到 i-1，不用对矩形边特殊处理

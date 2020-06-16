@@ -2,10 +2,11 @@
 class Solution {
 public:
     bool isSubsequence(string s, string t) {
-        if(s.empty()) return true;
+        if(s.empty()) 
+            return true;
 
         int ti = 0, si = 0;
-        for( ; ti < t.size() && si < s.size(); )           //注意：这里用ti、si ： t index， s index，直观，不用大脑转弯
+        while( ti < t.size() && si < s.size() )           //注意：这里用ti、si ： t index， s index，直观，不用大脑转弯
         {
             if(s[si] == t[ti])
             {

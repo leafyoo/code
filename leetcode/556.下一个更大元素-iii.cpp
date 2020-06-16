@@ -2,36 +2,38 @@
 class Solution {
 public:
     int nextGreaterElement(int n) {
-        if(n < 10 || n < INT_MIN || n > INT_MAX) return -1;
+        if(n < 10 || n < INT_MIN || n > INT_MAX) 
+            return -1;
         
         //转换int为字符串数组
-        vector<int> vec;
+        vector<int> v;
         for( int i = n; i > 0; i /= 10)
-            vec.push_back( i % 10 );
-        reverse(vec.begin(), vec.end());
-        
+            v.push_back( i % 10 );
+        reverse(v.begin(), v.end());
 
         //从后向前，找降序转折点
-        int small = vec.size() - 2;
-        while( small >= 0 && vec[small] >= vec[small+1])
-            --small; 
-        if(small < 0) return -1;
+        int sm = v.size() - 2;
+        while( sm >= 0 && v[sm] >= v[sm+1])
+            --sm; 
+        if(sm < 0) 
+            return -1;
 
         //从后向前，找刚好大于small一点点的值，然后交换
-        int big = vec.size() - 1;
-        while(big >= 0 && vec[big] <= vec[small] )
+        int big = v.size() - 1;
+        while(big >= 0 && v[big] <= v[sm] )
             --big;
-        swap(vec[small], vec[big]);
+        swap(v[sm], v[big]);
         
         //反转后半部分的降序区间
-        reverse(vec.begin() + small+1, vec.end());
+        reverse(v.begin() + sm+1, v.end());
 
         //整理成数字
         long long res = 0;
-        for( int i = 0; i < vec.size(); ++i)
-            res = res * 10 + vec[i];
+        for( int i = 0; i < v.size(); ++i)
+            res = res * 10 + v[i];
 
-        if(res < INT_MIN || res > INT_MAX) return -1;   //错误：没有判断极值、溢出
+        if(res < INT_MIN || res > INT_MAX) 
+            return -1;   //错误：没有判断极值、溢出
         
         return (int)res;
     }

@@ -2,7 +2,8 @@
 class Solution {
 public:
     int maxCoins(vector<int>& nums) {
-        if(nums.empty()) return 0;
+        if(nums.empty()) 
+            return 0;
 
         int nold= nums.size();
         nums.insert(nums.begin(), 1);           //插入辅助元素
@@ -13,14 +14,14 @@ public:
         vector<vector<int> > dp (nnew, vector<int>(nnew));            //下文主循环 不涉及 i-1，故这里无需申请+1的空间
         for( int len = 1; len <= nold; ++len )
         {
-            for( int beg = 1; beg + len - 1 <= nold ; ++beg )
+            for( int b = 1; b + len - 1 <= nold ; ++b )
             {
-                int end = beg + len - 1;
-                for( int mid = beg; mid <= end; ++mid )
+                int e = b + len - 1;
+                for( int m = b; m <= e; ++m )
                 {
-                    dp[beg][end] = max(dp[beg][end],
-                        nums[beg-1] * nums[mid] * nums[end+1] 
-                        + dp[beg][mid-1] + dp[mid+1][end] );  //最后一个扎破 mid，其与beg、end相邻
+                    dp[b][e] = max(dp[b][e],
+                        nums[b-1] * nums[m] * nums[e+1] 
+                        + dp[b][m-1] + dp[m+1][e] );  //最后一个扎破 mid，其与beg、end相邻
                 }
             }
         }
@@ -28,7 +29,7 @@ public:
         return dp[1][nold];
     }
 };
-// @lc code=end
+// @lc code=e
 /* fish
 题解：
 https://leetcode-cn.com/problems/burst-balloons/solution/dong-tai-gui-hua-by-ivan_allen-2/

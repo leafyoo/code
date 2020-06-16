@@ -11,30 +11,32 @@
 class Solution {
 public:
     TreeNode* buildTree(vector<int>& preorder, vector<int>& inorder) {
-        if(preorder.empty() || inorder.empty()) return nullptr;
+        if(preorder.empty() || inorder.empty()) 
+            return nullptr;
 
         return create(preorder, inorder, 0, preorder.size()-1,   0, inorder.size()-1 );
     }
 
-    TreeNode *create(vector<int>& pr, vector<int>& in, int pbeg, int pend, int ibeg, int iend )
+    TreeNode *create(vector<int>& pr, vector<int>& in, int pb, int pe, int ib, int ie )
     {
-        if(pbeg > pend || ibeg > iend) return nullptr;
+        if(pb > pe || ib > ie) 
+            return nullptr;
 
-        TreeNode *root = new TreeNode( pr[ pbeg] );
+        TreeNode *root = new TreeNode( pr[ pb] );
         
-        int iNextRoot = ibeg;
-        for( ; iNextRoot <= iend; ++iNextRoot)
+        int iRoot = ib;
+        for( ; iRoot <= ie; ++iRoot)
         {
-            if( pr[pbeg] == in[ iNextRoot ] )
+            if( pr[pb] == in[ iRoot ] )
                 break;
         }
-        int leftNodeNum = iNextRoot - ibeg ;        //因为要除去iNextRoot之外，所以不用+1
-        int rightNodeNum = iend - iNextRoot;
+        int lCnt = iRoot - ib ;        //因为要除去iNextRoot之外，所以不用+1
+        int rCnt = ie - iRoot;
 
         //用三个点来demo就好了，前序是：根 左 右，那就是三部分，根只占一个节点
         //第一个元素是root，所以pbeg+1
-        root->left = create(pr, in,  pbeg+1,                    pbeg + leftNodeNum,     ibeg,        iNextRoot-1);
-        root->right = create(pr, in, (pend - rightNodeNum) +1,  pend,                   iNextRoot+1, iend);         
+        root->left = create(pr, in,  pb+1, pb + lCnt, ib, iRoot-1);
+        root->right = create(pr, in, (pe - rCnt) +1, pe, iRoot+1, ie);         
 
         return root;
     }

@@ -9,6 +9,7 @@ public:
         stack<string> st;
         vector<string> vec;
         splitPath( path, vec);
+        
         for( vector<string>::iterator it = vec.begin(); it != vec.end(); ++it)
         {
             string s = *it;
@@ -33,12 +34,15 @@ public:
     void splitPath(string & path, vector<string> &vec)      
     {
         int n = path.size();
-        for(int i = 1; i < n; )                     //错误：这里++i 导致逻辑混乱，还是尽量自己控制
+        for(int b = 1; b < n; )                     //错误：这里++b 导致逻辑混乱，还是尽量自己控制
         {
-            int end = i;                                    //解释：i指向 非'/'字符
-            while(end < n && path[end] != '/') ++ end;      //解释：这里走完之后end指向 '/'
-            vec.push_back(path.substr(i, end-i));
-            i = end+1;                                      //解释：end指向"/"，i指向非'/'字符
+            int e = b;                                    //解释：i指向 非'/'字符
+            
+            while(e < n && path[e] != '/')      //解释：这里走完之后end指向 '/'
+                ++e;      
+            vec.push_back(path.substr(b, e-b));
+            
+            b = e+1;                                      //解释：end指向"/"，i指向非'/'字符
         }
     }
 };

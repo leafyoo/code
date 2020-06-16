@@ -15,17 +15,17 @@ public:
         for( int i = 0; i < m_nr; ++i)        //标记两条纵边
         {
             if(board[i][0] == 'O')
-                clean(board, i, 0);
+                mark(board, i, 0);
             if(board[i][m_nc-1] == 'O')
-                clean(board, i, m_nc-1);
+                mark(board, i, m_nc-1);
         }
         
         for( int j = 0; j < m_nc; ++j)        //标记两条横边
         {
             if(board[0][j] == 'O')
-                clean(board, 0, j);
+                mark(board, 0, j);
             if(board[m_nr-1][j] == 'O')
-                clean(board, m_nr-1, j);
+                mark(board, m_nr-1, j);
         }
 
         for( int i = 0; i < m_nr; ++i)        //标记O、还原O
@@ -40,10 +40,10 @@ public:
         }
     }
 
-    void clean(vector<vector<char>>& board, int row, int col)
+    void mark(vector<vector<char>>& board, int row, int col)
     {
         board[row][col] = '*';
-        for( int i = 0; i < dir.size(); ++i)
+        for( int i = 0; i < 4; ++i)
         {   
             int r = dir[i].first + row;
             int c = dir[i].second + col;
@@ -51,7 +51,7 @@ public:
             if(r >= 0 && r < m_nr && c >= 0 && c < m_nc)
             {
                 if(board[r][c] == 'O')
-                    clean(board, r, c);
+                    mark(board, r, c);
             }
         }
     }

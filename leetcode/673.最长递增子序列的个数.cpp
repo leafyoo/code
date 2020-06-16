@@ -2,7 +2,8 @@
 class Solution {
 public:
     int findNumberOfLIS(vector<int>& nums) {
-        if (nums.empty()) return 0;
+        if (nums.empty()) 
+            return 0;
 
         int n = nums.size();
         

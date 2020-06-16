@@ -1,17 +1,17 @@
 // @lc code=start
 class Solution {
 public:
-    int getStep(int n, long long beg, long long end)            //错误：溢出了，所以这里要long long
+    int getStep(int n, long long b, long long e)            //错误：溢出了，所以这里要long long
     {
-        long long step = 0;
-        while( beg <= n )
+        long long s = 0;
+        while( b <= n )
         {
-            step += min(end-1, (long long)n) - beg + 1;
-            beg *= 10;
-            end *= 10;
+            s += min(e-1, (long long)n) - b + 1;
+            b *= 10;
+            e *= 10;
         }
         
-        return step;
+        return s;
     }
 
     int findKthNumber(int n, int k) {
@@ -20,10 +20,10 @@ public:
         k = k-1;
         while( k > 0 )
         {
-            int step = getStep(n, cur, cur+1);      //获取前序遍历时，从cur到 cur+1需要走过的节点数量
-            if(k >= step)
+            int s = getStep(n, cur, cur+1);      //获取前序遍历时，从cur到 cur+1需要走过的节点数量
+            if(k >= s)
             {
-                k = k - step;
+                k = k - s;
                 cur = cur + 1;      //移到右边的节点
             }
             else
@@ -35,7 +35,7 @@ public:
         return cur;
     }
 };
-// @lc code=end
+// @lc code=e
 
 /* fish：
 求字典序第k个就是十叉树【前序遍历】访问的第k节点（上文中的step）！

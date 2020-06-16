@@ -13,22 +13,24 @@ public:
     vector<int> numsMember;                             //【leetcode官方题解的做法】递归中，采用对象成员，减少参数传递
     
     TreeNode* sortedArrayToBST(vector<int>& nums) {
-        if(nums.empty()) return nullptr;
+        if(nums.empty()) 
+            return nullptr;
         numsMember = nums;
         
         return handler(0, nums.size() - 1 );
     }
 
-    TreeNode* handler(int left, int right )                 //错误：这种数组大范围的处理，要按照区间来压缩问题规模，然后才能递归。一开始是只处理一个val，导致很难递归。
+    //错误：这种数组大范围的处理，要按照区间来压缩问题规模，然后才能递归。一开始是只处理一个val，导致很难递归。
+    TreeNode* handler(int left, int right )                 
     {
         if(left > right)
             return nullptr;
 
-        int mid = (left + right)/2;
+        int m = (left + right)/2;
 
-        TreeNode *p = new TreeNode( numsMember[mid]);
-        p->left = handler( left, mid-1 );
-        p->right = handler( mid+1, right );
+        TreeNode *p = new TreeNode( numsMember[m]);
+        p->left = handler( left, m-1 );
+        p->right = handler( m+1, right );
 
         return p;
     }

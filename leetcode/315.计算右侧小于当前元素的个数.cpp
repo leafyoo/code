@@ -4,7 +4,9 @@ public:
     vector<int> countSmaller(vector<int>& nums) {
         int n = nums.size();
         vector<int> lessCnt(n), sortVec;
-        if(n == 0) return lessCnt;
+
+        if(n == 0) 
+            return lessCnt;
         
         for( int i = n-1; i >= 0; --i)
         {
@@ -17,6 +19,7 @@ public:
                 else
                     b = m+1;
             }
+            
             lessCnt[i] = e+1;
             sortVec.insert( sortVec.begin()+ lessCnt[i], nums[i]);
         }

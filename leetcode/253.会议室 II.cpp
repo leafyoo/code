@@ -5,22 +5,23 @@ class Solution_priority_queue {
 public:
     int minMeetingRooms(vector<vector<int>>& intervals) {
         int n = intervals.size(), room = 1;
-        if(n < 1) return 0;
+        if(n < 1) 
+            return 0;
 
         sort(intervals.begin(), intervals.end());   //所有会议，按照开始时间排序
         
         //堆里只记录会议结束时间，堆顶是最小的结束时间（即最早结束的会议）
-        priority_queue<int, vector<int>, greater<int> > pque;       //知识点：小顶堆
-        pque.push( intervals[0][1] );
+        priority_queue<int, vector<int>, greater<int> > pq;       //知识点：小顶堆
+        pq.push( intervals[0][1] );
     
         for( int i = 1; i < n; ++i)
         {                                      //错误2：这里要注意是intervals[i][0]（会议开始时间）   而不是intervals[i][1]
-            if(intervals[i][0] < pque.top())   //错误1：这里不是 <=， 因为结束和开始时同一个时间的话，可以复用会议室，这个和现实生活一样。
+            if(intervals[i][0] < pq.top())   //错误1：这里不是 <=， 因为结束和开始时同一个时间的话，可以复用会议室，这个和现实生活一样。
                 ++room;
             else
-                pque.pop();                     //找到了空的会议室，要把上一次会议结束时间更新（弹出）
+                pq.pop();                     //找到了空的会议室，要把上一次会议结束时间更新（弹出）
 
-            pque.push( intervals[i][1] );       //插入新增的会议的结束时间到堆
+            pq.push( intervals[i][1] );       //插入新增的会议的结束时间到堆
         }
 
         return room;

@@ -12,8 +12,10 @@
 class Solution_queue {
 public:
     TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
-        if(!root) return nullptr;
-        if(!p || !q) return ( !p ? q : p);
+        if(!root) 
+            return nullptr;
+        if(!p || !q) 
+            return ( !p ? q : p);
         
         queue<TreeNode*> que;
         map<TreeNode*, TreeNode*> mp;

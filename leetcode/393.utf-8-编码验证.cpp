@@ -3,6 +3,7 @@ class Solution {
 public:
     bool validUtf8(vector<int>& data) {
         int n = data.size(), cnt = 0;
+
         for( int i = 0; i < n; )                                 //错误：这里多了i++
         {
             //1 ： 只能以这些开头
@@ -24,6 +25,7 @@ public:
                 --cnt;
                 ++i;
             }
+            
             if( cnt != 0)
                 return false;
         }

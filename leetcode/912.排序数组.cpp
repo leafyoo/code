@@ -113,27 +113,29 @@ Time Limit Exceeded
 // class Solution {
 class Solution_heap {
 public:
-    void down(vector<int>& nums, int beg, int end)  //父节点下沉
+    void down(vector<int>& nums, int b, int e)  //父节点下沉
     {
-        int parentVal = nums[beg];
-         int maxSon = 2*beg + 1;        // 左孩子
-        while( maxSon <= end )          //i = e时，也要和子节点比较调整，所以勿漏=
+        int dadVal = nums[b];
+         int son = 2*b + 1;        // 左孩子
+
+        while( son <= e )          //i = e时，也要和子节点比较调整，所以勿漏=
         {
-            if(maxSon+1 <= end && nums[maxSon+1] > nums[maxSon])        //在左右孩子中找最大的
-                ++maxSon;
-            if(parentVal >= nums[maxSon])
+            if(son+1 <= e && nums[son+1] > nums[son])        //在左右孩子中找最大的
+                ++son;
+            if(dadVal >= nums[son])
                 break;
             
-            nums[beg] = nums[maxSon];       //把较大的子结点往上移动,替换i的父结点  
-            beg = maxSon;
-            maxSon = 2*maxSon + 1;
+            nums[b] = nums[son];       //把较大的子结点往上移动,替换i的父结点  
+            b = son;
+            son = 2*son + 1;
         }
-        nums[beg] = parentVal;              //将旧堆顶赋给后面的节点
+        nums[b] = dadVal;              //将旧堆顶赋给后面的节点
     }
 
     vector<int> sortArray(vector<int>& nums) {
         int n = nums.size();
-        if(n < 2) return nums;
+        if(n < 2) 
+            return nums;
 
         for( int i = n/2 - 1; i >= 0; --i)      // a[len/2 - 1]为堆的最后一个非叶子节点
             down(nums, i, n-1);                 //从下往上一圈一圈逐渐变大
@@ -175,7 +177,8 @@ class Solution_bubble {
 public:
     vector<int> sortArray(vector<int>& nums) {
         int n = nums.size();
-        if(n < 2) return nums;
+        if(n < 2) 
+            return nums;
 
         for( int i = n-1; i >= 0 ; --i)
         {
@@ -204,18 +207,19 @@ class Solution_bubble_v2 {
 public:
     vector<int> sortArray(vector<int>& nums) {
         int n = nums.size();
-        if(n < 2) return nums;
+        if(n < 2) 
+            return nums;
 
-        for(int end = n-1, change = n-1; change > 0 ; )
+        for(int e = n-1, chg = n-1; chg > 0 ; )
         {
-            end = change;
-            change = -1;                        //重置change
-            for( int j = 0; j < end; ++j)
+            e = chg;
+            chg = -1;                        //重置change
+            for( int j = 0; j < e; ++j)
             {
                 if(nums[j] > nums[j+1])
                 {
                     swap(nums[j], nums[j+1]);
-                    change = j;
+                    chg = j;
                 }
             }
         }
@@ -245,16 +249,18 @@ class Solution_quick {
 public:
     vector<int> sortArray(vector<int>& nums) {
         int n = nums.size();
-        if(n < 2) return nums;
+        if(n < 2) 
+            return nums;
 
-        quickSort(nums, 0, n-1);
+        qs(nums, 0, n-1);
 
         return nums;
     }
 
-    void quickSort(vector<int>& nums, int b, int e)
+    void qs(vector<int>& nums, int b, int e)
     {
-        if(b >= e) return;  //左右指针相遇
+        if(b >= e) 
+            return;  //左右指针相遇
 
         swap( nums[ (b+e)/2 ], nums[e]);    //增加随机性,若数组有序,不替换复杂度为O(n^2),这里基准数为nums[e]
 
@@ -268,10 +274,11 @@ public:
                 ++t;                        //i这里比e那里还小，那就在往
             }
         }
+
         swap(nums[t], nums[e]);       //此时t所指的位置即为num[e]在数组中 最终的位置
 
-        quickSort(nums, b, t-1);
-        quickSort(nums, t+1, e);
+        qs(nums, b, t-1);
+        qs(nums, t+1, e);
     }
 };
 /* 
@@ -293,39 +300,44 @@ public:
 
     vector<int> sortArray(vector<int>& nums) {
         int n = nums.size();
-        if(n < 2) return nums;
+        if(n < 2) 
+            return nums;
+
         backup.resize(n);                   //错误：漏掉了设置大小
         mergeSort(nums, 0, n-1);
+
         return nums;
     }
 
-    void mergeSort(vector<int>& nums, int beg, int end)
+    void mergeSort(vector<int>& nums, int b, int e)
     {
-        if(beg >= end) return;  //只剩一个，已经有序，不必再分
-        int mid = (beg+end)/2;
+        if(b >= e) 
+            return;  //只剩一个，已经有序，不必再分
+        int mid = (b+e)/2;
      
-        mergeSort(nums, beg, mid);  
-        mergeSort(nums, mid+1, end);
+        mergeSort(nums, b, mid);  
+        mergeSort(nums, mid+1, e);
      
-        merge(nums, beg, mid, end);     //[beg, mid]和[mid+1, end]都排好序了，合并它们
+        merge(nums, b, mid, e);     //[b, mid]和[mid+1, e]都排好序了，合并它们
     }
 
-    void merge(vector<int>& nums, int beg, int mid, int end)
+    void merge(vector<int>& nums, int b, int mid, int e)
     {
-        for(int i = beg; i <= end; i++)             //先备份数组，因为下面会对nums赋值，覆盖掉原数据
+        for(int i = b; i <= e; i++)             //先备份数组，因为下面会对nums赋值，覆盖掉原数据
             backup[i] = nums[i];            
         
-        int i = beg, j = mid+1, k = beg;            //这里不要用for，用i++的形式更清晰
-        while( i <= mid && j <= end )
+        int i = b, j = mid+1, k = b;            //这里不要用for，用i++的形式更清晰
+        while( i <= mid && j <= e )
         {
             if(backup[i] <= backup[j])               //// 注意写成 < 就丢失了稳定性（相同元素原来靠前(beg部分)的排序以后依然靠前）
                 nums[k++] = backup[i++];
             else
                 nums[k++] = backup[j++];
         }
+        
         while( i <= mid )                           //继续使用上面的i、k、j的值
             nums[k++] = backup[i++];
-        while( j <= end )
+        while( j <= e )
             nums[k++] = backup[j++];
     }
 
@@ -338,7 +350,7 @@ public:
 https://leetcode-cn.com/problems/sort-an-array/solution/c-8chong-pai-xu-fang-fa-xiang-jie-by-zsq/
  */
 
-// @lc code=end
+// @lc code=e
 
 
 /*

@@ -10,7 +10,6 @@
 #include <queue>
 #include <list>
 #include <stdexcept>
-#include "mylib.hpp"
 using namespace std;
 
 
@@ -20,25 +19,27 @@ void sortStackWithOneStack(stack<int> &st )
 {
 	if(st.size() < 2)
 		return;
-	int cur, tmp;
-	stack<int> help;  //栈底元素最小
+
+	stack<int> st2;  //栈底元素最小
 	while(!st.empty())
 	{
-		cur = st.top();
+		int cur = st.top();
 		st.pop();
-		while(!help.empty() && help.top() > cur)		//help只要小的，腾笼
+
+		while(!st2.empty() && st2.top() > cur)		//help只要小的，腾笼
 		{
-			tmp = help.top();
-			help.pop();
+			int tmp = st2.top();
+			st2.pop();
 			st.push(tmp);		//每次经过这样置换，st里的元素从底到顶逐渐变成有序的了
 		}
 
-		help.push(cur);		//只接收更小的元素
+		st2.push(cur);		//只接收更小的元素
 	}
-	while(!help.empty())
+
+	while(!st2.empty())
 	{
-		st.push(help.top());
-		help.pop();
+		st.push(st2.top());
+		st2.pop();
 	}
 }
 void _test_sortStackWithOneStack()

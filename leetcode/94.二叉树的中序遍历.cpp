@@ -48,7 +48,8 @@ public:
  */
 class Solution_recursion {
 public:
-    vector<int> inorderTraversal(TreeNode* root) {
+    vector<int> inorderTraversal(TreeNode* root) 
+    {
         vector<int> res;
 
         tra(root, res);
@@ -60,9 +61,12 @@ public:
     {
         if(!p)
             return;
+
         tra( p->left, res );
+        
         if(p)
             res.push_back(p->val);
+        
         tra( p->right, res );
     }
 };

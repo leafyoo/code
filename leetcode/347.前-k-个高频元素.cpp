@@ -9,13 +9,13 @@ public:
         for( int i = 0; i < nums.size(); ++i)
             mp[ nums[i] ] ++;
 
-        multimap<int, int, greater<int> > mpCntToKey;           //错误：这里没有multi，那会导致计数一样的key只能插入一个
+        multimap<int, int, greater<int> > mpn2k;           //错误：这里没有multi，那会导致计数一样的key只能插入一个
         for( unordered_map<int, int>::iterator it = mp.begin(); it != mp.end(); ++it)
-            mpCntToKey.insert( make_pair(it->second, it->first ) );
+            mpn2k.insert( make_pair(it->second, it->first ) );
         
         vector<int> res;
-        for( multimap<int, int, greater<int> >::iterator it = mpCntToKey.begin(); 
-            it != mpCntToKey.end() && res.size() < k; ++it)
+        for( multimap<int, int, greater<int> >::iterator it = mpn2k.begin(); 
+            it != mpn2k.end() && res.size() < k; ++it)
         {
             res.push_back( it->second );
         }

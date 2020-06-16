@@ -4,33 +4,34 @@ public:
     int longestIncreasingPath(vector<vector<int>>& matrix) {
         if (matrix.size() == 0)
             return 0;
-        mCol = matrix[0].size();
-        mRow = matrix.size();
+        mc = matrix[0].size();
+        mr = matrix.size();
 
         int res = 0;
-        vector<vector<int>> cache(mRow, vector<int>(mCol, 0));
+        vector<vector<int>> cache(mr, vector<int>(mc, 0));
 
-        for (int r = 0; r < mRow; r++)
-            for (int c = 0; c < mCol; c++)
+        for (int r = 0; r < mr; r++)
+            for (int c = 0; c < mc; c++)
                res = max(res, dfs(matrix, r, c, cache));
                
         return res;
     }
 
 private:
-    int mCol, mRow;
+    int mc, mr;
     vector<vector<int>> dir = { {0, 1}, {1, 0}, {0, -1}, {-1, 0} };      //注意： vector的创建技巧，定义时指定初始化
 
     //在搜索过程中，如果未计算过单元格的结果，我们会计算并将其缓存；否则，直接从缓存中获取之。
     int dfs(vector<vector<int>>& matrix, int row, int col, vector<vector<int>> &cache)
     {
-        if (cache[row][col] != 0) return cache[row][col];       //已经计算过了
+        if (cache[row][col] != 0) 
+            return cache[row][col];       //已经计算过了
 
         for (auto d : dir)
         {
             int r = row + d[0];
             int c = col + d[1];
-            if (r >= 0 && r < mRow && c >= 0 && c < mCol 
+            if (r >= 0 && r < mr && c >= 0 && c < mc 
             && matrix[row][col] > matrix[r][c] )            //如果节点 [row, col]处的值小于它的四个方向的值
                 cache[row][col] = max( cache[row][col], dfs(matrix, r, c, cache));
         }

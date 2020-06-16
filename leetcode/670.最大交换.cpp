@@ -2,7 +2,8 @@
 class Solution {
 public:
     int maximumSwap(int num) {
-        if(num < 10) return num;
+        if(num < 10) 
+            return num;
         
         vector<int> v;
         for( int i = num ; i > 0;  )
@@ -21,7 +22,8 @@ public:
                 break;
             }
         }
-        if(idx == -1) return num;   //即全部为降序
+        if(idx == -1) 
+            return num;   //即全部为降序
 
         //step 2： 在低区中查找，找到低区的最大值
         int lowMaxIdx = idx, highMinIdx = 0;

@@ -1,9 +1,11 @@
 // @lc code=start
 class Solution {
 public:
-    int findContentChildren(vector<int>& g, vector<int>& s) {
+    int findContentChildren(vector<int>& g, vector<int>& s) 
+    {
         int gn = g.size(), sn = s.size(), res = 0;
-        if(sn < 1) return 0;
+        if(sn < 1) 
+            return 0;
 
         sort(g.begin(), g.end());
         sort(s.begin(), s.end());
@@ -16,6 +18,7 @@ public:
             {
                 ++si; 
                 ++gi; 
+                
                 ++res;
             }
         }

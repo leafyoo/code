@@ -11,8 +11,12 @@ class Solution {
 public:
     ListNode* reverseKGroup(ListNode* head, int k) {
         int len = 0;
-        for( ListNode * h = head; h; h = h->next )++len;
-        if(!head || k < 2 || k > len ) return head;          //空指针判断
+        
+        for( ListNode * h = head; h; h = h->next )
+            ++len;
+        
+        if(!head || k < 2 || k > len ) 
+            return head;          //空指针判断
 
         ListNode prehead(0);
         ListNode *p =&prehead;

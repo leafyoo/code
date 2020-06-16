@@ -1,4 +1,3 @@
-
 // @lc code=start
 /**
  * Definition for a binary tree node.
@@ -12,7 +11,8 @@
 class Solution {
 public:
     vector<vector<int>> zigzagLevelOrder(TreeNode* root) {
-        if(!root) return vector<vector<int>>();
+        if(!root) 
+            return {};                  //注意：不是：{{}}
         
         vector<vector<int>> res;
 

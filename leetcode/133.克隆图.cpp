@@ -27,25 +27,26 @@ public:
 class Solution {
 public:
     Node* cloneGraph(Node* node) {
-        if(!node) return nullptr;
+        if(!node) 
+            return nullptr;
 
-        queue<Node*> oldQ;                          //存旧的图的节点指针，通过队列实现Node*指针的逐级嵌套遍历
-        oldQ.push(node);
+        queue<Node*> q;                          //存旧的图的节点指针，通过队列实现Node*指针的逐级嵌套遍历
+        q.push(node);
         
         unordered_map<Node*, Node*> mp;       //旧节点 --> 新节点
         mp[ node ] = new Node(node->val);
 
-        while( !oldQ.empty() )
+        while( !q.empty() )
         {
-            Node* pOld = oldQ.front();              //每次弹出队列里存储的旧的节点的指针，看看新的图里能不能找到，找不到则拷贝
-            oldQ.pop();
+            Node* pOld = q.front();              //每次弹出队列里存储的旧的节点的指针，看看新的图里能不能找到，找不到则拷贝
+            q.pop();
             for( int i = 0; i < pOld->neighbors.size(); ++i)
             {
                 Node* item = pOld->neighbors[ i ];
                 if( mp.find( item ) == mp.end() )
                 {
                     mp[ item ] = new Node( item->val );       //构造时，不用管neighbors数组，下面会push_back
-                    oldQ.push( item );
+                    q.push( item );
                 }
                 mp[ pOld ]->neighbors.push_back( mp[ item ] );  //错误1：这里 -> 写为了 .  错误2：mpOldNew[ item ] 而不是item 
             }

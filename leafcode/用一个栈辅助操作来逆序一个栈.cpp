@@ -20,10 +20,11 @@ int getLastElement(stack<int> &s)
 {
     int result = s.top();
     s.pop();
+
     if (s.empty()) 
-		     return result;    				// 如果只有一个元素即为栈底的元素 返回  
+		return result;    				// 如果只有一个元素即为栈底的元素 返回  
     else 
-	  {
+	{
         int last = getLastElement(s);   // 得到栈底元素  
         s.push(result);   				// 并栈顶元素压栈  
         return last;

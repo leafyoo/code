@@ -2,7 +2,9 @@
 class Solution {
 public:
     bool searchMatrix(vector<vector<int>>& matrix, int target) {
-        if(matrix.empty() || matrix[0].empty()) return false;
+        if(matrix.empty() || matrix[0].empty()) 
+            return false;
+        
         int nr = matrix.size(), nc = matrix[0].size();
         
         int b = 0, e = nr * nc - 1;

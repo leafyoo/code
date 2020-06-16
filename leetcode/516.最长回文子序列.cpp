@@ -1,9 +1,11 @@
-
 // @lc code=start
-class Solution {
+class Solution 
+{
 public:
-    int longestPalindromeSubseq(string s) {
-        if(s.empty()) return 0;
+    int longestPalindromeSubseq(string s) 
+    {
+        if(s.empty()) 
+            return 0;
 
         int n = s.size();
         vector<vector<int> > dp(n, vector<int>(n, 0));          //二维矩阵的左下侧全是0 （因为其实位置i比终止位置j还小，显然字符串长度0）

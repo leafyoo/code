@@ -1,9 +1,9 @@
-
 // @lc code=start
 class Solution {
 public:
     int threeSumClosest(vector<int>& nums, int target) {
-        if(nums.size() < 3) return target;
+        if(nums.size() < 3) 
+            return target;
 
         sort(nums.begin(), nums.end());   
 
@@ -21,7 +21,9 @@ public:
 
                 //三数之和是否更加逼近target，更加逼近则取新的值，否则维持老的距离不变
                 res = abs(target - sum) < abs(target - res)  ? sum : res;   
-                if(res == target) return res;
+               
+                if(res == target) 
+                    return res;
             }
         }
 

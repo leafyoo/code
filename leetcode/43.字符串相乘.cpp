@@ -15,9 +15,11 @@ public:
             string strLow;
             for( int j = n2-1; j >= 0; --j)
             {
-                strLow = to_string( (up + d * (num2[j] - '0')) % 10 ) + strLow;
-                up = (up + d * (num2[j] - '0')) / 10;
+                int tmp = up + d * (num2[j] - '0');
+                strLow = to_string( tmp % 10 ) + strLow;
+                up = tmp / 10;
             }
+            
             if(up > 0)
                 strLow = to_string( up) + strLow;
 

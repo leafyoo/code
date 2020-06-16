@@ -28,7 +28,7 @@ class String
 	friend istream& operator >> (istream&, String&);//重载>>运算符
 
 public:
-    String(const char* str=NULL);                	//复制构造兼默认构造函数(char)
+    String(const char* p = NULL);                	//复制构造兼默认构造函数(char)
     String(const String &oth);                 	//复制构造函数(String)
     String& operator=(const String& oth);       	//operator=
     String 	operator+(const String &oth)const;  	//operator+
@@ -40,14 +40,14 @@ private:
     char *pData; 				// 用于保存字符串
 };
 
-inline String::String(const char* str)   //声明为inline函数，则该函数在程序中被执行时是语句直接替换，而不是被调用
+inline String::String(const char* p)   //声明为inline函数，则该函数在程序中被执行时是语句直接替换，而不是被调用
 {
-	if(!str)
+	if(!p)
 		pData=NULL;      
 	else 
 	{
-		pData=new char[ strlen(str)+1 ];
-		strcpy(pData,str);
+		pData=new char[ strlen(p)+1 ];
+		strcpy(pData,p);
 	}
 }
 
@@ -105,9 +105,9 @@ inline char& String::operator[](unsigned int e)
     return pData[e];
 }
 
-ostream& operator<<(ostream& os,String& str)
+ostream& operator<<(ostream& os,String& p)
 {
-    os << str.pData;
+    os << p.pData;
     return os;
 }
 

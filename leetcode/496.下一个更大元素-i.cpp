@@ -3,19 +3,19 @@ class Solution {
 public:
     vector<int> nextGreaterElement(vector<int>& nums1, vector<int>& nums2) {
         vector<int> next(nums1.size(), -1);
-        stack<int> stk;         //存储到当前i为止，从左到右看到的最大的数
+        stack<int> st;         //存储到当前i为止，从左到右看到的最大的数
         unordered_map<int, int> mp;
         
         for( int i = nums2.size() - 1; i >= 0; --i)  // 倒着往栈里放
         {
             int tmp = -1;
-            while( !stk.empty() && stk.top() <= nums2[i])   //栈里的小？  那就让开
-                stk.pop();                                  
+            while( !st.empty() && st.top() <= nums2[i])   //栈里的小？  那就让开
+                st.pop();                                  
 
-            if( !stk.empty() && stk.top() > nums2[i])       //找到了比自己大的？ 那就记下来
-                tmp = stk.top();
+            if( !st.empty() && st.top() > nums2[i])       //找到了比自己大的？ 那就记下来
+                tmp = st.top();
             
-            stk.push( nums2[i] );           // 进队，等待之后的身高判定吧！
+            st.push( nums2[i] );           // 进队，等待之后的身高判定吧！
             mp[ nums2[i] ] = tmp;           // nums2[i]这个元素身后的第一个高个
         }
 

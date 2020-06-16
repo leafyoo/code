@@ -8,7 +8,8 @@ public:
 
     vector<vector<int>> permute(vector<int>& nums) {
         int n = nums.size();
-        if(n < 1) return {{}};
+        if(n < 1) 
+            return {{}};
 
         used.resize( nums.size());          //知识点：重设数组大小
 
@@ -27,7 +28,8 @@ public:
 
         for( int i = 0; i < nums.size(); ++i)
         {
-            if(used[i]) continue;                   //【剪枝】 去重
+            if(used[i]) 
+                continue;                   //【剪枝】 去重
 
             //这样去重也可以，只是性能差一些
             // if( find(path.begin(), path.end(), nums[i]) != path.end()) continue;

@@ -6,13 +6,15 @@ public:
     {
         int n = M.size();
         int res = 0;
-        if(n < 1) return 0;
+        
+        if(n < 1) 
+            return 0;
 
         for( int i = 0; i < n; ++i) //总共有n名学生。  //这里为什么需要for？ 因为有孤岛，递归不能遍历完
         {
             if(M[i][i] == 1)        //直接找学生，为1说明还没有成为记录过的学生
             {
-                cleanFriend(M, i);  //以这名学生开始遍历他的朋友
+                mark(M, i);  //以这名学生开始遍历他的朋友
                 ++res;
             }
         }
@@ -20,7 +22,7 @@ public:
         return res;
     }
 
-    void cleanFriend(vector<vector<int>>& M, int i)
+    void mark(vector<vector<int>>& M, int i)
     {
         if(M[i][i] == 0)  
             return ;
@@ -30,7 +32,7 @@ public:
         {
             if(M[i][j] == 1)                    
             {
-                cleanFriend(M, j);              //遍历其他同学，看看是否跟他是朋友 //找到n的朋友i，再递归查找i的朋友
+                mark(M, j);              //遍历其他同学，看看是否跟他是朋友 //找到n的朋友i，再递归查找i的朋友
             }
         }
     }

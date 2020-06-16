@@ -10,20 +10,23 @@
  */
 class Solution {
 public:
-    ListNode *getIntersectionNode(ListNode *headA, ListNode *headB) {
-        int lenA = 0, lenB = 0;
+    ListNode *getIntersectionNode(ListNode *headA, ListNode *headB) 
+    {
+        int na = 0, nb = 0;
 
-        for(ListNode * p = headA; p; p = p->next) ++lenA;    //这两处用一样的变量名p，方便拷贝
-        for(ListNode * p = headB; p; p = p->next) ++lenB;
+        for(ListNode * p = headA; p; p = p->next)       //这两处用一样的变量名p，方便拷贝
+            ++na;    
+        for(ListNode * p = headB; p; p = p->next) 
+            ++nb;
         
-        if ( lenA > lenB )
+        if ( na > nb )
         {
-            for( int i = 0; i < lenA - lenB; ++i) 
+            for( int i = 0; i < na - nb; ++i) 
                 headA = headA->next;
         }
-        else if( lenA < lenB )
+        else if( na < nb )
         {
-            for( int i = 0; i < lenB - lenA; ++i) 
+            for( int i = 0; i < nb - na; ++i) 
                 headB = headB->next;
         }
 

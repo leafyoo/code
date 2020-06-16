@@ -12,7 +12,8 @@
 class Solution {
 public:
     ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
-        if(!l1 || !l2) return (l1 ? l1 : l2);
+        if(!l1 || !l2) 
+            return (l1 ? l1 : l2);
 
         l1 = reverse(l1);
         l2 = reverse(l2);

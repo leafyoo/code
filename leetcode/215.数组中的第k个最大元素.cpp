@@ -2,22 +2,23 @@
 class Solution {
 public:
     int findKthLargest(vector<int>& nums, int k) {
-        priority_queue<int, vector<int>, greater<int> > pque;       //小根堆， greater<int>， 即：更大的才能进入堆
+        priority_queue<int, vector<int>, greater<int> > q;       //小根堆， greater<int>， 即：更大的才能进入堆
+        
         for( int i = 0; i < nums.size(); ++i)
         {
-            if(pque.size() >= k)
+            if(q.size() >= k)
             {
-                if(nums[i] > pque.top())
+                if(nums[i] > q.top())
                 {
-                    pque.pop();
-                    pque.push(nums[i]);
+                    q.pop();
+                    q.push(nums[i]);
                 }
             }
             else
-                pque.push(nums[i]);
+                q.push(nums[i]);
         }
 
-        return pque.top();
+        return q.top();
     }
 };
 // @lc code=end

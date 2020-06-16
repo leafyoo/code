@@ -4,6 +4,7 @@ public:
     int removeElement(vector<int>& nums, int val) {
         int n = nums.size();
         int b = 0, e = n -1;
+
         while( b < e )
         {
             while( b < e && nums[b] != val)     //错误：逻辑反了，这里应该是 !=，而不是 ==， 下面才是==
@@ -13,9 +14,11 @@ public:
             if(b < e && nums[b] == val)            
                 swap(nums[b], nums[e]);
         }
+
         int newN = n;
         for( int i = n-1; i >= 0 && nums[i] == val; --i)
             --newN;
+            
         return newN;
     }
 };

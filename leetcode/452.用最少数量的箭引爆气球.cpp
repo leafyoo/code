@@ -1,22 +1,25 @@
 // @lc code=start
 class Solution {
 public:
-    int findMinArrowShots(vector<vector<int>>& points) {
+    int findMinArrowShots(vector<vector<int>>& points) 
+    {
         int n = points.size();
-        if(n < 2) return n;
+        if(n < 2) 
+            return n;
 
         sort(points.begin(), points.end());
-        int res = 1, end = points[0][1];
+        
+        int res = 1, e = points[0][1];
     
         for( int i = 1; i < n; ++i)
         {
-            if(points[i][0] > end )
+            if(points[i][0] > e )
             {
                 ++res;
-                end = points[i][1];
+                e = points[i][1];
             }
             else
-                end = min (end, points[i][1]);      //错误，少了这行，因为气球大小不一，而排序时根据起点来排序的
+                e = min (e, points[i][1]);      //错误，少了这行，因为气球大小不一，而排序时根据起点来排序的
         }
 
         return res;

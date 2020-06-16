@@ -30,6 +30,12 @@ public:
 };
 // @lc code=end
 /* 
+fish:注意，这里是组合，而不是排列！！！
+
+排列的话，可以有[2,3] [3,2];
+而组合，只可以有[2,3]
+
+
 https://leetcode-cn.com/problems/combinations/solution/hui-su-suan-fa-jian-zhi-python-dai-ma-java-dai-ma-/
 
  */

@@ -1,5 +1,19 @@
 // @lc code=start
+
+//数学解法：异或运算
 class Solution {
+public:
+    int singleNumber(vector<int>& nums) {
+        int res = 0;
+        for( int i = 0; i < nums.size(); ++i)
+        {
+            res ^= nums[i];
+        }
+        return res;
+    }
+};
+
+class Solution_set {
 public:
     int singleNumber(vector<int>& nums) {
         unordered_set<int> st;
@@ -15,18 +29,7 @@ public:
     }
 };
 
-//数学解法：异或运算
-class Solution_xor {
-public:
-    int singleNumber(vector<int>& nums) {
-        int res = 0;
-        for( int i = 0; i < nums.size(); ++i)
-        {
-            res ^= nums[i];
-        }
-        return res;
-    }
-};
+
 // @lc code=end
 
 /* 

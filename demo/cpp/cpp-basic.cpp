@@ -2,7 +2,6 @@
 #include <stdio.h>
 #include <unistd.h>
 
-
 using namespace std;
 
 #ifdef __cplusplus
@@ -15,7 +14,6 @@ extern "C" {
 }
 #endif
 
-
 //示例:结构体定义方法
 struct myStru
 {
@@ -24,7 +22,6 @@ struct myStru
 };
 
 struct myStru s1 = {"lucy", 20}, s2;//定义结构体变量
-
 
 
 typedef struct
@@ -142,7 +139,6 @@ void exception_test()
 			break;
 		default:
 			break;
-			
 	}
 
 	try

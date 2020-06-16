@@ -3,22 +3,25 @@ class Solution {
 public:
     int candy(vector<int>& ratings) {
         int n = ratings.size(), res = 0;
-        if(n < 2) return n;
+        if(n < 2) 
+            return n;
 
-        vector<int> fromLeft(n, 1), fromRight(n, 1) ;
-        for( int i = 1; i < n; ++i)                    //从左往右找不服气的，分数更低引起的不平衡不考虑！（因为可能导致负数），“评分高的孩子必须获得更多的糖果。”
+        vector<int> l(n, 1), r(n, 1) ;
+
+        //从左往右找不服气的，分数更低引起的不平衡不考虑！（因为可能导致负数），“评分高的孩子必须获得更多的糖果。”
+        for( int i = 1; i < n; ++i)                    
         {
             if(ratings[i] > ratings[i-1])
-               fromLeft[i] = fromLeft[i-1] + 1;
+               l[i] = l[i-1] + 1;
         }
         for( int i = n-2; i >= 0; --i)                  //从右往左找不服气的，
         {
             if(ratings[i] > ratings[i+1])
-               fromRight[i] = fromRight[i+1] + 1;
+               r[i] = r[i+1] + 1;
         }
         
         for( int i = 0; i < n; ++i)                     
-            res += max( fromLeft[i], fromRight[i]);     //取最大值为该位置的最终结果
+            res += max( l[i], r[i]);     //取最大值为该位置的最终结果
 
         return res;
     }

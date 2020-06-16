@@ -12,15 +12,18 @@ public:
         return res;
     }
 
-    void DFS( int sum, int beg)
+    void DFS( int sum, int b)
     {
-        if(path.size() == m_k && sum == 0)
+        if(path.size() >= m_k || sum <= 0)
         {
-            res.push_back(path);
+            if(path.size() == m_k && sum == 0)
+            {
+                res.push_back(path);
+            }
             return ;
         }
 
-        for( int i = beg; i <= 9 && sum >= i; ++i)
+        for( int i = b; i <= 9 && sum >= i; ++i)
         {
             path.push_back(i);
             DFS( sum - i , i+1);

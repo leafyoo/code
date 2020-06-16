@@ -15,34 +15,34 @@ public:
             return vector<string>();
         vector<string> res;
 
-        queue<TreeNode *> qnode;
-        queue<string> qpath;
+        queue<TreeNode *> qn;           //n : node
+        queue<string> qp;               //p : path
         
-        qnode.push(root);
-        qpath.push( to_string(root->val) );
+        qn.push(root);
+        qp.push( to_string(root->val) );
 
-        while( !qnode.empty() )
+        while( !qn.empty() )
         {
-            int cnt = qnode.size();
+            int cnt = qn.size();
             for( int i = 0; i < cnt; ++i)
             {
-                TreeNode *p = qnode.front();
-                qnode.pop();
-                string path = qpath.front();
-                qpath.pop();
+                TreeNode *p = qn.front();
+                qn.pop();
+                string path = qp.front();
+                qp.pop();
 
                 if(!p->left && !p->right)
                     res.push_back( path );
 
                 if( p->left)
                 {
-                    qnode.push( p->left );
-                    qpath.push( path + "->" + to_string( p->left->val) );
+                    qn.push( p->left );
+                    qp.push( path + "->" + to_string( p->left->val) );
                 }
                 if( p->right)
                 {
-                    qnode.push( p->right );
-                    qpath.push( path + "->" + to_string( p->right->val) );
+                    qn.push( p->right );
+                    qp.push( path + "->" + to_string( p->right->val) );
                 }
             }
         }

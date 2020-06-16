@@ -15,34 +15,35 @@ public:
     bool hasPathSum(TreeNode* root, int sum) {
         if(!root) return false;
 
-        queue<TreeNode* > qnode;
-        queue<int > qway;
+        queue<TreeNode* > qn;
+        queue<int > qs;
 
-        qnode.push(root);
-        qway.push(root->val);
+        qn.push(root);
+        qs.push(root->val);
         
-        while( !qnode.empty() )
+        while( !qn.empty() )
         {
-            int cnt = qnode.size();
+            int cnt = qn.size();
             for( int i = 0; i < cnt; ++i)
             {
-                TreeNode* p = qnode.front();
-                qnode.pop();
-                int way = qway.front();
-                qway.pop();
+                TreeNode* p = qn.front();
+                qn.pop();
 
-                if(!p->left && !p->right && way == sum)
+                int s = qs.front();
+                qs.pop();
+
+                if(!p->left && !p->right && s == sum)
                     return true;
 
                 if(p->left)
                 {
-                    qnode.push(p->left);
-                    qway.push(way + p->left->val);                  //注意：这里和下面 qway.push 要执行两次，qnode和qway的size永远是一比一
+                    qn.push(p->left);
+                    qs.push(s + p->left->val);                  //注意：这里和下面 qs.push 要执行两次，qnode和qway的size永远是一比一
                 }
                 if(p->right)
                 {
-                    qnode.push(p->right);
-                    qway.push(way + p->right->val);
+                    qn.push(p->right);
+                    qs.push(s + p->right->val);
                 }
             }
         }

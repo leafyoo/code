@@ -1,8 +1,10 @@
 // @lc code=start
 class Solution {
 public:
-    int uniquePaths(int m, int n) {
-        if(m < 2 || n < 2) return 1;
+    int uniquePaths(int m, int n) 
+    {
+        if(m < 2 || n < 2) 
+            return 1;
         vector<vector<int> > dp(n, vector<int>(m, 1));      //这里指定初值1，则下文可以避免循环处理边
 
         for( int i = 1; i < n; ++i)

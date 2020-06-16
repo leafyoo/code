@@ -3,21 +3,22 @@ class Solution {
 public:
     vector<int> nextGreaterElements(vector<int>& nums) {
         int n = nums.size();
-        if(n < 1) return {};
+        if(n < 1) 
+            return {};
 
         vector<int> next(n, -1);
-        stack<int> stk;         //存储到当前i为止，从左到右看到的最大的数
+        stack<int> st;         //存储到当前i为止，从左到右看到的最大的数
         
         for( int i = 2 * n - 1; i >= 0; --i)
         {
             int tmp = -1;
-            while( !stk.empty() && stk.top() <= nums[i % n])        //错误：这里是 <=，因为相等时不是大于，也要pop出来，
-                stk.pop();
+            while( !st.empty() && st.top() <= nums[i % n])        //错误：这里是 <=，因为相等时不是大于，也要pop出来，
+                st.pop();
                 
-            if( !stk.empty() && stk.top() > nums[i % n])
-                tmp = stk.top();
+            if( !st.empty() && st.top() > nums[i % n])
+                tmp = st.top();
             
-            stk.push( nums[i % n] );
+            st.push( nums[i % n] );
             next[i % n] = tmp;
         }
 

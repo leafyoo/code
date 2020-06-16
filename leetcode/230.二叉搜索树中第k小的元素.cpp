@@ -10,28 +10,30 @@
  */
 class Solution {
 public:
-    int kthSmallest(TreeNode* root, int k) {
-        if(!root ) return -1;
-        stack<TreeNode*> stk;
+    int kthSmallest(TreeNode* root, int k) 
+    {
+        if(!root ) 
+            return -1;
+        stack<TreeNode*> st;
 
         TreeNode* p = root;
-        while(p || !stk.empty())
+        while(p || !st.empty())
         {
             //找到最左子节点（最小的）
             while( p )
             {
-                stk.push(p);
+                st.push(p);
                 p = p->left;
             }
 
-            p = stk.top();
-            stk.pop();
+            int res = st.top()->val;
+
+            p = st.top()->right;
+            st.pop();
             
             --k;
-            if(k == 0) return p->val;
-            
-            //切换到右子树
-            p = p->right;
+            if(k == 0) 
+                return res;
         }
 
         return -1;

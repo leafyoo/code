@@ -2,7 +2,8 @@
 class Solution {
 public:
     int numJewelsInStones(string J, string S) {
-        if(J.empty() || S.empty()) return 0;
+        if(J.empty() || S.empty()) 
+            return 0;
         
         int res = 0;
 

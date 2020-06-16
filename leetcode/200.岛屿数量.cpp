@@ -1,41 +1,46 @@
 // @lc code=start
 class Solution {
 public:
-    int numIslands(vector<vector<char>>& grid) {
-        if(grid.empty() || grid[0].empty()) return 0;
+    int numIslands(vector<vector<char>>& grid) 
+    {
+        if(grid.empty() || grid[0].empty()) 
+          return 0;
         int res = 0;
 
         int nr = grid.size();
         int nc = grid[0].size();
         vector<vector<int>> dir = { {0, 1}, {0, -1}, {1, 0}, {-1, 0} };
+
         for( int i = 0; i < nr; ++i)
         {
-            for( int j = 0; j < nc; ++j)
+          for( int j = 0; j < nc; ++j)
+          {
+            if(grid[i][j] == '1')           //遇到 ‘1’，则陷入，以其为根结点启动广度优先搜索。
             {
-                if(grid[i][j] == '1')           //遇到 ‘1’，则陷入，以其为根结点启动广度优先搜索。
+              ++res;
+              grid[i][j] = '0';
+              
+              queue< pair<int, int> > q;
+              q.push( {i, j} );
+
+              while( !q.empty() )       //吸星大法
+              {
+                //遍历 4 个方向
+                int row = (q.front()).first, col = (q.front()).second;
+                q.pop();
+
+                for( int i = 0; i < 4; ++i)
                 {
-                    ++res;
-                    grid[i][j] = '0';
-                    
-                    queue< pair<int, int> > q;
-                    q.push( {i, j} );
-                    while( !q.empty() )       //吸星大法
-                    {
-                        //遍历 4 个方向
-                        int row = (q.front()).first, col = (q.front()).second;
-                        q.pop();
-                        for( int i = 0; i < dir.size(); ++i)
-                        {
-                            int r = row + dir[i][0],  c = col + dir[i][1];
-                            if(r >= 0 && r < nr && c >= 0 && c < nc && grid[r][c] == '1')
-                            {
-                              q.push( {r, c} );
-                              grid[r][c] = '0';
-                            }
-                        }
-                    }
+                  int r = row + dir[i][0],  c = col + dir[i][1];
+                  if(r >= 0 && r < nr && c >= 0 && c < nc && grid[r][c] == '1')
+                  {
+                    q.push( {r, c} );
+                    grid[r][c] = '0';
+                  }
                 }
+              }
             }
+          }
         }
 
         return res;

@@ -10,10 +10,12 @@
  */
 class Solution {
 public:
-    vector<int> preorderTraversal(TreeNode* root) {
+    vector<int> preorderTraversal(TreeNode* root) 
+    {
         vector<int> res;
         stack<TreeNode*> st;
         TreeNode* p = root;
+
         while( p || !st.empty() )
         {
             while( p )
@@ -41,7 +43,9 @@ public:
     }
     void tra(TreeNode* t, vector<int> & res)
     {
-        if( !t) return;
+        if( !t) 
+            return;
+        
         res.push_back( t->val);
         tra( t->left, res);             //错误：语法错误：这里少了一个参数 , res
         tra( t->right, res);

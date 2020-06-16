@@ -1,9 +1,9 @@
-
 // @lc code=start
 class Solution {
 public:
     vector<vector<int>> merge(vector<vector<int>>& intervals) {
-        if(intervals.size() < 2) return intervals;
+        if(intervals.size() < 2) 
+            return intervals;
 
         multimap<int, int> mp;                                               //因为可能 多个区间的开始位置相等，所以这里要用multimap
         vector<vector<int> > vec;

@@ -11,7 +11,8 @@
 class Solution {
 public:
     vector<vector<int>> levelOrder(TreeNode* root) {
-        if(!root) return vector<vector<int> > ();       //技巧：创建临时的空的vector
+        if(!root) 
+            return vector<vector<int> > ();       //技巧：创建临时的空的vector
 
         vector<vector<int> > res;
 

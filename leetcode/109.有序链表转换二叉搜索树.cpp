@@ -18,32 +18,34 @@
  */
 class Solution {
 public:
-    TreeNode* sortedListToBST(ListNode* head) {
+    TreeNode* sortedListToBST(ListNode* head) 
+    {
         return create(head, nullptr);
     }
 
-    TreeNode* create(ListNode* beg, ListNode* end) {
-        if(beg == end) 
+    TreeNode* create(ListNode* b, ListNode* e) 
+    {
+        if(b == e) 
             return nullptr;                            //错误：这里要是null，无子节点了的
 
-        ListNode * slow = beg, * fast = beg;
+        ListNode * s = b, * f = b;
 
-        //因为这里是通过  != end 来判断结束条件的，所以不需要将链表切断！
-        while( fast != end && fast->next != end )                 //错误，写成了 while( fast && fast->next )
+        //因为这里是通过  != e 来判断结束条件的，所以不需要将链表切断！
+        while( f != e && f->next != e )                 //错误，写成了 while( f && f->next )
         {
-            slow = slow->next;
-            fast = fast->next->next;
+            s = s->next;
+            f = f->next->next;
         }
 
-        TreeNode* root = new TreeNode( slow->val );
-        root->left = create(beg, slow) ;
-        root->right = create(slow->next, end) ;
+        TreeNode* root = new TreeNode( s->val );
+        root->left = create(b, s) ;
+        root->right = create(s->next, e) ;
 
         return root;
     }
 
 };
-// @lc code=end
+// @lc code=e
 
 /*
  * @lc app=leetcode.cn id=109 lang=cpp

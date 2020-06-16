@@ -2,7 +2,8 @@
 class Solution {
 public:
     int maxAreaOfIsland(vector<vector<int>>& grid) {            //注意：这里是int，不是char
-        if(grid.empty() || grid[0].empty()) return 0;
+        if(grid.empty() || grid[0].empty()) 
+            return 0;
         int res = 0;
 
         int nr = grid.size(), nc = grid[0].size();

@@ -2,12 +2,14 @@
 class Solution {
 public:
     int search(vector<int>& nums, int target) {
-        if(nums.empty()) return -1;
+        if(nums.empty()) 
+            return -1;
         int b = 0, e = nums.size() - 1;
         
         while( b <= e )
         {
             int m = (b+e)/2;
+            
             if(nums[m] == target)
                 return m;
             else if( nums[m] < target)

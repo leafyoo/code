@@ -1,36 +1,39 @@
 // @lc code=start
 class Solution {
 public:
-    string decodeString(string s) {
+    string decodeString(string s) 
+    {
         int n = s.size();
-        if(n < 1) return "";
+        if(n < 1) 
+            return "";
 
-        int multi = 0;
+        int mul = 0;
         string res;
 
-        stack<int>      stMulti;
+        stack<int>      stMul;
         stack<string>   stRes;
         
         for( int i = 0; i < n; ++i)
         {
             if(s[i] >= '0' && s[i] <= '9')              //错误：这里写成了 ||
-                multi = multi * 10 + s[i] - '0';
+                mul = mul * 10 + s[i] - '0';
             else if( s[i] == '[')
             {
-                stMulti.push( multi);
+                stMul.push( mul);
                 stRes.push( res);           //因为可能有多重'['，所以要push到栈里
                 
-                multi = 0;
+                mul = 0;
                 res = "";
             }
             else if( s[i] == ']')
             {
-                string part;
-                for( int i = 0; i < stMulti.top(); ++i)
-                    part += res;
-                res = stRes.top() + part;
+                string tmp;
+                for( int i = 0; i < stMul.top(); ++i)
+                    tmp += res;
 
-                stMulti.pop();
+                res = stRes.top() + tmp;
+
+                stMul.pop();
                 stRes.pop();
             }
             else

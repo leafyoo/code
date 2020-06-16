@@ -1,8 +1,10 @@
 // @lc code=start
 class Solution {
 public:
-    int orangesRotting(vector<vector<int>>& grid) {
-        if(grid.empty() || grid[0].empty()) return 0;
+    int orangesRotting(vector<vector<int>>& grid) 
+    {
+        if(grid.empty() || grid[0].empty()) 
+            return 0;
 
         queue< pair<int, int> > q;
         int nr = grid.size(), nc = grid[0].size();

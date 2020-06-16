@@ -2,14 +2,15 @@
 class Solution {
 public:
     void rotate(vector<int>& nums, int k) {
-        if(nums.size() < 2) return;
+        if(nums.size() < 2) 
+            return;
 
         k = k % nums.size();        //重要：注意，求余！！
 
         reverse(nums.begin(), nums.end());              //先整体反转，再局部反转
         
         reverse(nums.begin(), nums.begin() + k);
-        reverse(nums.begin() + k,nums.end());
+        reverse(nums.begin() + k, nums.end());
     }
 };
 // @lc code=end

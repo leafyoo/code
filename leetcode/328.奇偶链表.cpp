@@ -11,23 +11,24 @@
 class Solution {
 public:
     ListNode* oddEvenList(ListNode* head) {
-        if(!head || !head->next || !head->next->next) return head;
+        if(!head || !head->next || !head->next->next) 
+            return head;
 
-        ListNode *p1 = head, *p2 = head->next, *head2 = head->next;
+        ListNode *p = head, *q = head->next, *head2 = head->next;
         
         //【1】把链表拆成2个链表
-        while( p2 && p2->next )    
+        while( q && q->next )    
         {
             //每一轮循环里，p1 p2都变一下，交错螺旋前进，这样的话，不会影响彼此的下一个节点
-            p1->next = p1->next->next; //这些都是存放指针（node 节点的地址） p1, p1->next, p1->next->next 
-            p1 = p1->next;
+            p->next = p->next->next; //这些都是存放指针（node 节点的地址） p, p->next, p->next->next 
+            p = p->next;
 
-            p2->next = p2->next->next;
-            p2 = p2->next;
+            q->next = q->next->next;
+            q = q->next;
         }
 
         //【2】把两个链表合并
-        p1->next = head2;
+        p->next = head2;
 
         return head;
     }
@@ -35,7 +36,7 @@ public:
 // @lc code=end
 /*  
 fish:因为奇数偶数两个链表是基于旧的链表生成，所以，旧的链表的节点next指针必须发生变化才行。
-说明：p1->next的含义是p1指向的对象（节点）的next成员； p1 的含义是 一个节点类型的指针，这个四字节的变量里存着一个地址（节点的地址）
+说明：p1->next的含义是p1指向的对象（节点）的next成员； p 的含义是 一个节点类型的指针，这个四字节的变量里存着一个地址（节点的地址）
 题解，看leetcode 官方题解：https://leetcode-cn.com/problems/odd-even-linked-list/solution/qi-ou-lian-biao-by-leetcode/
 总结:通过修改原有链表的节点指向，使得新生成2个链表，然后把偶数链表拼接在奇数之后
 

@@ -1,8 +1,10 @@
 // @lc code=start
 class Solution {
 public:
-    int numSquares(int n) {
-        if(n < 2) return 1;
+    int numSquares(int n) 
+    {
+        if(n < 2) 
+            return 1;
         vector<int> dp(n+1, 0);
 
         for( int i = 1; i <= n; ++i)
