@@ -2,52 +2,63 @@
 多个有序数组合并
 优先队列（小顶堆）
 */
-struct node{
-	int value;
-	int out_index;//数组外索引
-	int in_index;//数组内索引
-	node(int v, int o,int i){
-		value = v;
-		out_index = o;
-		in_index = i;
+struct node
+{
+	int val;
+	int i1;//数组外索引
+	int i2;//数组内索引
+
+	node(int v, int o,int i)
+	{
+		val = v;
+		i1 = o;
+		i2 = i;
 	}
-	bool operator<(node a)const{
-		return value < a.value;
+	bool operator<(node a)const
+	{
+		return val < a.val;
 	}
-	bool operator>(node a)const{
-		return value > a.value;
+	bool operator>(node a)const
+	{
+		return val > a.val;
 	}
 };
-vector<int> mergeSort(vector<vector<int>> &nums){
+
+vector<int> mergeSort(vector<vector<int>> &nums)
+{
 	vector<int> res;
-	priority_queue <node, vector<node>,greater<node>> pq;
-	int N = nums.size(), M = nums[0].size();
+	priority_queue <node, vector<node>,greater<node>> q;
+	int r = nums.size(), c = nums[0].size();
 
 	//将每个数组的第一个元素（最小）放入小顶堆
-	for (int k = 0; k < N; k++){
-		pq.push(node(nums[k][0], k, 0));
+	for (int k = 0; k < r; k++)
+	{
+		q.push(node(nums[k][0], k, 0));
 	}
 	int i = 0, j = 0;
 	
     //优先队列满，取最小元素放入数组，然后将索引改为最小元素对应的数组中的索引
-	while (res.size() < N*M){
-		
-		res.push_back(pq.top().value);////获得优先队列中最小值元素 存入目标数组
+	while (res.size() < r*c)
+	{
+		res.push_back(q.top().val);////获得优先队列中最小值元素 存入目标数组
 
-		i = pq.top().out_index;//最小值元素对应数组
-		j = pq.top().in_index + 1;//最小值元素对应数组内下一个的元素
-		pq.pop();
-		if (j == M)//达到某数组末尾
+		i = q.top().i1;//最小值元素对应数组
+		j = q.top().i2 + 1;//最小值元素对应数组内下一个的元素
+		q.pop();
+
+		if (j == c)//达到某数组末尾
 		{
-			pq.push(node(INFTY, i, j));
+			q.push(node(INFTY, i, j));
 		}
 		else
 		{
-			pq.push(node(nums[i][j], i, j));
+			q.push(node(nums[i][j], i, j));
 		}
 	}
+
 	return res;
-				
+}				
+
 /* 
 ————————————————
 版权声明：本文为CSDN博主「qiuye2014」的原创文章，遵循 CC 4.0 BY-SA 版权协议，转载请附上原文出处链接及本声明。
@@ -88,7 +99,7 @@ vector<int> mergeSort(vector<vector<int>> &nums){
   ]
 输出: [1,1,2,2,3]
 挑战
-在 O(N log k) 的时间复杂度内完成：
+在 O(r log k) 的时间复杂度内完成：
 
 N 是所有数组包含的整数总数量。
 k 是数组的个数。

@@ -10,10 +10,7 @@
 #include <queue>
 #include <list>
 #include <stdexcept>
-#include "mylib.hpp"
 using namespace std;
-
-
 
 //ms p128，list是否为回文
 bool isListMirror(Node *h)
@@ -29,6 +26,7 @@ bool isListMirror(Node *h)
 		p1 = p1->next;
 		p2 = p2->next->next;
 	}
+
 	if(p2)
 		p1 = p1->next;
 	while(st.size() > 0)
